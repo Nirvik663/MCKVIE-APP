@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/nav_signin"
+            android:title="Sign In"
+            android:icon="@mipmap/baseline_search_black_18dp"
+            android:visible="true"/>
+
+        <item android:id = "@+id/nav_account"
+            android:title = "My Account"
+            android:icon="@mipmap/baseline_person_black_18dp"
+            android:visible="false"/>
+
+        <item
+            android:id="@+id/nav_settings"
+            android:title="Settings"
+            android:icon="@mipmap/baseline_settings_black_18dp"/>
+    </group>
+</menu>
