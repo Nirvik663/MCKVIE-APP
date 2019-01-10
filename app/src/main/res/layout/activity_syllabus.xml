@@ -10,8 +10,7 @@
     <include layout="@layout/navigation_action" />
 
     <include
-        layout="@layout/content_syllabus"
-        android:layout_height="622dp" />
+        layout="@layout/content_syllabus" />
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -275,9 +275,10 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="44dp"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="8dp"
                 android:fontFamily="sans-serif"
                 android:paddingTop="4dp"
                 android:text="360&#xb0; Virtual Tour"
@@ -287,20 +288,24 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/textView2"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/videoView3"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="256dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="8dp"
                 android:fontFamily="sans-serif"
-                android:text="Experience MCKVIE as if you are standing inside."
+                android:text="Experience MCKVIE as if you \nare standing inside."
                 android:textAlignment="center"
                 android:textColor="#ffffff"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/videoView"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/videoView3"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <Button
@@ -323,7 +328,7 @@
 
             <VideoView
                 android:id="@+id/videoView3"
-                android:layout_width="127dp"
+                android:layout_width="0dp"
                 android:layout_height="81dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="16dp"

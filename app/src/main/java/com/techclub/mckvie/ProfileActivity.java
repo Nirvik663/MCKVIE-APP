@@ -38,6 +38,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
 
+
     private StorageReference mStorageRef;
 
     @Override
@@ -161,23 +162,3 @@ public class ProfileActivity extends AppCompatActivity {
         finish();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

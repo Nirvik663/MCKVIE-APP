@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Syllabus"
     tools:showIn="@layout/activity_syllabus"
-    android:layout_marginTop="55dp">
+    android:layout_marginTop="57dp">
 
 
     <ScrollView
@@ -21,11 +21,12 @@
 
             <TextView
                 android:id="@+id/textView14"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/architects_daughter"
-                android:text=" MCKV Institute of Engineering is affiliated to West Bengal University of Technology (WBUT) and thus follows the syllabus as prescribed by WBUT for all the courses of B. Tech, M. Tech and MCA."
+                android:text="MCKV Institute of Engineering is affiliated to West \nBengal University of Technology (WBUT) and thus \nfollows the syllabus as prescribed by WBUT for \nall the courses of B. Tech, M. Tech and MCA."
                 android:textAlignment="textStart"
+                android:layout_marginLeft="13dp"
                 android:textStyle="bold" />
 
             <TextView

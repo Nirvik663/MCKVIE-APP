@@ -39,9 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAuth = FirebaseAuth.getInstance();
 
         findViewById(R.id.signinbtn).setOnClickListener(this);
-
     }
-
 
     private void userLogin() {
         String email = editTextEmail.getText().toString().trim();
