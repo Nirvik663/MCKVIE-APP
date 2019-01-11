@@ -1,5 +1,6 @@
 package com.techclub.mckvie;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -8,12 +9,25 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.squareup.picasso.Picasso;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -23,6 +37,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
 
+    private RecyclerView mPeopleRV;
+    private DatabaseReference mDatabase;
+    private FirebaseRecyclerAdapter<object, HomeActivity.NewsViewHolder> mPeopleRVAdapter;
     private FirebaseAuth mAuth;
     private NavigationView navigationView;
 
@@ -34,7 +51,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         setuptoolbar();
-
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         TextView tv = (TextView) this.findViewById(R.id.textView6);
@@ -51,6 +67,46 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Notices");
+        mDatabase.keepSynced(true);
+        mPeopleRV = (RecyclerView) findViewById(R.id.myRecycleView);
+
+        DatabaseReference personsRef = FirebaseDatabase.getInstance().getReference().child("Notices");
+        Query personsQuery = personsRef.orderByKey();
+
+        mPeopleRV.hasFixedSize();
+        mPeopleRV.setLayoutManager(new LinearLayoutManager(this));
+
+        FirebaseRecyclerOptions personsOptions = new FirebaseRecyclerOptions.Builder<object>().setQuery(personsQuery, object.class).build();
+
+        mPeopleRVAdapter = new FirebaseRecyclerAdapter<object, HomeActivity.NewsViewHolder>(personsOptions) {
+            @Override
+            protected void onBindViewHolder(HomeActivity.NewsViewHolder holder, final int position, final object model) {
+                holder.setTitle(model.getTitle());
+
+                holder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final String url = model.getUrl();
+                        Intent intent = new Intent(getApplicationContext(), webview.class);
+                        intent.putExtra("id", url);
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            @Override
+            public HomeActivity.NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.home_row, parent, false);
+
+                return new HomeActivity.NewsViewHolder(view);
+            }
+        };
+
+        mPeopleRV.setAdapter(mPeopleRVAdapter);
 
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +128,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(getApplicationContext(),notices.class));
             }
         });
+    }
+
+    public static class NewsViewHolder extends RecyclerView.ViewHolder{
+        View mView;
+        public NewsViewHolder(View itemView){
+            super(itemView);
+            mView = itemView;
+        }
+        public void setTitle(String title){
+            TextView post_title = (TextView)mView.findViewById(R.id.post_title);
+            post_title.setText(title);
+        }
     }
 
     public class MyTimerTask extends TimerTask {
@@ -156,6 +224,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.navigation_menu_logout);
         }
-
-        }
+        mPeopleRVAdapter.startListening();
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mPeopleRVAdapter.stopListening();
+    }
+
+
+}

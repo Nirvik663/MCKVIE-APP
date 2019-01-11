@@ -110,4 +110,3 @@ public class notices extends AppCompatActivity {
         }
     }
 }
-
