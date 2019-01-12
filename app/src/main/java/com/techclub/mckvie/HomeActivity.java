@@ -28,6 +28,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -58,6 +60,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView notice = (TextView) this.findViewById(R.id.textView15);
         TextView event = (TextView) this.findViewById(R.id.textView16);
         TextView news = (TextView) this.findViewById(R.id.textView13);
+        TextView noragging = (TextView) this.findViewById(R.id.textView10);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
@@ -140,6 +143,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), news.class));
+            }
+        });
+        noragging.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,NoRagging.class));
             }
         });
     }
