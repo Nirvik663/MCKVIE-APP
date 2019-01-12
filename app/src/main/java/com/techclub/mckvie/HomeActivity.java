@@ -1,6 +1,7 @@
 package com.techclub.mckvie;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
@@ -25,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import java.net.URI;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -54,6 +56,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView event = (TextView) this.findViewById(R.id.textView16);
         TextView news = (TextView) this.findViewById(R.id.textView13);
         TextView noragging = (TextView) this.findViewById(R.id.textView10);
+        TextView career =(TextView) this.findViewById(R.id.textView3);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
@@ -137,6 +140,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(HomeActivity.this,NoRagging.class));
             }
         });
+        career.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri=Uri.parse("http://www.mckvie.org/sms/mckvie/career/");
+                Intent intent= new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder{
