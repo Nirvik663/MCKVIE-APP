@@ -56,6 +56,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView tv = (TextView) this.findViewById(R.id.textView6);
         TextView t = (TextView) this.findViewById(R.id.more);
         TextView notice = (TextView) this.findViewById(R.id.textView15);
+        TextView event = (TextView) this.findViewById(R.id.textView16);
+        TextView news = (TextView) this.findViewById(R.id.textView13);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
@@ -126,6 +128,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),notices.class));
+            }
+        });
+        event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), events.class));
+            }
+        });
+        news.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), news.class));
             }
         });
     }
