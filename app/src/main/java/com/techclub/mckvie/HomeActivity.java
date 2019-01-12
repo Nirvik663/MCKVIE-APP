@@ -1,5 +1,6 @@
 package com.techclub.mckvie;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -35,6 +36,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    DownloadManager downloadManager1;
 
     private RecyclerView mPeopleRV;
     private DatabaseReference mDatabase;
@@ -50,6 +52,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_home);
         setuptoolbar();
 
+
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         TextView tv = (TextView) this.findViewById(R.id.textView6);
         TextView notice = (TextView) this.findViewById(R.id.textView15);
@@ -57,6 +60,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView news = (TextView) this.findViewById(R.id.textView13);
         TextView noragging = (TextView) this.findViewById(R.id.textView10);
         TextView career =(TextView) this.findViewById(R.id.textView3);
+        TextView handbook=(TextView) this.findViewById(R.id.handbook);
+        TextView book=(TextView) this.findViewById(R.id.books);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
@@ -140,12 +145,28 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(HomeActivity.this,NoRagging.class));
             }
         });
+        handbook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                downloadManager1 = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                Uri uri = Uri.parse("http://www.mckvie.edu.in/site/assets/files/1310/handbook_corrected.pdf");
+                DownloadManager.Request request = new DownloadManager.Request(uri);
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                downloadManager1.enqueue(request);
+            }
+        });
         career.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Uri uri=Uri.parse("http://www.mckvie.org/sms/mckvie/career/");
                 Intent intent= new Intent(Intent.ACTION_VIEW,uri);
                 startActivity(intent);
+            }
+        });
+        book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,books_journals.class));
             }
         });
 
