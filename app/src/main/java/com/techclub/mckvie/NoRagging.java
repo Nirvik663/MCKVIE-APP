@@ -34,7 +34,7 @@ public class NoRagging extends AppCompatActivity {
                 Uri uri = Uri.parse("http://www.mckvie.edu.in/site/assets/files/1162/revised_anti_ragging_committee_2018.pdf");
                 DownloadManager.Request request = new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                Long reference = downloadManager.enqueue(request);
+                downloadManager.enqueue(request);
             }
         });
     }

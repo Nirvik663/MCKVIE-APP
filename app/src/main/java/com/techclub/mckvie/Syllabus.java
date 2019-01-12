@@ -45,7 +45,7 @@ public class Syllabus extends AppCompatActivity {
                 Uri uri = Uri.parse("http://www.mckvie.edu.in/site/assets/files/1161/1st_year_b_tech_syllabus_revised_18_08_10.pdf");
                 DownloadManager.Request request=new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                Long reference = downloadManager.enqueue(request);
+                downloadManager.enqueue(request);
             }
         });
 
@@ -56,7 +56,7 @@ public class Syllabus extends AppCompatActivity {
                 Uri uri = Uri.parse("http://www.wbut.ac.in/syllabus/CSE_Final_Upto_4h_Year%20Syllabus_14.03.14.pdf");
                 DownloadManager.Request request=new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                Long reference = downloadManager.enqueue(request);
+                downloadManager.enqueue(request);
             }
         });
 
@@ -67,7 +67,7 @@ public class Syllabus extends AppCompatActivity {
                 Uri uri = Uri.parse("http://www.mckvie.edu.in/site/assets/files/1161/aue_final_upto_4th_year-syllabus_05_06_13.pdf");
                 DownloadManager.Request request=new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                Long reference = downloadManager.enqueue(request);
+                downloadManager.enqueue(request);
             }
         });
 
@@ -78,7 +78,7 @@ public class Syllabus extends AppCompatActivity {
                 Uri uri = Uri.parse("http://www.mckvie.edu.in/site/assets/files/1161/me_final_upto_4th_year-syllabus_04_06_13.pdf");
                 DownloadManager.Request request=new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                Long reference = downloadManager.enqueue(request);
+                downloadManager.enqueue(request);
             }
         });
 
@@ -89,7 +89,7 @@ public class Syllabus extends AppCompatActivity {
                 Uri uri = Uri.parse("http://www.mckvie.edu.in/site/assets/files/1161/mtech_ececommunication_comm_detail_syllabus_2010.pdf");
                 DownloadManager.Request request=new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                Long reference = downloadManager.enqueue(request);
+                downloadManager.enqueue(request);
             }
         });
 
@@ -100,7 +100,7 @@ public class Syllabus extends AppCompatActivity {
                 Uri uri = Uri.parse("http://www.wbut.ac.in/syllabus/M.Tech_CSE_IT_Unified_19.02.14_2.pdf");
                 DownloadManager.Request request=new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                Long reference = downloadManager.enqueue(request);
+                downloadManager.enqueue(request);
             }
         });
 
@@ -111,7 +111,7 @@ public class Syllabus extends AppCompatActivity {
                 Uri uri = Uri.parse("http://www.mckvie.edu.in/site/assets/files/1161/automotive-technology-syllabus-mckvie.pdf");
                 DownloadManager.Request request=new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                Long reference = downloadManager.enqueue(request);
+                downloadManager.enqueue(request);
             }
         });
 
@@ -122,7 +122,7 @@ public class Syllabus extends AppCompatActivity {
                 Uri uri = Uri.parse("http://www.mckvie.edu.in/site/assets/files/1161/mtech_ecemicroelectronics_vlsi-designs_comm_detail_syllabus_2010.pdf");
                 DownloadManager.Request request=new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                Long reference = downloadManager.enqueue(request);
+                downloadManager.enqueue(request);
             }
         });
 
@@ -133,7 +133,7 @@ public class Syllabus extends AppCompatActivity {
                 Uri uri = Uri.parse("http://www.mckvie.edu.in/site/assets/files/1161/mca_new_syllabus.pdf");
                 DownloadManager.Request request=new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                Long reference = downloadManager.enqueue(request);
+                downloadManager.enqueue(request);
             }
         });
     }
