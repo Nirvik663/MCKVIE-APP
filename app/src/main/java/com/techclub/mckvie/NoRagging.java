@@ -38,6 +38,7 @@ public class NoRagging extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
