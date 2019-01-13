@@ -18,16 +18,17 @@
 
         <TextView
             android:id="@+id/post_title"
-            android:textColor="#404040"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:fontFamily="@font/coustard"
+            android:includeFontPadding="true"
             android:paddingVertical="3dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:text="POST TITLE"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+            android:textColor="#404040"
+            android:textSize="15dp" />
 
 
     </RelativeLayout>

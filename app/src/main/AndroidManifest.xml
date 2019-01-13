@@ -35,9 +35,10 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Syllabus"
             android:screenOrientation="portrait"/>
-        <activity android:name=".NoRagging"/>
+        <activity android:name=".NoRagging"
+            android:screenOrientation="portrait"/>
         <activity android:name=".test"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="sensorLandscape"/>
         <activity android:name=".MoreActivity"
             android:screenOrientation="portrait"
             android:parentActivityName=".HomeActivity"></activity>

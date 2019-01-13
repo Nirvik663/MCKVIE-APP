@@ -1,6 +1,7 @@
 package com.techclub.mckvie;
 
 import android.app.DownloadManager;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,8 @@ public class NoRagging extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setSubtitle("");
         buttonrag = (Button) findViewById(R.id.ragpdf);
+
+        buttonrag.setPaintFlags(buttonrag.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         buttonrag.setOnClickListener(new View.OnClickListener() {
             @Override
