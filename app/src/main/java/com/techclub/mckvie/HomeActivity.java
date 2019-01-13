@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,14 +31,40 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayer.ErrorReason;
+import com.google.android.youtube.player.YouTubePlayer.PlaybackEventListener;
+import com.google.android.youtube.player.YouTubePlayer.PlayerStateChangeListener;
+import com.google.android.youtube.player.YouTubePlayer.Provider;
+import com.google.android.youtube.player.YouTubePlayerView;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
+
+
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    ImageView iv_youtube_thumnail,iv_play;
+    String videoId;
+
+
 
     private RecyclerView mPeopleRV;
     private DatabaseReference mDatabase;
@@ -61,6 +88,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView event = (TextView) this.findViewById(R.id.textView16);
         TextView news = (TextView) this.findViewById(R.id.textView13);
         TextView noragging = (TextView) this.findViewById(R.id.textView10);
+        ImageView iv_play=(ImageView)findViewById(R.id.iv_play_pause);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
@@ -151,7 +179,65 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(HomeActivity.this,NoRagging.class));
             }
         });
+
+        iv_play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,test.class));
+            }
+        });
+
+
+        init();
+
+        try
+        {
+            videoId=extractYoutubeId("https://www.youtube.com/watch?v=atmWWi5bIbg");
+
+            Log.e("VideoId is->","" + videoId);
+
+            String img_url="http://img.youtube.com/vi/"+videoId+"/0.jpg"; // this is link which will give u thumnail image of that video
+
+            // picasso jar file download image for u and set image in imagview
+
+            Picasso.with(HomeActivity.this)
+                    .load(img_url)
+                    .into(iv_youtube_thumnail);
+
+        }
+        catch (MalformedURLException e)
+        {
+            e.printStackTrace();
+        }
+
     }
+    public void init()
+    {
+        iv_youtube_thumnail=(ImageView)findViewById(R.id.img_thumnail);
+    }
+
+    // extract youtube video id and return that id
+    // ex--> "http://www.youtube.com/watch?v=t7UxjpUaL3Y"
+    // videoid is-->t7UxjpUaL3Y
+
+
+    public String extractYoutubeId(String url) throws MalformedURLException {
+        String query = new URL(url).getQuery();
+        String[] param = query.split("&");
+        String id = null;
+        for (String row : param) {
+            String[] param1 = row.split("=");
+            if (param1[0].equals("v")) {
+                id = param1[1];
+            }
+        }
+        return id;
+
+    }
+
+
+
+
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder{
         View mView;
@@ -255,6 +341,5 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onStop();
         mPeopleRVAdapter.stopListening();
     }
-
 
 }

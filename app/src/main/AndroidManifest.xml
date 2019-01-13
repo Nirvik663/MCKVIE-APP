@@ -36,6 +36,7 @@
         <activity android:name=".Syllabus"
             android:screenOrientation="portrait"/>
         <activity android:name=".NoRagging"/>
+        <activity android:name=".test"/>
         <activity android:name=".MoreActivity"
             android:screenOrientation="portrait"
             android:parentActivityName=".HomeActivity"></activity>
