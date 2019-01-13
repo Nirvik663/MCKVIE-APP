@@ -41,17 +41,17 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/textView7"
-                app:layout_constraintEnd_toStartOf="@+id/textView4"
+                app:layout_constraintEnd_toStartOf="@+id/handbook"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/handbook"
                 android:layout_width="0dp"
                 android:layout_height="31dp"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:paddingTop="7dp"
-                android:text="ALUMNI"
+                android:paddingTop="2dp"
+                android:text="HANDBOOK OF RULES"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textSize="12sp"
@@ -71,9 +71,9 @@
                 android:textAlignment="center"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/textView9"
+                app:layout_constraintBottom_toTopOf="@+id/books"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintStart_toEndOf="@+id/handbook"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -102,17 +102,17 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/textView11"
-                app:layout_constraintEnd_toStartOf="@+id/textView9"
+                app:layout_constraintEnd_toStartOf="@+id/books"
                 app:layout_constraintStart_toEndOf="@+id/textView7"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintTop_toBottomOf="@+id/handbook" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/books"
                 android:layout_width="0dp"
                 android:layout_height="31dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:paddingTop="7dp"
-                android:text="NEWSLETTER"
+                android:text="BOOKS | JOURNALS"
                 android:textAlignment="center"
                 android:textSize="12sp"
                 android:textStyle="bold"
@@ -142,7 +142,7 @@
                 android:layout_height="31dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:paddingTop="7dp"
-                android:text="AUTONOMY"
+                android:text="ATTENDANCE"
                 android:textAlignment="center"
                 android:textSize="12sp"
                 android:textStyle="bold"
@@ -157,14 +157,14 @@
                 android:layout_height="31dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:paddingTop="7dp"
-                android:text="MORE >>>"
+                android:text="CONTACT US"
                 android:textAlignment="center"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                app:layout_constraintTop_toBottomOf="@+id/books" />
 
 
         </android.support.constraint.ConstraintLayout>
