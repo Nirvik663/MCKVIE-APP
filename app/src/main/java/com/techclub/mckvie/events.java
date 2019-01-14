@@ -21,20 +21,21 @@ import com.squareup.picasso.Picasso;
 
 public class events extends AppCompatActivity {
 
-    private RecyclerView mPeopleRV;
-    private DatabaseReference mDatabase;
     private FirebaseRecyclerAdapter<object, notices.NewsViewHolder> mPeopleRVAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notices);
+        setContentView(R.layout.events);
+
+        RecyclerView mPeopleRV;
+        DatabaseReference mDatabase;
 
         setTitle("Events");
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Events");
         mDatabase.keepSynced(true);
-        mPeopleRV = (RecyclerView) findViewById(R.id.myRecycleView);
+        mPeopleRV = findViewById(R.id.myRecycleView);
 
         DatabaseReference personsRef = FirebaseDatabase.getInstance().getReference().child("Events");
         Query personsQuery = personsRef.orderByKey();

@@ -28,7 +28,7 @@ public class news extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notices);
+        setContentView(R.layout.news);
 
         setTitle("News");
 

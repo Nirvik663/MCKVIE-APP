@@ -1,13 +1,11 @@
 package com.techclub.mckvie;
 
 import android.app.DownloadManager;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class books_journals extends AppCompatActivity {
@@ -23,7 +21,7 @@ public class books_journals extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.books);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -31,10 +29,10 @@ public class books_journals extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setSubtitle("");
 
-        TextView t1 = (TextView) this.findViewById(R.id.textView12);
-        TextView t2 = (TextView) this.findViewById(R.id.textView23);
-        TextView t3 = (TextView) this.findViewById(R.id.textView25);
-        TextView t4 = (TextView) this.findViewById(R.id.textView26);
+        TextView t1 =  this.findViewById(R.id.textView12);
+        TextView t2 =  this.findViewById(R.id.textView23);
+        TextView t3 =  this.findViewById(R.id.textView25);
+        TextView t4 =  this.findViewById(R.id.textView26);
         t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

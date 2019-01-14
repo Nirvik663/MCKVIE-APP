@@ -76,7 +76,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         TextView tv = (TextView) this.findViewById(R.id.textView6);
-        TextView t = (TextView) this.findViewById(R.id.more);
         TextView notice = (TextView) this.findViewById(R.id.textView15);
         TextView event = (TextView) this.findViewById(R.id.textView16);
         TextView news = (TextView) this.findViewById(R.id.textView13);
@@ -144,13 +143,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        t.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, MoreActivity.class));
-            }
-        });
-
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -191,6 +183,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 DownloadManager.Request request = new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
                 downloadManager.enqueue(request);
+                Toast.makeText(HomeActivity.this,"Downloading", Toast.LENGTH_SHORT).show();
             }
         });
 

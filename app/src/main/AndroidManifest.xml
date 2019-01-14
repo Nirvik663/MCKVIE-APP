@@ -43,6 +43,8 @@
             android:screenOrientation="portrait"
             android:parentActivityName=".HomeActivity"></activity>
         <activity android:name=".notices" />
+        <activity android:name=".events"/>
+        <activity android:name=".news"/>
         <activity android:name=".books_journals"/>
         <activity
             android:name=".webview"
