@@ -84,6 +84,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView handbook = (TextView) findViewById(R.id.handbook);
         TextView career = (TextView) findViewById(R.id.textView3);
         TextView book = (TextView) findViewById(R.id.books);
+        TextView Contactus = (TextView) findViewById(R.id.contactus);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
@@ -202,6 +203,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
+        Contactus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent( HomeActivity.this,contact_us.class));
+            }
+        });
 
         init();
 
@@ -247,6 +254,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         }
         return id;
+
 
     }
 
