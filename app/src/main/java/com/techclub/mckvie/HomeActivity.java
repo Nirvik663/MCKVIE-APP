@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.design.widget.TabLayout;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -31,25 +33,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.ImageView;
-
-import com.squareup.picasso.Picasso;
-
-
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,Tab1.OnFragmentInteractionListener,Tab2.OnFragmentInteractionListener,Tab3.OnFragmentInteractionListener {
 
     DrawerLayout drawerLayout;
     Toolbar toolbar;
@@ -57,11 +46,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     ImageView iv_youtube_thumnail,iv_play;
     String videoId;
 
-
-
     private RecyclerView mPeopleRV;
     private DatabaseReference mDatabase;
-    private FirebaseRecyclerAdapter<object, HomeActivity.NewsViewHolder> mPeopleRVAdapter;
     private FirebaseAuth mAuth;
     private NavigationView navigationView;
 
@@ -96,46 +82,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Notices");
-        mDatabase.keepSynced(true);
-        mPeopleRV = (RecyclerView) findViewById(R.id.myRecycleView);
-
-        DatabaseReference personsRef = FirebaseDatabase.getInstance().getReference().child("Notices");
-        Query personsQuery = personsRef.orderByKey();
-
-        mPeopleRV.hasFixedSize();
-        mPeopleRV.setLayoutManager(new LinearLayoutManager(this));
-
-        FirebaseRecyclerOptions personsOptions = new FirebaseRecyclerOptions.Builder<object>().setQuery(personsQuery, object.class).build();
-
-        mPeopleRVAdapter = new FirebaseRecyclerAdapter<object, HomeActivity.NewsViewHolder>(personsOptions) {
-            @Override
-            protected void onBindViewHolder(HomeActivity.NewsViewHolder holder, final int position, final object model) {
-                holder.setTitle(model.getTitle());
-
-                holder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final String url = model.getUrl();
-                        Intent intent = new Intent(getApplicationContext(), webview.class);
-                        intent.putExtra("id", url);
-                        startActivity(intent);
-                    }
-                });
-            }
-
-            @Override
-            public HomeActivity.NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-                View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.home_row, parent, false);
-
-                return new HomeActivity.NewsViewHolder(view);
-            }
-        };
-
-        mPeopleRV.setAdapter(mPeopleRVAdapter);
 
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,6 +156,34 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        TabLayout tabLayout = (TabLayout)findViewById(R.id.tablayout);
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
+        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
         init();
 
         try
@@ -231,8 +205,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         {
             e.printStackTrace();
         }
-
     }
+
     public void init()
     {
         iv_youtube_thumnail=(ImageView)findViewById(R.id.img_thumnail);
@@ -254,24 +228,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         }
         return id;
-
-
-    }
-
-
-
-
-
-    public static class NewsViewHolder extends RecyclerView.ViewHolder{
-        View mView;
-        public NewsViewHolder(View itemView){
-            super(itemView);
-            mView = itemView;
-        }
-        public void setTitle(String title){
-            TextView post_title = (TextView)mView.findViewById(R.id.post_title);
-            post_title.setText(title);
-        }
     }
 
     public class MyTimerTask extends TimerTask {
@@ -344,6 +300,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         actionBarDrawerToggle.syncState();
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 
     @Override
     protected void onStart() {
@@ -356,13 +316,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.navigation_menu_logout);
         }
-        mPeopleRVAdapter.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mPeopleRVAdapter.stopListening();
     }
 
 }

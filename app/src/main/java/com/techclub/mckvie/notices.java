@@ -106,4 +106,5 @@ public class notices extends AppCompatActivity {
             ImageView post_image = (ImageView) mView.findViewById(R.id.post_image);
             Picasso.with(ctx).load(image).into(post_image);
         }
-    }}
+    }
+}

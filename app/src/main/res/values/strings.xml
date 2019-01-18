@@ -8,4 +8,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="anti_ragging">As per directive of the AICTE under National Ragging Prevention Project, all the aspirant candidates along with their parents/guardians are advised to go to the website  www.antiragging.in  or  www.amanmovement.org , fill up and submit the Affidavits online and take a printout of the submitted Affidavits (both student and parent) and submit the same to the Institute Officials while taking their admission in MCKVIE during the admission process. Ragging is neither a ritual nor a custom in campus life. It is a punishable criminal offence. MCKVIE strongly discourages ragging and stringent action is taken against offenders. New students are welcome to join MCKVIE without any fear or apprehension. </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
