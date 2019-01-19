@@ -1,27 +1,31 @@
 package com.techclub.mckvie;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Tab3.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Tab3#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Tab3 extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private RecyclerView mPeopleRV;
+    private DatabaseReference mDatabase;
+    private FirebaseRecyclerAdapter<object, Tab3.NewsViewHolder> mPeopleRVAdapter;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -39,7 +43,7 @@ public class Tab3 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Tab3.
+     * @return A new instance of fragment Tab2.
      */
     // TODO: Rename and change types and number of parameters
     public static Tab3 newInstance(String param1, String param2) {
@@ -64,7 +68,62 @@ public class Tab3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab3, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab3, container, false);
+        final Context context = getActivity().getApplicationContext();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Events");
+        mDatabase.keepSynced(true);
+        mPeopleRV = (RecyclerView) view.findViewById(R.id.myRecycleView1);
+
+        DatabaseReference personsRef = FirebaseDatabase.getInstance().getReference().child("Events");
+        Query personsQuery = personsRef.orderByKey();
+
+        mPeopleRV.hasFixedSize();
+        mPeopleRV.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+
+        FirebaseRecyclerOptions personsOptions = new FirebaseRecyclerOptions.Builder<object>().setQuery(personsQuery, object.class).build();
+
+        mPeopleRVAdapter = new FirebaseRecyclerAdapter<object, Tab3.NewsViewHolder>(personsOptions) {
+            @Override
+            protected void onBindViewHolder(Tab3.NewsViewHolder holder, final int position, final object model) {
+                holder.setTitle(model.getTitle());
+
+                holder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final String url = model.getUrl();
+                        Intent intent = new Intent(context, webview.class);
+                        intent.putExtra("id", url);
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            @Override
+            public Tab3.NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.home_row, parent, false);
+
+                return new Tab3.NewsViewHolder(view);
+            }
+        };
+
+        mPeopleRV.setAdapter(mPeopleRVAdapter);
+
+        return view;
+    }
+
+    public static class NewsViewHolder extends RecyclerView.ViewHolder{
+        View mView;
+        public NewsViewHolder(View itemView){
+            super(itemView);
+            mView = itemView;
+        }
+        public void setTitle(String title){
+            TextView post_title = (TextView)mView.findViewById(R.id.post_title);
+            post_title.setText(title);
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,6 +148,18 @@ public class Tab3 extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mPeopleRVAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mPeopleRVAdapter.stopListening();
     }
 
     /**
