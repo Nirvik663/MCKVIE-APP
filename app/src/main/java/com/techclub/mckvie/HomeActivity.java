@@ -62,15 +62,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         TextView tv = (TextView) this.findViewById(R.id.textView6);
-        TextView notice = (TextView) this.findViewById(R.id.textView15);
-        TextView event = (TextView) this.findViewById(R.id.textView16);
-        TextView news = (TextView) this.findViewById(R.id.textView13);
         TextView noragging = (TextView) this.findViewById(R.id.textView10);
         ImageView iv_play=(ImageView)findViewById(R.id.iv_play_pause);
         TextView handbook = (TextView) findViewById(R.id.handbook);
         TextView career = (TextView) findViewById(R.id.textView3);
         TextView book = (TextView) findViewById(R.id.books);
         TextView Contactus = (TextView) findViewById(R.id.contactus);
+        TextView Knowmckvie = (TextView) findViewById(R.id.textView7);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
@@ -90,24 +88,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        notice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),notices.class));
-            }
-        });
-        event.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), events.class));
-            }
-        });
-        news.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), news.class));
-            }
-        });
         noragging.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -156,10 +136,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        Knowmckvie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,know_mckvie.class));
+            }
+        });
+
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tablayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.addTab(tabLayout.newTab().setText("Notices"));
+        tabLayout.addTab(tabLayout.newTab().setText("News"));
+        tabLayout.addTab(tabLayout.newTab().setText("Events"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);

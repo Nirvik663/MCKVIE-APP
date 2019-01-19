@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class contact_us extends AppCompatActivity {
-    TextView textView26,textView30,textView35,textView36;
     DownloadManager downloadManager;
     Toolbar toolbar;
 
@@ -27,7 +26,7 @@ public class contact_us extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("");
         toolbar.setSubtitle("");
-        textView36=(TextView) findViewById(R.id.textView36);
+        TextView textView36 = (TextView) findViewById(R.id.textView36);
 
         textView36.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,8 +34,6 @@ public class contact_us extends AppCompatActivity {
                 startActivity(new Intent(contact_us.this, visit.class));
             }
         });
-
-
 
     }
     public void process(View view)

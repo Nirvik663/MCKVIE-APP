@@ -170,92 +170,11 @@
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:background="#F57F17"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="0dp"
-                android:layout_height="32dp"
-                android:paddingTop="7dp"
-                android:text="NEWS"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView15"
-                app:layout_constraintEnd_toStartOf="@+id/textView15"
-                app:layout_constraintStart_toStartOf="parent"
-                android:foreground="?android:attr/selectableItemBackground"/>
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="0dp"
-                android:layout_height="32dp"
-                android:paddingTop="7dp"
-                android:text="NOTICES"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView16"
-                app:layout_constraintEnd_toStartOf="@+id/textView16"
-                app:layout_constraintStart_toEndOf="@+id/textView13"
-                android:foreground="?android:attr/selectableItemBackground"/>
-
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="0dp"
-                android:layout_height="34dp"
-                android:paddingTop="7dp"
-                android:text="EVENTS"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView15"
-                app:layout_constraintTop_toTopOf="parent"
-                android:foreground="?android:attr/selectableItemBackground"/>
-
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="184dp"
-                android:layout_height="23dp"
-                android:paddingTop="1dp"
-                android:text="APPROVED BY"
-                android:textAlignment="center"
-                android:textColor="#ff0011"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView18"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="192dp"
-                android:layout_height="23dp"
-                android:paddingTop="1dp"
-                android:text="CLUBS"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView17"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-        </android.support.constraint.ConstraintLayout>
-
-        <android.support.constraint.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="#FFD3A9"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
@@ -281,22 +200,24 @@
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView20">
+                app:layout_constraintTop_toBottomOf="@+id/textView20"
+                app:layout_constraintVertical_bias="1.0">
 
 
                 <android.support.v4.view.ViewPager
+                    android:id="@+id/pager"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:id="@+id/pager">
+                    android:layout_weight="1">
 
                 </android.support.v4.view.ViewPager>
 
                 <android.support.design.widget.TabLayout
+                    android:id="@+id/tablayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tablayout"
                     android:background="@color/colorPrimary"
                     android:minHeight="?attr/actionBarSize"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">

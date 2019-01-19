@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".know_mckvie">
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Know MCKVIE"
+                android:textColor="@color/colorAccent"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textView56"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="1dp" />
+
+            <TextView
+                android:id="@+id/textView56"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Courses Offered"
+                android:textColor="#000000"
+                app:layout_constraintBottom_toTopOf="@+id/textView57"
+                tools:layout_editor_absoluteX="1dp" />
+
+            <TextView
+                android:id="@+id/textView57"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="4 years B.Tech in:"
+                app:layout_constraintBottom_toTopOf="@+id/textView59"
+                tools:layout_editor_absoluteX="31dp" />
+
+            <TextView
+                android:id="@+id/textView59"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_marginLeft="30sp"
+                android:text="\u2022 Automobiole Engineering"
+                android:textColor="#0000cd"
+                app:layout_constraintBottom_toTopOf="@+id/textView60"
+                tools:layout_editor_absoluteX="65dp" />
+
+            <TextView
+                android:id="@+id/textView60"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_marginLeft="30sp"
+                android:text="\u2022 Computer Science Engineering"
+                android:textColor="#0000cd"
+                app:layout_constraintBottom_toTopOf="@+id/textView61"
+                tools:layout_editor_absoluteX="65dp" />
+
+            <TextView
+                android:id="@+id/textView61"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_marginLeft="30sp"
+                android:text="\u2022 Electrical Enginnering"
+                android:textColor="#0000cd"
+                app:layout_constraintBottom_toTopOf="@+id/textView62"
+                tools:layout_editor_absoluteX="65dp" />
+
+            <TextView
+                android:id="@+id/textView62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_marginLeft="30sp"
+                android:text="\u2022 Electronics and Communication Engineering"
+                android:textColor="#0000cd"
+                app:layout_constraintBottom_toTopOf="@+id/textView100"
+                tools:layout_editor_absoluteX="65dp" />
+
+            <TextView
+                android:id="@+id/textView58"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_marginLeft="30sp"
+                android:text="\u2022 Information Technology"
+                android:textColor="#0000cd"
+                app:layout_constraintBottom_toTopOf="@+id/textView63"
+                tools:layout_editor_absoluteX="65dp" />
+
+            <TextView
+                android:id="@+id/textView100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_marginLeft="30sp"
+                android:text="\u2022 Mechanical Engineering"
+                android:textColor="#0000cd"
+                app:layout_constraintBottom_toTopOf="@+id/textView58"
+                tools:layout_editor_absoluteX="65dp" />
+
+
+            <TextView
+                android:id="@+id/textView63"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="2 Years M.Tech in"
+                app:layout_constraintBottom_toTopOf="@+id/textView64"
+                tools:layout_editor_absoluteX="31dp" />
+
+            <TextView
+                android:id="@+id/textView64"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_marginLeft="30sp"
+                android:text="\u2022 Electronics and Communication Engineering"
+                android:textColor="#0000cd"
+                app:layout_constraintBottom_toTopOf="@+id/textView65"
+                tools:layout_editor_absoluteX="65dp" />
+
+            <TextView
+                android:id="@+id/textView65"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="3 Years MCA (Master of Computer Applications)"
+                android:textColor="#0000cd"
+                app:layout_constraintBottom_toTopOf="@+id/textView66"
+                tools:layout_editor_absoluteX="31dp" />
+
+            <TextView
+                android:id="@+id/textView66"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Qualified and Experienced Faculty Members"
+                app:layout_constraintBottom_toTopOf="@+id/textView68"
+                tools:layout_editor_absoluteX="31dp" />
+
+            <TextView
+                android:id="@+id/textView67"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_marginLeft="30sp"
+                android:text="\u2022 50% Distinction and 50% 1st Class"
+                app:layout_constraintBottom_toTopOf="@+id/textView69"
+                tools:layout_editor_absoluteX="65dp" />
+
+            <TextView
+                android:id="@+id/textView68"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Excellent University Results from the inception of the college"
+                app:layout_constraintBottom_toTopOf="@+id/textView67"
+                tools:layout_editor_absoluteX="31dp" />
+
+            <TextView
+                android:id="@+id/textView69"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Placement Support to All"
+                android:textColor="#0000cd"
+                app:layout_constraintBottom_toTopOf="@+id/textView71"
+                tools:layout_editor_absoluteX="31dp" />
+
+            <TextView
+                android:id="@+id/textView70"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Convenient Location to Reach"
+                app:layout_constraintBottom_toTopOf="@+id/textView72"
+                tools:layout_editor_absoluteX="30dp" />
+
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Good and Consistent Placement Records"
+                android:textColor="#0000cd"
+                app:layout_constraintBottom_toTopOf="@+id/textView70"
+                tools:layout_editor_absoluteX="31dp" />
+
+            <TextView
+                android:id="@+id/textView72"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Good Infrastructure"
+                app:layout_constraintBottom_toTopOf="@+id/textView73"
+                tools:layout_editor_absoluteX="30dp" />
+
+            <TextView
+                android:id="@+id/textView73"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="NBA Accrediated Programmes"
+                android:textColor="#0000cd"
+                app:layout_constraintBottom_toTopOf="@+id/textView74"
+                tools:layout_editor_absoluteX="31dp" />
+
+            <TextView
+                android:id="@+id/textView74"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="World Bank Aided TEQIP Funded Institute"
+                app:layout_constraintBottom_toTopOf="@+id/textView76"
+                tools:layout_editor_absoluteX="31dp" />
+
+            <TextView
+                android:id="@+id/textView75"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="MHRD-QEEE classes to interact with IIT professors"
+                android:textColor="#0000cd"
+                app:layout_constraintBottom_toTopOf="@+id/textView78"
+                tools:layout_editor_absoluteX="36dp" />
+
+
+            <TextView
+                android:id="@+id/textView76"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Collaboration with IIT and Industry"
+                android:textColor="#0000cd"
+                app:layout_constraintBottom_toTopOf="@+id/textView75"
+                tools:layout_editor_absoluteX="30dp" />
+
+            <TextView
+                android:id="@+id/textView77"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Nationality and Internationally acclaimed Student Chapters"
+                app:layout_constraintBottom_toTopOf="@+id/textView79"
+                tools:layout_editor_absoluteX="36dp" />
+
+            <TextView
+                android:id="@+id/textView78"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Strong Alumni Network"
+                android:textColor="#0000cd"
+                app:layout_constraintBottom_toTopOf="@+id/textView77"
+                tools:layout_editor_absoluteX="36dp" />
+
+            <TextView
+                android:id="@+id/textView79"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Students participation in Various Technical Project Competition and Receiving awards and accolades regularly"
+                app:layout_constraintBottom_toTopOf="@+id/textView80"
+                tools:layout_editor_absoluteX="36dp" />
+
+            <TextView
+                android:id="@+id/textView80"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Extra Curricular Activities"
+                app:layout_constraintBottom_toTopOf="@+id/textView81"
+                tools:layout_editor_absoluteX="36dp" />
+
+            <TextView
+                android:id="@+id/textView81"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Co-curricular Activities"
+                app:layout_constraintBottom_toTopOf="@+id/textView83"
+                tools:layout_editor_absoluteX="39dp" />
+
+            <TextView
+                android:id="@+id/textView82"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_marginLeft="30sp"
+                android:text="\u2022 Vivekananda Centre for Positive Thinking"
+                android:textColor="#0000cd"
+                tools:layout_editor_absoluteX="70dp"
+                tools:layout_editor_absoluteY="1014dp" />
+
+            <TextView
+                android:id="@+id/textView83"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_marginLeft="30sp"
+                android:text="\u2022 Rotaract Club"
+                android:textColor="#0000cd"
+                tools:layout_editor_absoluteX="70dp"
+                tools:layout_editor_absoluteY="981dp" />
+
+            <TextView
+                android:id="@+id/textView84"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Print Media (News Papers, Educational Special Issue Magazines etc) appreciates various in campus activities throught the year"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="1043dp" />
+
+            <TextView
+                android:id="@+id/textView86"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginVertical="5dp"
+                android:text="CONQUEST"
+                android:textColor="#0000cd"
+                tools:layout_editor_absoluteX="39dp"
+                tools:layout_editor_absoluteY="1116dp" />
+
+            <TextView
+                android:id="@+id/textView85"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="'If you are determined to be at your Best.MCKVIE is commited to do the rest."
+                android:textSize="30sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="39dp"
+                tools:layout_editor_absoluteY="1150dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -48,6 +48,7 @@
         <activity android:name=".books_journals"/>
         <activity android:name=".contact_us"/>
         <activity android:name=".visit"/>
+        <activity android:name=".know_mckvie"/>
         <activity
             android:name=".webview"
             android:parentActivityName=".notices">

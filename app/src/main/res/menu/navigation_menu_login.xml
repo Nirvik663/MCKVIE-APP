@@ -17,5 +17,17 @@
             android:id="@+id/nav_settings"
             android:title="Settings"
             android:icon="@mipmap/baseline_settings_black_18dp"/>
+
+        <item android:id="@+id/notices"
+            android:title="Notices"
+            android:visible="true"/>
+
+        <item android:id="@+id/news"
+            android:title="News"
+            android:visible="true"/>
+
+        <item android:id="@+id/events"
+            android:title="Events"
+            android:visible="true"/>
     </group>
 </menu>

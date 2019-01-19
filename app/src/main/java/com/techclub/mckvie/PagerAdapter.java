@@ -15,7 +15,6 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         this.mNoOfTabs = NumberOfTabs;
     }
 
-
     @Override
     public Fragment getItem(int position) {
         switch(position)

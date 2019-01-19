@@ -11,13 +11,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,15 +35,15 @@ public class Tab1 extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private RecyclerView mPeopleRV;
+    private DatabaseReference mDatabase;
+    private FirebaseRecyclerAdapter<object, Tab1.NewsViewHolder> mPeopleRVAdapter;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-
-    private RecyclerView mPeopleRV;
-    private DatabaseReference mDatabase;
-    private FirebaseRecyclerAdapter<object, notices.NewsViewHolder> mPeopleRVAdapter;
 
     public Tab1() {
         // Required empty public constructor
@@ -56,8 +58,8 @@ public class Tab1 extends Fragment {
      * @return A new instance of fragment Tab2.
      */
     // TODO: Rename and change types and number of parameters
-    public static Tab2 newInstance(String param1, String param2) {
-        Tab2 fragment = new Tab2();
+    public static Tab1 newInstance(String param1, String param2) {
+        Tab1 fragment = new Tab1();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -78,7 +80,62 @@ public class Tab1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab2, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab1, container, false);
+        final Context context = getActivity().getApplicationContext();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Notices");
+        mDatabase.keepSynced(true);
+        mPeopleRV = (RecyclerView) view.findViewById(R.id.myRecycleView1);
+
+        DatabaseReference personsRef = FirebaseDatabase.getInstance().getReference().child("Notices");
+        Query personsQuery = personsRef.orderByKey();
+
+        mPeopleRV.hasFixedSize();
+        mPeopleRV.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+
+        FirebaseRecyclerOptions personsOptions = new FirebaseRecyclerOptions.Builder<object>().setQuery(personsQuery, object.class).build();
+
+        mPeopleRVAdapter = new FirebaseRecyclerAdapter<object, Tab1.NewsViewHolder>(personsOptions) {
+            @Override
+            protected void onBindViewHolder(Tab1.NewsViewHolder holder, final int position, final object model) {
+                holder.setTitle(model.getTitle());
+
+                holder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final String url = model.getUrl();
+                        Intent intent = new Intent(context, webview.class);
+                        intent.putExtra("id", url);
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            @Override
+            public Tab1.NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.home_row, parent, false);
+
+                return new Tab1.NewsViewHolder(view);
+            }
+        };
+
+        mPeopleRV.setAdapter(mPeopleRVAdapter);
+
+        return view;
+    }
+
+    public static class NewsViewHolder extends RecyclerView.ViewHolder{
+        View mView;
+        public NewsViewHolder(View itemView){
+            super(itemView);
+            mView = itemView;
+        }
+        public void setTitle(String title){
+            TextView post_title = (TextView)mView.findViewById(R.id.post_title);
+            post_title.setText(title);
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
