@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="95dp"
             android:background="#4db6ac"
+            app:layout_constraintBottom_toTopOf="@+id/viewPager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -116,7 +117,7 @@
                 android:textAlignment="center"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/more"
+                app:layout_constraintBottom_toTopOf="@+id/contactus"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -183,17 +184,18 @@
                 android:id="@+id/textView20"
                 android:layout_width="129dp"
                 android:layout_height="21dp"
-                android:layout_marginBottom="3dp"
-                android:text="NOTICES"
+                android:text="RECENTS"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="5dp"
@@ -218,9 +220,10 @@
                     android:id="@+id/tablayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
+                    android:background="@android:color/holo_green_dark"
                     android:minHeight="?attr/actionBarSize"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:tabIndicatorColor="@android:color/holo_red_dark">
 
                 </android.support.design.widget.TabLayout>
 

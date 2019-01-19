@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +21,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -91,7 +91,7 @@ public class Tab1 extends Fragment {
         Query personsQuery = personsRef.orderByKey();
 
         mPeopleRV.hasFixedSize();
-        mPeopleRV.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        mPeopleRV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         FirebaseRecyclerOptions personsOptions = new FirebaseRecyclerOptions.Builder<object>().setQuery(personsQuery, object.class).build();
 
@@ -124,6 +124,18 @@ public class Tab1 extends Fragment {
         mPeopleRV.setAdapter(mPeopleRVAdapter);
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mPeopleRVAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mPeopleRVAdapter.stopListening();
     }
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder{
