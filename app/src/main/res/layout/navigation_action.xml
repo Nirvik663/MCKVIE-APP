@@ -12,7 +12,7 @@ android:background="#263238">
         android:layout_gravity="left"
         android:adjustViewBounds="true"
         android:scaleType="fitStart"
-        android:src="@drawable/header_logo"/>
+        android:src="@drawable/header_logo" />
 
     <ImageView
         android:layout_width="50dp"
