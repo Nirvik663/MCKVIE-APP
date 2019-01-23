@@ -113,6 +113,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         });
         //floating action button end
 
+        //admin start
+        fab_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(HomeActivity.this,admin.class);
+                startActivity(intent);
+            }
+        });
+        //admin end
+
+
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
