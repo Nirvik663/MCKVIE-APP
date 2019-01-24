@@ -13,6 +13,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class admin_app extends AppCompatActivity {
@@ -21,8 +22,10 @@ public class admin_app extends AppCompatActivity {
     Button Insert;
     FirebaseDatabase database;
     DatabaseReference ref;
+    Query ref2;
     object object1;
-    int c=0;
+    int c=10000;
+    String msg1="10000";
 
 
 
@@ -38,6 +41,20 @@ public class admin_app extends AppCompatActivity {
         Insert=(Button) findViewById(R.id.insert1);
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("Notices");
+        ref2 = FirebaseDatabase.getInstance().getReference().child("Notices").orderByKey().limitToFirst(1);
+        ref2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot child: dataSnapshot.getChildren()){
+                    msg1=child.getKey();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         object1 = new object();
 
     }
@@ -50,12 +67,15 @@ public class admin_app extends AppCompatActivity {
     }
 
     public void btinsert(View view){
+        if(Integer.parseInt(msg1)!=0)
+        c=Integer.parseInt(msg1);
+        c=c-1;
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 getvalues();
-                ref.child(Title.getText().toString()).setValue(object1);
-                Toast.makeText(admin_app.this,"Notice Inserted...",Toast.LENGTH_LONG).show();
+                ref.child(Integer.toString(c)).setValue(object1);
+                Toast.makeText(admin_app.this,"Notice Inserted...",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -63,5 +83,7 @@ public class admin_app extends AppCompatActivity {
 
             }
         });
+        Intent intent = new Intent(admin_app.this,admin.class);
+        startActivity(intent);
     }
 }
