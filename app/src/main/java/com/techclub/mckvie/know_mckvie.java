@@ -36,6 +36,7 @@ public class know_mckvie extends AppCompatActivity {
         TextView list15 = (TextView)findViewById(R.id.textView78);
         TextView list16 = (TextView)findViewById(R.id.textView82);
         TextView list17 = (TextView)findViewById(R.id.textView83);
+        TextView list18 = (TextView)findViewById(R.id.textView86);
 
         list1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,7 +141,7 @@ public class know_mckvie extends AppCompatActivity {
         });
 
 
-        list13.setOnClickListener(new View.OnClickListener() {
+        list14.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.mckvie.edu.in/campus-life/student-chapters/"));
@@ -148,7 +149,7 @@ public class know_mckvie extends AppCompatActivity {
             }
         });
 
-        list14.setOnClickListener(new View.OnClickListener() {
+        list15.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.mckvie.edu.in/nostalgia/"));
@@ -156,7 +157,7 @@ public class know_mckvie extends AppCompatActivity {
             }
         });
 
-        list15.setOnClickListener(new View.OnClickListener() {
+        list16.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.mckvie.edu.in/campus-life/svcpt/"));
@@ -164,7 +165,7 @@ public class know_mckvie extends AppCompatActivity {
             }
         });
 
-        list16.setOnClickListener(new View.OnClickListener() {
+        list17.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.mckvie.edu.in/campus-life/mckvie-rotaract-club/"));
@@ -172,7 +173,7 @@ public class know_mckvie extends AppCompatActivity {
             }
         });
 
-        list17.setOnClickListener(new View.OnClickListener() {
+        list18.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
@@ -182,10 +183,25 @@ public class know_mckvie extends AppCompatActivity {
                 downloadManager.enqueue(request);
             }
         });
+
+
+        list13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                Uri uri = Uri.parse("www.mckvie.edu.in/site/assets/files/1210/mous-with-industry-iit.pdf");
+                DownloadManager.Request request = new DownloadManager.Request(uri);
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                downloadManager.enqueue(request);
+            }
+        });
+
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
+
 }
