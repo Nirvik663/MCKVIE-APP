@@ -1,17 +1,23 @@
 package com.techclub.mckvie;
 
 import android.app.DownloadManager;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class NoRagging extends AppCompatActivity {
 
-    Button buttonrag;
+    TextView buttonrag;
     DownloadManager downloadManager;
     Toolbar toolbar;
 
@@ -26,9 +32,13 @@ public class NoRagging extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("");
         toolbar.setSubtitle("");
-        buttonrag = (Button) findViewById(R.id.ragpdf);
+        buttonrag = (TextView) findViewById(R.id.ragpdf);
+        String text = "Click here to download anti-ragging committee pdf";
+        SpannableString ss =new SpannableString(text);
+        ForegroundColorSpan fcsBlue = new ForegroundColorSpan(Color.BLUE);
+        ss.setSpan(fcsBlue, 0,10, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        buttonrag.setText(ss);
 
-        buttonrag.setPaintFlags(buttonrag.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         buttonrag.setOnClickListener(new View.OnClickListener() {
             @Override

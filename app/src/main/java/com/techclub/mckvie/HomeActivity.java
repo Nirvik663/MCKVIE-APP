@@ -269,6 +269,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(HomeActivity.this, "Logged Out!", Toast.LENGTH_SHORT).show();
                 break;
 
+            case R.id.notices:
+                finish();
+                myIntent = new Intent(HomeActivity.this, notices.class);
+                startActivity(myIntent);
+                break;
         }
 
         return true;

@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 public class know_mckvie extends AppCompatActivity {
 
     DownloadManager downloadManager;
     Toolbar toolbar;
+    private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
