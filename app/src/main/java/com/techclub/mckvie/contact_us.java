@@ -32,6 +32,9 @@ public class contact_us extends AppCompatActivity {
         toolbar.setSubtitle("");
         TextView textView36 = (TextView) findViewById(R.id.textView36);
         TextView dial = (TextView) findViewById(R.id.textView24);
+        TextView textView28 = (TextView) findViewById(R.id.textView28);
+        TextView textView24 = (TextView) findViewById(R.id.textView24);
+
 
         textView36.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,8 +43,44 @@ public class contact_us extends AppCompatActivity {
             }
         });
 
-    }
 
+
+        textView28.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String number = "9748232397";
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:9748232397"));
+
+
+            //if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+              //  return;
+            //} else {
+                startActivity(intent);
+           // }
+
+        }
+
+});
+        textView24.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String number = "9748232397";
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:9748232397"));
+
+
+                //if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                //  return;
+                //} else {
+                startActivity(intent);
+                // }
+
+            }
+
+        });
+
+    }
 
     public void process(View view) {
         if (view.getId() == R.id.textView26) {
@@ -76,6 +115,7 @@ public class contact_us extends AppCompatActivity {
 
         }
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
