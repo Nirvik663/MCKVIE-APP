@@ -53,6 +53,7 @@
             android:name=".MoreActivity"
             android:parentActivityName=".HomeActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".chatmain"/>
         <activity android:name=".notices" />
         <activity android:name=".events" />
         <activity android:name=".news" />
