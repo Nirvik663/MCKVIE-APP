@@ -83,7 +83,6 @@ public class admin_app extends AppCompatActivity {
 
             }
         });
-        Intent intent = new Intent(admin_app.this,admin.class);
-        startActivity(intent);
+        finish();
     }
 }

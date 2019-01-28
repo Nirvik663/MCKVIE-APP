@@ -20,4 +20,9 @@ public class visit extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setSubtitle("");
     }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }
