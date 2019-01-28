@@ -8,6 +8,10 @@
     android:fitsSystemWindows="true"
     tools:context="com.techclub.mckvie.HomeActivity">
 
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="95dp"
             android:background="#4db6ac"
+            app:layout_constraintBottom_toTopOf="@+id/viewPager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -179,31 +184,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
 
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="451dp"
-                android:layout_height="25dp"
-                android:background="@android:color/holo_orange_dark"
-                android:text="RECENTS"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.501"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="5dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView20"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintTop_toTopOf="parent">
 
 
                 <android.support.v4.view.ViewPager
@@ -217,8 +207,8 @@
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tablayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
+                    android:layout_height="40dp"
+                    android:background="#4db6ac"
                     android:minHeight="?attr/actionBarSize"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -232,7 +222,8 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="0dp"
-            android:layout_height="163dp"
+            android:layout_height="132dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -240,11 +231,14 @@
 
         </android.support.v4.view.ViewPager>
 
+
+
         <android.support.constraint.ConstraintLayout
             android:id="@+id/constraintLayout6"
             android:layout_width="match_parent"
-            android:layout_height="104dp"
+            android:layout_height="93dp"
             android:background="#FF0000"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -280,40 +274,92 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="171dp"
+                android:layout_height="31dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/amarante"
                 android:text="MCKVIE VIDEO"
                 android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_default"
-                android:textSize="28sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textView15"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.525"
                 app:layout_constraintStart_toEndOf="@+id/webvideo_layout2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="spread_inside" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/amarante"
+                android:id="@+id/textView15"
+                android:layout_width="104dp"
+                android:layout_height="25dp"
+                android:layout_marginBottom="16dp"
                 android:text="TOUR"
                 android:textAlignment="center"
+                android:textAllCaps="false"
                 android:textColor="@color/common_google_signin_btn_text_dark_default"
-                android:textSize="28sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.492"
                 app:layout_constraintStart_toEndOf="@+id/webvideo_layout2"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         </android.support.constraint.ConstraintLayout>
 
+
     </android.support.constraint.ConstraintLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="225dp"
+            android:elevation="6dp"
+            android:src="@drawable/ic_action_email"
+            android:visibility="invisible"
+            app:backgroundTint="#92DBFF" />
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="165dp"
+            android:elevation="6dp"
+            android:src="@drawable/ic_action_message"
+            android:visibility="invisible"
+            app:backgroundTint="#92DBFF" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="105dp"
+            android:elevation="6dp"
+            android:src="@drawable/ic_action_call"
+            android:visibility="invisible"
+            app:backgroundTint="#92DBFF"
+            app:pressedTranslationZ="12dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="45dp"
+            android:elevation="6dp"
+            app:backgroundTint="#F27676"
+            android:src="@drawable/ic_action_plus"
+            app:pressedTranslationZ="12dp" />
+
+    </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -327,5 +373,6 @@
         app:menu="@menu/navigation_menu_login">
 
     </android.support.design.widget.NavigationView>
+
 
 </android.support.v4.widget.DrawerLayout>

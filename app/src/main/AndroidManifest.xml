@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionName="0.1"
-    package="com.techclub.mckvie">
+    package="com.techclub.mckvie"
+    android:versionName="0.1">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -18,7 +18,10 @@
         android:roundIcon="@drawable/mckvlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity"
+        <activity android:name=".admin_app"></activity>
+        <activity android:name=".admin" />
+        <activity
+            android:name=".SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,30 +29,38 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".HomeActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".TestActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ProfileActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Syllabus"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".NoRagging"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".test"
-            android:screenOrientation="sensorLandscape"/>
-        <activity android:name=".MoreActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".HomeActivity"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Syllabus"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NoRagging"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".test"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".MoreActivity"
+            android:parentActivityName=".HomeActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".notices" />
-        <activity android:name=".events"/>
-        <activity android:name=".news"/>
-        <activity android:name=".books_journals"/>
-        <activity android:name=".contact_us"/>
-        <activity android:name=".visit"/>
-        <activity android:name=".know_mckvie"/>
+        <activity android:name=".events" />
+        <activity android:name=".news" />
+        <activity android:name=".books_journals" />
+        <activity android:name=".contact_us" />
+        <activity android:name=".visit" />
+        <activity android:name=".know_mckvie" />
         <activity
             android:name=".webview"
             android:parentActivityName=".notices">
