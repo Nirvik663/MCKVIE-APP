@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.text.format.DateFormat;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseListAdapter;
@@ -30,6 +31,8 @@ import hani.momanii.supernova_emoji_library.Actions.EmojIconActions;
 import hani.momanii.supernova_emoji_library.Helper.EmojiconEditText;
 import hani.momanii.supernova_emoji_library.Helper.EmojiconTextView;
 
+import java.lang.String;
+
 public class chatmain extends AppCompatActivity {
 
     private static int SIGN_IN_REQUEST_CODE = 1;
@@ -40,6 +43,7 @@ public class chatmain extends AppCompatActivity {
     EmojiconEditText emojiconEditText;
     ImageView emojiButton,submitButton;
     EmojIconActions emojIconActions;
+    String m;
 
 
     @Override
@@ -97,10 +101,19 @@ public class chatmain extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseDatabase.getInstance().getReference().child("chats").push().setValue(new ChatMessage(emojiconEditText.getText().toString(),
-                        FirebaseAuth.getInstance().getCurrentUser().getEmail()));
-                emojiconEditText.setText("");
-                emojiconEditText.requestFocus();
+                m=emojiconEditText.getText().toString();
+                m=m.trim();
+                if(!m.equals("")) {
+                    FirebaseDatabase.getInstance().getReference().child("chats").push().setValue(new ChatMessage(m,
+                            FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                    emojiconEditText.setText("");
+                    emojiconEditText.requestFocus();
+                }
+                else{
+                    Toast.makeText(chatmain.this,"Enter text...",Toast.LENGTH_SHORT).show();
+                    emojiconEditText.setText("");
+                    emojiconEditText.requestFocus();
+                }
             }
         });
 
