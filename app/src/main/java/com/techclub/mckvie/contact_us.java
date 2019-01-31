@@ -5,11 +5,15 @@ import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,9 +35,32 @@ public class contact_us extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setSubtitle("");
         TextView textView36 = (TextView) findViewById(R.id.textView36);
+        TextView textView16 = (TextView) findViewById(R.id.textView16);
         TextView dial = (TextView) findViewById(R.id.textView24);
         TextView textView28 = (TextView) findViewById(R.id.textView28);
-        TextView textView24 = (TextView) findViewById(R.id.textView24);
+        final TextView textView24 = (TextView) findViewById(R.id.textView24);
+
+
+        textView16.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String number = "+9133 2654 9318";
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:+9133 2654 9318"));
+                //SpannableString ss=new SpannableString(number);
+                //ForegroundColorSpan fcsblue=new ForegroundColorSpan(Color.BLUE);
+                //ss.setSpan(fcsblue,16,25, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+
+                //if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                //  return;
+                //} else {
+                startActivity(intent);
+                // }
+
+            }
+
+        });
 
 
         textView36.setOnClickListener(new View.OnClickListener() {
@@ -48,9 +75,12 @@ public class contact_us extends AppCompatActivity {
         textView28.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String number = "9748232397";
+                String number = "9007017339";
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:9748232397"));
+                intent.setData(Uri.parse("tel:9007017339"));
+                //SpannableString ss=new SpannableString(number);
+                //ForegroundColorSpan fcsblue=new ForegroundColorSpan(Color.BLUE);
+                //ss.setSpan(fcsblue,16,25, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 
             //if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -62,18 +92,27 @@ public class contact_us extends AppCompatActivity {
         }
 
 });
+
         textView24.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String number = "9748232397";
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:9748232397"));
+                intent.setData(Uri.parse("tel:+91 33 2654 9318"));
+              /*  SpannableString ss=new SpannableString(number);
+                ForegroundColorSpan fcsBlue=new ForegroundColorSpan(Color.BLUE);
+                ss.setSpan(fcsBlue,6,21, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                ForegroundColorSpan fcsbluee=new ForegroundColorSpan(Color.BLUE);
+                ss.setSpan(fcsbluee,28,42, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);*/
+
+
 
 
                 //if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                 //  return;
                 //} else {
                 startActivity(intent);
+                //textView24.setText(ss);
                 // }
 
             }

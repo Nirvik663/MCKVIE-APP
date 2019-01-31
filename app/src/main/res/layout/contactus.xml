@@ -69,12 +69,22 @@
                 android:id="@+id/textView24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Phone:+91 33 2654 9318\nFax:+91 332654 9318"
+                android:layout_marginBottom="40dp"
+                android:onClick="textview24"
+                android:text="@string/Phone2"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toTopOf="@+id/textView25"
+                app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="163dp"
+                android:layout_height="17dp"
+                android:onClick="textView16"
+                android:text="@string/Phone3"
+                android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="parent"
-                android:onClick="textview24"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
 
             <TextView
                 android:id="@+id/textView25"
@@ -88,7 +98,6 @@
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:onClick="process"
                 android:text="principal@mckvie.edu.in/mckvie@vsnl.net"
                 android:textColor="#0000cd"
@@ -110,13 +119,13 @@
 
             <TextView
                 android:id="@+id/textView28"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:layout_height="16dp"
                 android:layout_marginBottom="8dp"
-                android:text="Contact Number: 9007017339"
+                android:onClick="textview28"
+                android:text="@string/Phone1"
                 app:layout_constraintBottom_toTopOf="@+id/textView37"
-                app:layout_constraintStart_toStartOf="parent"
-                android:onClick="textview28"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/textView37"
@@ -139,9 +148,8 @@
 
             <TextView
                 android:id="@+id/textView30"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_width="124dp"
+                android:layout_height="17dp"
                 android:onClick="process"
                 android:text="pa.kk@outlook.com"
                 android:textColor="#0000cd"
@@ -150,9 +158,10 @@
 
             <TextView
                 android:id="@+id/textView31"
-                android:layout_width="wrap_content"
-                android:layout_height="99dp"
+                android:layout_width="254dp"
+                android:layout_height="101dp"
                 android:layout_marginBottom="8dp"
+                android:paddingBottom="3dp"
                 android:text="'Laxmi Niketan', 1st Floor\n243, G.T.Road(North)\nLilluah,Howrah - 711 204.\n\nPhone:+91 33 2654 8604/05\nFax: +91 33 2654 9318"
                 app:layout_constraintBottom_toTopOf="@+id/textView35"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -161,7 +170,7 @@
             <TextView
                 android:id="@+id/textView32"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="17dp"
                 android:text="Send Us an"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView35"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -181,10 +190,12 @@
                 android:id="@+id/textView36"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="3dp"
                 android:text="Visit Us"
                 android:textColor="#0000cd"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
 
 
         </android.support.constraint.ConstraintLayout>

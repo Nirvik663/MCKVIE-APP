@@ -20,6 +20,10 @@
     <string name="input_error_phone_invalid">enter a valid Unique ID</string>
     <string name="registration_success">Registered Successfully</string>
     <string name="input_error_email_invalid">enter a valid email</string>
+    <string name="Phone1">Contact Number: <font fgcolor='#0000cd'>+919007017339</font></string>
+    <string name="Phone2">Phone: <font fgcolor='#0000cd'>+91 332654 9318</font></string>
+    <string name="Phone3">Fax: <font fgcolor='#0000cd'>+91 332654 9318</font></string>
+
 
     <string name="anti_ragging">As per directive of the AICTE under National Ragging Prevention Project, all the aspirant candidates along with their parents/guardians are advised to go to the website  www.antiragging.in  or  www.amanmovement.org , fill up and submit the Affidavits online and take a printout of the submitted Affidavits (both student and parent) and submit the same to the Institute Officials while taking their admission in MCKVIE during the admission process. Ragging is neither a ritual nor a custom in campus life. It is a punishable criminal offence. MCKVIE strongly discourages ragging and stringent action is taken against offenders. New students are welcome to join MCKVIE without any fear or apprehension. </string>
 
