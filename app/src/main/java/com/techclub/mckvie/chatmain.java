@@ -136,25 +136,62 @@ public class chatmain extends AppCompatActivity {
 
     private void displayChatMessage() {
 
-        ListView listOfMessage = (ListView)findViewById(R.id.list_of_message);
-        //Suppose you want to retrieve "chats" in your Firebase DB:
+        ListView listOfMessage = (ListView) findViewById(R.id.list_of_message);
         Query query = FirebaseDatabase.getInstance().getReference().child("chats");
-//The error said the constructor expected FirebaseListOptions - here you create them:
-        FirebaseListOptions<ChatMessage> options = new FirebaseListOptions.Builder<ChatMessage>()
-                .setQuery(query, ChatMessage.class)
-                .setLayout(R.layout.list_item)
-                .build();
-        //Finally you pass them to the constructor here:
-        adapter = new FirebaseListAdapter<ChatMessage>(options)
-        {
+
+
+        ChatMessage m = new ChatMessage();
+
+            FirebaseListOptions<ChatMessage> options2 = new FirebaseListOptions.Builder<ChatMessage>()
+                    .setQuery(query, ChatMessage.class)
+                    .setLayout(R.layout.list_item)
+                    .build();
+
+            adapter = new FirebaseListAdapter<ChatMessage>(options2) {
+                @Override
+                protected void populateView(View v, ChatMessage model, int position) {
+                    TextView messageText1,messageText2, messageUser, messageTime;
+                    messageText1 = (BubbleTextView) v.findViewById(R.id.message_text);
+                    messageText2 = (BubbleTextView) v.findViewById(R.id.message_text2);
+                    messageUser = (TextView) v.findViewById(R.id.message_user);
+                    messageTime = (TextView) v.findViewById(R.id.message_time);
+
+
+                    if(model.getMessageUser().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                        messageText2.setVisibility(View.VISIBLE);
+                        messageText1.setVisibility(View.INVISIBLE);
+                        messageText2.setText(model.getMessageText());
+                        messageUser.setText(model.getMessageUser());
+                        messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
+                    }
+
+                    else {
+                        messageText1.setVisibility(View.VISIBLE);
+                        messageText2.setVisibility(View.INVISIBLE);
+                        messageText1.setText(model.getMessageText());
+                        messageUser.setText(model.getMessageUser());
+                        messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
+                    }
+                }
+            };
+            listOfMessage.setAdapter(adapter);
+            adapter.startListening();
+
+        /*
+        else{
+            FirebaseListOptions<ChatMessage> options = new FirebaseListOptions.Builder<ChatMessage>()
+                    .setQuery(query, ChatMessage.class)
+                    .setLayout(R.layout.list_item)
+                    .build();
+
+            adapter = new FirebaseListAdapter<ChatMessage>(options) {
             @Override
             protected void populateView(View v, ChatMessage model, int position) {
-
-                //Get references to the views of list_item.xml
                 TextView messageText, messageUser, messageTime;
                 messageText = (BubbleTextView) v.findViewById(R.id.message_text);
                 messageUser = (TextView) v.findViewById(R.id.message_user);
                 messageTime = (TextView) v.findViewById(R.id.message_time);
+
 
                 messageText.setText(model.getMessageText());
                 messageUser.setText(model.getMessageUser());
@@ -164,5 +201,7 @@ public class chatmain extends AppCompatActivity {
         };
         listOfMessage.setAdapter(adapter);
         adapter.startListening();
+    }*/
+
     }
 }
