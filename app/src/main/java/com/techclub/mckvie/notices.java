@@ -39,6 +39,9 @@ public class notices extends AppCompatActivity {
         DatabaseReference personsRef = FirebaseDatabase.getInstance().getReference().child("Notices");
         Query personsQuery = personsRef.orderByKey();
 
+        mPeopleRV.hasFixedSize();
+        mPeopleRV.setLayoutManager(new LinearLayoutManager(this));
+
         FirebaseRecyclerOptions personsOptions = new FirebaseRecyclerOptions.Builder<object>().setQuery(personsQuery, object.class).build();
 
         mPeopleRVAdapter = new FirebaseRecyclerAdapter<object, notices.NewsViewHolder>(personsOptions) {
@@ -103,5 +106,12 @@ public class notices extends AppCompatActivity {
             ImageView post_image = (ImageView) mView.findViewById(R.id.post_image);
             Picasso.with(ctx).load(image).into(post_image);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

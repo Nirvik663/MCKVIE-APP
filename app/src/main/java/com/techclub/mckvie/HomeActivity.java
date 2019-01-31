@@ -1,7 +1,6 @@
 package com.techclub.mckvie;
 
 import android.app.DownloadManager;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -13,27 +12,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.design.widget.TabLayout;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
 import java.net.MalformedURLException;
@@ -75,7 +66,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView book = (TextView) findViewById(R.id.books);
         TextView Contactus = (TextView) findViewById(R.id.contactus);
         TextView Knowmckvie = (TextView) findViewById(R.id.textView7);
-
 
         //floating action button start
         fab_plus = (FloatingActionButton) findViewById(R.id.fab_plus);
@@ -131,8 +121,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
         //admin end
-
-
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
@@ -314,7 +302,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_signin:
                 finish();
-                myIntent = new Intent(HomeActivity.this, MainActivity.class);
+                myIntent = new Intent(HomeActivity.this, LoginActivity.class);
                 startActivity(myIntent);
 
                 break;
@@ -336,6 +324,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.notices:
                 finish();
                 myIntent = new Intent(HomeActivity.this, notices.class);
+                startActivity(myIntent);
+                break;
+
+            case R.id.news:
+                finish();
+                myIntent = new Intent(HomeActivity.this, news.class);
+                startActivity(myIntent);
+                break;
+
+            case R.id.events:
+                finish();
+                myIntent = new Intent(HomeActivity.this, events.class);
                 startActivity(myIntent);
                 break;
         }

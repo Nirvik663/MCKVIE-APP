@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#237FEF</color>
     <color name="colorAccent">#E962CC</color>
     <color name="toolbar_color_control_normal">#FFFFFF</color>
+    <color name="colorText">#dddddd</color>
+    <color name="colorHint">#959595</color>
+    <color name="colorButtonTransparent">#be050505</color>
 </resources>
