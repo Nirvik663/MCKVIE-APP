@@ -9,13 +9,15 @@
         android:layout_alignParentStart="true"
         android:id="@+id/message_user"
         android:textStyle="normal|bold"
+        android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
         android:layout_alignParentBottom="@+id/message_user"
         android:layout_alignParentEnd="true"
-        android:id="@+id/message_time"
+        android:id="@+id/message_user2"
+        android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -68,5 +70,29 @@
         app:bubbleColor="#B2F1DA"
         app:arrowCenter="true"
         />
+
+    <TextView
+        android:id="@+id/message_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/message_text"
+        android:layout_alignParentStart="true"
+        android:textColor="#FFF"
+        android:visibility="invisible"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="1dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/message_time2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:layout_below="@+id/message_text2"
+        android:visibility="invisible"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="2dp"
+        android:text="TextView" />
 
 </RelativeLayout>
