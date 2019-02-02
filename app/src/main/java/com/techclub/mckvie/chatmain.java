@@ -6,6 +6,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,6 +46,7 @@ public class chatmain extends AppCompatActivity {
     EmojiconEditText emojiconEditText;
     ImageView emojiButton,submitButton;
     EmojIconActions emojIconActions;
+    TextView typing;
     String m;
 
 
@@ -95,8 +99,11 @@ public class chatmain extends AppCompatActivity {
         emojiButton = (ImageView)findViewById(R.id.emoji_button);
         submitButton = (ImageView)findViewById(R.id.submit_button);
         emojiconEditText = (EmojiconEditText)findViewById(R.id.emojicon_edit_text);
+        typing=(TextView)findViewById(R.id.typing);
         emojIconActions = new EmojIconActions(getApplicationContext(),activity_chat,emojiButton,emojiconEditText);
         emojIconActions.ShowEmojicon();
+        emojIconActions.setIconsIds(R.drawable.ic_action_keyboard,R.drawable.happy_256);
+
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,58 +157,41 @@ public class chatmain extends AppCompatActivity {
             adapter = new FirebaseListAdapter<ChatMessage>(options2) {
                 @Override
                 protected void populateView(View v, ChatMessage model, int position) {
-                    TextView messageText1,messageText2, messageUser, messageTime;
+                    TextView messageText1,messageText2, messageUser, messageTime, messageUser2,messageTime2;
                     messageText1 = (BubbleTextView) v.findViewById(R.id.message_text);
                     messageText2 = (BubbleTextView) v.findViewById(R.id.message_text2);
                     messageUser = (TextView) v.findViewById(R.id.message_user);
                     messageTime = (TextView) v.findViewById(R.id.message_time);
+                    messageUser2 =(TextView)v.findViewById(R.id.message_user2);
+                    messageTime2=(TextView)v.findViewById(R.id.message_time2);
 
 
                     if(model.getMessageUser().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
                         messageText2.setVisibility(View.VISIBLE);
                         messageText1.setVisibility(View.INVISIBLE);
+                        messageUser2.setVisibility(View.VISIBLE);
+                        messageUser.setVisibility(View.INVISIBLE);
+                        messageTime2.setVisibility(View.VISIBLE);
+                        messageTime.setVisibility(View.INVISIBLE);
                         messageText2.setText(model.getMessageText());
-                        messageUser.setText(model.getMessageUser());
-                        messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
+                        messageUser2.setText(model.getMessageUser());
+                        messageTime2.setText(DateFormat.format("dd-MMM (HH:mm)", model.getMessageTime()));
                     }
 
                     else {
                         messageText1.setVisibility(View.VISIBLE);
                         messageText2.setVisibility(View.INVISIBLE);
+                        messageUser.setVisibility(View.VISIBLE);
+                        messageUser2.setVisibility(View.INVISIBLE);
+                        messageTime.setVisibility(View.VISIBLE);
+                        messageTime2.setVisibility(View.INVISIBLE);
                         messageText1.setText(model.getMessageText());
                         messageUser.setText(model.getMessageUser());
-                        messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
+                        messageTime.setText(DateFormat.format("dd/MMM(HH:mm)", model.getMessageTime()));
                     }
                 }
             };
             listOfMessage.setAdapter(adapter);
             adapter.startListening();
-
-        /*
-        else{
-            FirebaseListOptions<ChatMessage> options = new FirebaseListOptions.Builder<ChatMessage>()
-                    .setQuery(query, ChatMessage.class)
-                    .setLayout(R.layout.list_item)
-                    .build();
-
-            adapter = new FirebaseListAdapter<ChatMessage>(options) {
-            @Override
-            protected void populateView(View v, ChatMessage model, int position) {
-                TextView messageText, messageUser, messageTime;
-                messageText = (BubbleTextView) v.findViewById(R.id.message_text);
-                messageUser = (TextView) v.findViewById(R.id.message_user);
-                messageTime = (TextView) v.findViewById(R.id.message_time);
-
-
-                messageText.setText(model.getMessageText());
-                messageUser.setText(model.getMessageUser());
-                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
-
-            }
-        };
-        listOfMessage.setAdapter(adapter);
-        adapter.startListening();
-    }*/
-
     }
 }

@@ -21,7 +21,7 @@ import com.squareup.picasso.Picasso;
 
 public class events extends AppCompatActivity {
 
-    private FirebaseRecyclerAdapter<object, notices.NewsViewHolder> mPeopleRVAdapter;
+    private FirebaseRecyclerAdapter<object, events.NewsViewHolder> mPeopleRVAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +45,9 @@ public class events extends AppCompatActivity {
 
         FirebaseRecyclerOptions personsOptions = new FirebaseRecyclerOptions.Builder<object>().setQuery(personsQuery, object.class).build();
 
-        mPeopleRVAdapter = new FirebaseRecyclerAdapter<object, notices.NewsViewHolder>(personsOptions) {
+        mPeopleRVAdapter = new FirebaseRecyclerAdapter<object, events.NewsViewHolder>(personsOptions) {
             @Override
-            protected void onBindViewHolder(notices.NewsViewHolder holder, final int position, final object model) {
+            protected void onBindViewHolder(events.NewsViewHolder holder, final int position, final object model) {
                 holder.setTitle(model.getTitle());
                 holder.setDesc(model.getDesc());
                 holder.setImage(getBaseContext(), model.getImage());
@@ -64,12 +64,12 @@ public class events extends AppCompatActivity {
             }
 
             @Override
-            public notices.NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            public events.NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.row, parent, false);
 
-                return new notices.NewsViewHolder(view);
+                return new events.NewsViewHolder(view);
             }
         };
 
@@ -107,4 +107,12 @@ public class events extends AppCompatActivity {
             ImageView post_image = (ImageView) mView.findViewById(R.id.post_image);
             Picasso.with(ctx).load(image).into(post_image);
         }
-    }}
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+}
