@@ -31,11 +31,12 @@
 
             <TextView
                 android:id="@+id/textView4"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
                 android:text="Know MCKVIE"
-                android:textColor="@color/colorAccent"
+                android:textColor="#4db6ac"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/textView56"
@@ -44,6 +45,7 @@
 
             <TextView
                 android:id="@+id/textView56"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -54,6 +56,7 @@
 
             <TextView
                 android:id="@+id/textView57"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -63,6 +66,7 @@
 
             <TextView
                 android:id="@+id/textView59"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -74,6 +78,7 @@
 
             <TextView
                 android:id="@+id/textView60"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -85,6 +90,7 @@
 
             <TextView
                 android:id="@+id/textView61"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -96,6 +102,7 @@
 
             <TextView
                 android:id="@+id/textView62"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -107,6 +114,7 @@
 
             <TextView
                 android:id="@+id/textView58"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -118,6 +126,7 @@
 
             <TextView
                 android:id="@+id/textView100"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -130,6 +139,7 @@
 
             <TextView
                 android:id="@+id/textView63"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -139,6 +149,7 @@
 
             <TextView
                 android:id="@+id/textView64"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -150,6 +161,7 @@
 
             <TextView
                 android:id="@+id/textView65"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -160,6 +172,7 @@
 
             <TextView
                 android:id="@+id/textView66"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -169,6 +182,7 @@
 
             <TextView
                 android:id="@+id/textView67"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -179,6 +193,7 @@
 
             <TextView
                 android:id="@+id/textView68"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -188,6 +203,7 @@
 
             <TextView
                 android:id="@+id/textView69"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -199,6 +215,7 @@
             <TextView
                 android:id="@+id/textView70"
                 android:layout_width="wrap_content"
+                android:paddingLeft="10dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
                 android:text="Convenient Location to Reach"
@@ -207,6 +224,7 @@
 
             <TextView
                 android:id="@+id/textView71"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -217,6 +235,7 @@
 
             <TextView
                 android:id="@+id/textView72"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -226,6 +245,7 @@
 
             <TextView
                 android:id="@+id/textView73"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -236,6 +256,7 @@
 
             <TextView
                 android:id="@+id/textView74"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -245,6 +266,7 @@
 
             <TextView
                 android:id="@+id/textView75"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -256,6 +278,7 @@
 
             <TextView
                 android:id="@+id/textView76"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -266,6 +289,7 @@
 
             <TextView
                 android:id="@+id/textView77"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -275,6 +299,7 @@
 
             <TextView
                 android:id="@+id/textView78"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -285,6 +310,7 @@
 
             <TextView
                 android:id="@+id/textView79"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -294,6 +320,7 @@
 
             <TextView
                 android:id="@+id/textView80"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -303,6 +330,7 @@
 
             <TextView
                 android:id="@+id/textView81"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -312,6 +340,7 @@
 
             <TextView
                 android:id="@+id/textView82"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -323,6 +352,7 @@
 
             <TextView
                 android:id="@+id/textView83"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -334,6 +364,7 @@
 
             <TextView
                 android:id="@+id/textView84"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -343,6 +374,7 @@
 
             <TextView
                 android:id="@+id/textView86"
+                android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -353,6 +385,7 @@
 
             <TextView
                 android:id="@+id/textView85"
+                android:paddingLeft="10dp"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"

@@ -75,6 +75,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView book = (TextView) findViewById(R.id.books);
         TextView Contactus = (TextView) findViewById(R.id.contactus);
         TextView Knowmckvie = (TextView) findViewById(R.id.textView7);
+        TextView feed_back = (TextView)findViewById(R.id.textView8);
 
 
         //floating action button start
@@ -204,6 +205,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this,know_mckvie.class));
+            }
+        });
+        feed_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, feedback.class));
             }
         });
 

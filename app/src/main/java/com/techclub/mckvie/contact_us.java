@@ -34,6 +34,7 @@ public class contact_us extends AppCompatActivity {
         TextView dial = (TextView) findViewById(R.id.textView24);
         TextView textView28 = (TextView) findViewById(R.id.textView28);
         TextView textView24 = (TextView) findViewById(R.id.textView24);
+        TextView textView31 = (TextView) findViewById(R.id.textView31);
 
 
         textView36.setOnClickListener(new View.OnClickListener() {
@@ -48,9 +49,9 @@ public class contact_us extends AppCompatActivity {
         textView28.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String number = "9748232397";
+                String number = "9007017339";
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:9748232397"));
+                intent.setData(Uri.parse("tel:9007017339"));
 
 
             //if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -65,9 +66,27 @@ public class contact_us extends AppCompatActivity {
         textView24.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String number = "9748232397";
+                String number = "3326549318";
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:9748232397"));
+                intent.setData(Uri.parse("tel:3326549318"));
+
+
+                //if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                //  return;
+                //} else {
+                startActivity(intent);
+                // }
+
+            }
+
+        });
+
+        textView31.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String number = "3326548604";
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:3326548604"));
 
 
                 //if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {

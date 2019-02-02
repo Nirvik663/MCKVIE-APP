@@ -20,7 +20,7 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -38,8 +38,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginBottom="16dp"
+                android:paddingLeft="10dp"
                 android:text="Contact Us"
-                android:textColor="@color/colorAccent"
+                android:textColor="#4db6ac"
                 android:textSize="56dp"
                 app:layout_constraintBottom_toTopOf="@+id/textView22"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -49,6 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
+                android:paddingLeft="10dp"
                 android:text="Institute Address"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -60,6 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:paddingLeft="10dp"
                 android:text="MCKV Institute of Engineering\n243 G.T.Road(North)\nLilluah, Howrah - 711204"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toTopOf="@+id/textView24"
@@ -70,16 +73,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:onClick="textview24"
+                android:paddingLeft="10dp"
                 android:text="Phone:+91 33 2654 9318\nFax:+91 332654 9318"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toTopOf="@+id/textView25"
-                app:layout_constraintStart_toStartOf="parent"
-                android:onClick="textview24"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
                 android:text="Email:"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView26"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -99,8 +104,9 @@
             <TextView
                 android:id="@+id/textView27"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:padding="10dp"
                 android:text="Admission Queries"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -113,15 +119,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:onClick="textview28"
+                android:paddingLeft="10dp"
                 android:text="Contact Number: 9007017339"
                 app:layout_constraintBottom_toTopOf="@+id/textView37"
-                app:layout_constraintStart_toStartOf="parent"
-                android:onClick="textview28"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/textView37"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
                 android:text="Email:"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView30"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -131,6 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:paddingLeft="10dp"
                 android:text="Trust Office"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -151,9 +160,10 @@
             <TextView
                 android:id="@+id/textView31"
                 android:layout_width="wrap_content"
-                android:layout_height="99dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="'Laxmi Niketan', 1st Floor\n243, G.T.Road(North)\nLilluah,Howrah - 711 204.\n\nPhone:+91 33 2654 8604/05\nFax: +91 33 2654 9318"
+                android:paddingLeft="10dp"
+                android:text="'Laxmi Niketan', 1st Floor\n243, G.T.Road(North)\nLilluah,Howrah - 711 204.\n\nPhone:+91 33 2654 8604\nFax: +91 33 2654 9318"
                 app:layout_constraintBottom_toTopOf="@+id/textView35"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -162,6 +172,7 @@
                 android:id="@+id/textView32"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
                 android:text="Send Us an"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView35"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -181,6 +192,7 @@
                 android:id="@+id/textView36"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
                 android:text="Visit Us"
                 android:textColor="#0000cd"
                 app:layout_constraintStart_toStartOf="parent"
