@@ -160,6 +160,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                     if (task.isSuccessful()) {
                                         Toast.makeText(RegisterActivity.this, getString(R.string.registration_success), Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         startActivity(intent);
                                     } else {
                                         //display a failure message

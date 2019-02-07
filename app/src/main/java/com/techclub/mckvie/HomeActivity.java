@@ -370,7 +370,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     startActivity(myIntent);
                 }
                 else {
-                    if(admin1 == "true") {
+                    if(admin1.equals("true")) {
                         myIntent = new Intent(HomeActivity.this, admin_app.class);
                         startActivity((myIntent));
                     }
