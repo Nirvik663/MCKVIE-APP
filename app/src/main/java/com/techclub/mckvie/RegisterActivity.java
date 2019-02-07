@@ -1,12 +1,16 @@
 package com.techclub.mckvie;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,10 +26,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private FirebaseAuth mAuth;
 
+    private String dept;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        Spinner mySpinner = (Spinner) findViewById(R.id.spinner1);
 
         editTextName = findViewById(R.id.edit_text_name);
         editTextEmail = findViewById(R.id.edit_text_email);
@@ -37,6 +45,35 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mAuth = FirebaseAuth.getInstance();
 
         findViewById(R.id.button_register).setOnClickListener(this);
+
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<>(RegisterActivity.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Department));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mySpinner.setAdapter(myAdapter);
+
+        mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+                    dept = "CSE";
+                } else if (i == 1) {
+                    dept = "ME";
+                } else if (i == 2) {
+                    dept = "IT";
+                } else if (i == 3) {
+                    dept = "ECE";
+                } else if (i == 4) {
+                    dept = "EE";
+                } else if (i == 5) {
+                    dept = "AUE";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     @Override
@@ -53,6 +90,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         final String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         final String id = editTextId.getText().toString().trim();
+        final String admin = "false";
 
         if (name.isEmpty()) {
             editTextName.setError(getString(R.string.input_error_name));
@@ -108,7 +146,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             User user = new User(
                                     name,
                                     email,
-                                    id
+                                    id,
+                                    admin,
+                                    dept
                             );
 
                             FirebaseDatabase.getInstance().getReference("Users")
@@ -119,6 +159,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                     progressBar.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
                                         Toast.makeText(RegisterActivity.this, getString(R.string.registration_success), Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                                        startActivity(intent);
                                     } else {
                                         //display a failure message
                                     }

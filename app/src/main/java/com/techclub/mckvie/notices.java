@@ -34,7 +34,7 @@ public class notices extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Notices");
         mDatabase.keepSynced(true);
-        mPeopleRV = (RecyclerView) findViewById(R.id.myRecycleView);
+        mPeopleRV = findViewById(R.id.myRecycleView);
 
         DatabaseReference personsRef = FirebaseDatabase.getInstance().getReference().child("Notices");
         Query personsQuery = personsRef.orderByKey();
@@ -86,7 +86,6 @@ public class notices extends AppCompatActivity {
         super.onStop();
         mPeopleRVAdapter.stopListening();
     }
-
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder{
         View mView;

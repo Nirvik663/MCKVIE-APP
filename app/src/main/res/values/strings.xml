@@ -2,6 +2,17 @@
     <string name="app_name">MCKVIE</string>
     <string name="title_activity_main2">Main2Activity</string>
 
+    <string-array name="Department">
+    <item>CSE</item>
+    <item>ME</item>
+    <item>IT</item>
+    <item>ECE</item>
+    <item>EE</item>
+    <item>AUE</item>
+
+
+    </string-array>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

@@ -27,8 +27,6 @@ public class admin_app extends AppCompatActivity {
     int c=10000;
     String msg1="10000";
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

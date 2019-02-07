@@ -2,10 +2,6 @@ package com.techclub.mckvie;
 
 import java.util.Date;
 
-/**
- * Created by reale on 18/11/2016.
- */
-
 public class ChatMessage {
     private String messageText;
     private String messageUser;

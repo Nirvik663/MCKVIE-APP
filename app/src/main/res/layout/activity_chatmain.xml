@@ -137,7 +137,6 @@
             android:layout_height="41dp"
             android:layout_marginLeft="73dp"
             android:layout_marginRight="73dp"
-            android:layout_toRightOf="@+id/camera"
             android:background="@drawable/gallery" />
     </RelativeLayout>
 

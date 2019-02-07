@@ -371,6 +371,23 @@
         app:itemTextAppearance="@style/TextAppearance.AppCompat.Body2"
         app:menu="@menu/navigation_menu_login">
 
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="110dp"
+            android:layout_marginHorizontal="12dp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/useremail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:textColor="#ffffff"
+            android:layout_marginTop="130dp"/>
+
     </android.support.design.widget.NavigationView>
 
 

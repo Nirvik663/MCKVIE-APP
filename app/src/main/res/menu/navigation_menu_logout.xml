@@ -16,5 +16,20 @@
             android:id="@+id/nav_signout"
             android:title="Sign Out"
             android:icon="@mipmap/baseline_input_black_18dp" />
+
+        <item android:id="@+id/admin"
+            android:title="Admin"/>
+
+        <item android:id="@+id/notices"
+            android:title="Notices"
+            android:visible="true"/>
+
+        <item android:id="@+id/news"
+            android:title="News"
+            android:visible="true"/>
+
+        <item android:id="@+id/events"
+            android:title="Events"
+            android:visible="true"/>
     </group>
 </menu>

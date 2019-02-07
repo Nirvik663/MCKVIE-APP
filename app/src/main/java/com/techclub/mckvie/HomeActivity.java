@@ -24,7 +24,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.net.MalformedURLException;
@@ -42,6 +46,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     FloatingActionButton fab_plus,fab_call,fab_message,fab_email;
     Animation FabOpen,FabClose,FabRClockwise,FabRanti;
     boolean isOpen = false;
+    DatabaseReference ref1;
+    FirebaseDatabase database1;
+
+    TextView textViewname, textViewemail;
+    String admin1;
+
 
     private RecyclerView mPeopleRV;
     private DatabaseReference mDatabase;
@@ -55,12 +65,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         setuptoolbar();
+
+        textViewname = findViewById(R.id.username);
+        textViewemail = findViewById(R.id.useremail);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         TextView tv = (TextView) this.findViewById(R.id.textView6);
         TextView noragging = (TextView) this.findViewById(R.id.textView10);
-        ImageView iv_play=(ImageView)findViewById(R.id.iv_play_pause);
+        ImageView iv_play = (ImageView) findViewById(R.id.iv_play_pause);
         TextView handbook = (TextView) findViewById(R.id.handbook);
         TextView career = (TextView) findViewById(R.id.textView3);
         TextView book = (TextView) findViewById(R.id.books);
@@ -109,26 +123,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fab_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(HomeActivity.this,chatmain.class);
+                Intent intent = new Intent(HomeActivity.this, chatmain.class);
                 startActivity(intent);
             }
         });
-
-        //admin start
-        fab_call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(HomeActivity.this,admin.class);
-                startActivity(intent);
-            }
-        });
-        //admin end
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
 
-        Timer timer =new Timer();
-        timer.scheduleAtFixedRate(new MyTimerTask(),2000,4000);
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new MyTimerTask(), 2000, 4000);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -145,14 +149,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         noragging.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this,NoRagging.class));
+                startActivity(new Intent(HomeActivity.this, NoRagging.class));
             }
         });
 
         iv_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this,test.class));
+                startActivity(new Intent(HomeActivity.this, test.class));
             }
         });
 
@@ -164,14 +168,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 DownloadManager.Request request = new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
                 downloadManager.enqueue(request);
-                Toast.makeText(HomeActivity.this,"Downloading", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, "Downloading", Toast.LENGTH_SHORT).show();
             }
         });
 
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this,books_journals.class));
+                startActivity(new Intent(HomeActivity.this, books_journals.class));
             }
         });
 
@@ -186,14 +190,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Contactus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent( HomeActivity.this,contact_us.class));
+                startActivity(new Intent(HomeActivity.this, contact_us.class));
             }
         });
 
         Knowmckvie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this,know_mckvie.class));
+                startActivity(new Intent(HomeActivity.this, know_mckvie.class));
             }
         });
         feed_back.setOnClickListener(new View.OnClickListener() {
@@ -203,13 +207,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        TabLayout tabLayout = (TabLayout)findViewById(R.id.tablayout);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("Notices"));
         tabLayout.addTab(tabLayout.newTab().setText("News"));
         tabLayout.addTab(tabLayout.newTab().setText("Events"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -233,24 +237,42 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         init();
 
-        try
-        {
-            videoId=extractYoutubeId("https://www.youtube.com/watch?v=atmWWi5bIbg");
-
-            Log.e("VideoId is->","" + videoId);
-
-            String img_url="http://img.youtube.com/vi/"+videoId+"/0.jpg"; // this is link which will give u thumnail image of that video
-
-            // picasso jar file download image for u and set image in imagview
-
+        try {
+            videoId = extractYoutubeId("https://www.youtube.com/watch?v=atmWWi5bIbg");
+            Log.e("VideoId is->", "" + videoId);
+            String img_url = "http://img.youtube.com/vi/" + videoId + "/0.jpg"; // this is link which will give u thumnail image of that video
             Picasso.with(HomeActivity.this)
                     .load(img_url)
                     .into(iv_youtube_thumnail);
 
-        }
-        catch (MalformedURLException e)
-        {
+        } catch (MalformedURLException e) {
             e.printStackTrace();
+        }
+
+
+        if (mAuth.getCurrentUser() != null) {
+            database1 = FirebaseDatabase.getInstance();
+            ref1 = database1.getReference("Users/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+            ref1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String name = dataSnapshot.child("name").getValue(String.class);
+                    String email = dataSnapshot.child("email").getValue(String.class);
+                    admin1 = dataSnapshot.child("admin").getValue(String.class);
+                    textViewname.setText(name);
+                    textViewemail.setText(email);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+        else {
+            textViewname.setText("Welcome to the Official App of");
+            textViewemail.setText("MCKV Institute of Engineering");
         }
     }
 
@@ -258,11 +280,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     {
         iv_youtube_thumnail=(ImageView)findViewById(R.id.img_thumnail);
     }
-
-    // extract youtube video id and return that id
-    // ex--> "http://www.youtube.com/watch?v=t7UxjpUaL3Y"
-    // videoid is-->t7UxjpUaL3Y
-
 
     public String extractYoutubeId(String url) throws MalformedURLException {
         String query = new URL(url).getQuery();
@@ -346,8 +363,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 myIntent = new Intent(HomeActivity.this, events.class);
                 startActivity(myIntent);
                 break;
-        }
 
+            case R.id.admin:
+                if(mAuth.getCurrentUser() == null) {
+                    myIntent = new Intent(HomeActivity.this,LoginActivity.class);
+                    startActivity(myIntent);
+                }
+                else {
+                    if(admin1 == "true") {
+                        myIntent = new Intent(HomeActivity.this, admin_app.class);
+                        startActivity((myIntent));
+                    }
+                    else {
+                        Toast.makeText(HomeActivity.this, "Administrator Rights Required", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+        }
         return true;
     }
 

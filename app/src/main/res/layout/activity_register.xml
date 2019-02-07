@@ -6,82 +6,137 @@
     android:layout_height="match_parent"
     tools:context="com.techclub.mckvie.RegisterActivity">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/rl1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:orientation="vertical"
         android:padding="@dimen/default_padding">
 
         <TextView
-
-            android:layout_width="match_parent"
+            android:id="@+id/mckvie_title"
+            android:layout_width="376dp"
             android:layout_height="wrap_content"
             android:fontFamily="cursive"
             android:text="@string/app_name"
             android:textAlignment="center"
+            android:textColor="#000000"
             android:textSize="@dimen/app_name_size" />
 
         <EditText
             android:id="@+id/edit_text_name"
-            android:layout_width="match_parent"
+            android:layout_width="395dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/mckvie_title"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="0dp"
             android:drawablePadding="@dimen/drawable_padding"
             android:hint="Name"
-            android:nextFocusDown="@id/edit_text_email"
             android:textColorHint="@color/colorHint" />
-
 
         <EditText
             android:id="@+id/edit_text_email"
-            android:layout_width="match_parent"
+            android:layout_width="395dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_name"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="-1dp"
+            android:layout_marginEnd="0dp"
             android:drawablePadding="@dimen/drawable_padding"
-            android:hint="email"
+            android:hint="Email"
             android:inputType="textEmailAddress"
-            android:nextFocusDown="@id/edit_text_password"
             android:textColorHint="@color/colorHint" />
-
 
         <EditText
             android:id="@+id/edit_text_password"
-            android:layout_width="match_parent"
+            android:layout_width="395dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_email"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
             android:drawablePadding="@dimen/drawable_padding"
-            android:hint="password"
+            android:hint="Password"
             android:inputType="textPassword"
-            android:nextFocusDown="@id/edit_text_id"
             android:textColorHint="@color/colorHint" />
 
         <EditText
             android:id="@+id/edit_text_id"
-            android:layout_width="match_parent"
+            android:layout_width="395dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_password"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
             android:digits="0123456789"
             android:drawablePadding="@dimen/drawable_padding"
             android:hint="Unique ID"
             android:inputType="numberSigned"
             android:maxLength="10"
-            android:nextFocusDown="@id/button_register"
             android:textColorHint="@color/colorHint" />
+
+        <TextView
+            android:id="@+id/department"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_id"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="7dp"
+            android:text="Department:"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="261dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/edit_text_id"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="15dp"
+            android:layout_toEndOf="@+id/department"
+            android:layout_toRightOf="@+id/department" />
 
         <Button
             android:id="@+id/button_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/register"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:textColor="#ffffff"
+            android:layout_below="@+id/spinner1"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="16dp"
             android:background="#4db6ac"
-            android:textAllCaps="false" />
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="@string/register"
+            android:textAllCaps="false"
+            android:textColor="#ffffff" />
 
-    </LinearLayout>
+
+    </RelativeLayout>
 
     <ProgressBar
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
+        android:layout_below="@+id/rl1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="87dp"
+        android:layout_marginEnd="183dp" />
 
 </RelativeLayout>
