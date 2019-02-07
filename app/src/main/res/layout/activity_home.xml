@@ -341,7 +341,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="105dp"
             android:elevation="6dp"
-            android:src="@drawable/ic_action_call"
+            android:src="@drawable/ic_action_admin"
             android:visibility="invisible"
             app:backgroundTint="#92DBFF"
             app:pressedTranslationZ="12dp" />

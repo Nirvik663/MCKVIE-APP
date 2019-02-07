@@ -52,7 +52,7 @@ public class chatmain extends AppCompatActivity {
     ImageView emojiButton,submitButton;
     EmojIconActions emojIconActions;
     TextView typing;
-    Button attachments;
+    ImageView attachments;
     String m;
     Integer flag=0;
 
@@ -108,7 +108,7 @@ public class chatmain extends AppCompatActivity {
         submitButton = (ImageView)findViewById(R.id.submit_button);
         emojiconEditText = (EmojiconEditText)findViewById(R.id.emojicon_edit_text);
         typing=(TextView)findViewById(R.id.typing);
-        attachments=(Button)findViewById(R.id.attach);
+        attachments= (ImageView) findViewById(R.id.attach);
         emojIconActions = new EmojIconActions(getApplicationContext(),activity_chat,emojiButton,emojiconEditText);
         emojIconActions.ShowEmojicon();
         emojIconActions.setIconsIds(R.drawable.ic_action_keyboard,R.drawable.happy_256);
