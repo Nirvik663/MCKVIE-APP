@@ -1,10 +1,14 @@
 package com.techclub.mckvie;
 
 import android.app.DownloadManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.TextView;
 
@@ -33,6 +37,29 @@ public class books_journals extends AppCompatActivity {
         TextView t2 =  this.findViewById(R.id.textView23);
         TextView t3 =  this.findViewById(R.id.textView25);
         TextView t4 =  this.findViewById(R.id.textView26);
+        String text1="Click here to Download New Arrivals of Books in the Period from 01-09-2018 to 31-10-2018 at Central Library.";
+        SpannableString ss =new SpannableString(text1);
+        ForegroundColorSpan fcsblue=new ForegroundColorSpan(Color.BLUE);
+        ss.setSpan(fcsblue,0,10, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        t1.setText(ss);
+
+        String text2="Click here to Download New Arrivals of Books in the Period from 01-01-2017 to 31-05-2017 at Central Library.";
+        SpannableString ss1=new SpannableString(text2);
+        ForegroundColorSpan fcsblue1=new ForegroundColorSpan(Color.BLUE);
+        ss1.setSpan(fcsblue1,0,10,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        t2.setText(ss1);
+
+        String text3="Click here to Download New Arrivals of Books in the Period from 01-01-2018 to 31-01-2018 at Central Library.";
+        SpannableString ss2=new SpannableString(text3);
+        ForegroundColorSpan fcsblue2=new ForegroundColorSpan(Color.BLUE);
+        ss2.setSpan(fcsblue2,0,10,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        t3.setText(ss2);
+
+        String text4="Click here to Download New Arrivals of Books in the Period from 01-02-2018 to 28-02-2018 at Central Library.";
+        SpannableString ss3=new SpannableString(text4);
+        ForegroundColorSpan fcsblue3=new ForegroundColorSpan(Color.BLUE);
+        ss3.setSpan(fcsblue3,0,10,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        t4.setText(ss3);
         t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -46,6 +46,7 @@
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
                 android:text="  1. First Year Syllabus "
+                android:foreground="?android:attr/selectableItemBackground"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textSize="18sp" />
@@ -55,6 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:text="  2.CSE upto 4th year Syllabus"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
@@ -65,6 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:text="  3.ECE upto 4th year Syllabus"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
@@ -73,6 +76,7 @@
             <Button
                 android:id="@+id/buttonEE"
                 android:layout_width="match_parent"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
                 android:text="  4.EE upto 4th year Syllabus"
@@ -83,6 +87,7 @@
             <Button
                 android:id="@+id/buttonIT"
                 android:layout_width="match_parent"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
                 android:text="  5. IT upto 4th year Syllabus"
@@ -93,6 +98,7 @@
             <Button
                 android:id="@+id/buttonME"
                 android:layout_width="match_parent"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
                 android:text="  6.ME upto 4th year Syllabus"
@@ -103,6 +109,7 @@
             <Button
                 android:id="@+id/buttonAUE"
                 android:layout_width="match_parent"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
                 android:text="  7.AUE upto 4th year Syllabus"
@@ -125,6 +132,7 @@
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
                 android:text="  1.ECE Syllabus"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
                 android:textSize="18sp"/>
@@ -132,6 +140,7 @@
             <Button
                 android:id="@+id/MTECHCSE"
                 android:layout_width="match_parent"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
                 android:text="  2.CSE Syllabus"
@@ -142,6 +151,7 @@
             <Button
                 android:id="@+id/MTECHAE"
                 android:layout_width="match_parent"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
                 android:text="  3.Automotive Technology"
@@ -150,6 +160,7 @@
                 android:textSize="18sp"/>
             <Button
                 android:id="@+id/MTECHVLSI"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
@@ -172,6 +183,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:text="  Master Of Computer Application"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
