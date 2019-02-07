@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        layout="@layout/navigation_action"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView110"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Odd Semester Student Feedback 2019"
+                android:textColor="#4db6ac"
+                android:textSize="50sp" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Instruction:"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="278dp" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="1.Provide Username and password as follows:"
+                android:textSize="15dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="298dp" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Username=Roll No. and password=Date of Birth"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="355dp" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Example:username:BTECH/ME/10/001 OR MCA /11/033"
+                android:textSize="15dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="377dp" />
+
+
+            <TextView
+                android:id="@+id/textView87"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="\t\t\t\tPassword:01/01/1990(dd/mm/yyyy)"
+                android:textSize="15dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="392dp" />
+
+            <TextView
+                android:id="@+id/textView88"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="2. Note that by clicking the next button you complete the feedback for a particular staff member.There is no option to edit the feedback."
+                android:textSize="15dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="415dp" />
+
+            <TextView
+                android:id="@+id/textView89"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="3. Click here for Student Feedback."
+                android:textSize="15dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="494dp" />
+
+
+            <TextView
+                android:id="@+id/textView90"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="4. For any difficulty kindly contact Prof.(Dr.) Arghya Sarkar through Email id:"
+                android:textSize="15dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="494dp" />
+
+            <TextView
+                android:id="@+id/textView91"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="sarkararghya@rediffmail.com"
+                android:textColor="#0000cd"
+                android:textSize="15dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="494dp" />
+
+            <TextView
+                android:id="@+id/textView92"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Please provide your phone no. in the Email."
+                android:textSize="15dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="494dp" />
+
+            <TextView
+                android:id="@+id/textView93"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="\t\t\t\t\u2022Submission of Feedback is Mandatory."
+                android:textSize="15dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="494dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>
