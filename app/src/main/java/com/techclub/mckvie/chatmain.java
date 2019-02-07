@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -35,6 +37,9 @@ import hani.momanii.supernova_emoji_library.Helper.EmojiconEditText;
 import hani.momanii.supernova_emoji_library.Helper.EmojiconTextView;
 
 import java.lang.String;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class chatmain extends AppCompatActivity {
 
@@ -47,7 +52,9 @@ public class chatmain extends AppCompatActivity {
     ImageView emojiButton,submitButton;
     EmojIconActions emojIconActions;
     TextView typing;
+    Button attachments;
     String m;
+    Integer flag=0;
 
 
     @Override
@@ -88,6 +95,7 @@ public class chatmain extends AppCompatActivity {
         }
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,10 +108,12 @@ public class chatmain extends AppCompatActivity {
         submitButton = (ImageView)findViewById(R.id.submit_button);
         emojiconEditText = (EmojiconEditText)findViewById(R.id.emojicon_edit_text);
         typing=(TextView)findViewById(R.id.typing);
+        attachments=(Button)findViewById(R.id.attach);
         emojIconActions = new EmojIconActions(getApplicationContext(),activity_chat,emojiButton,emojiconEditText);
         emojIconActions.ShowEmojicon();
         emojIconActions.setIconsIds(R.drawable.ic_action_keyboard,R.drawable.happy_256);
-
+        final RelativeLayout att=(RelativeLayout)findViewById(R.id.att);
+        final ChatMessage t=new ChatMessage();
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +130,20 @@ public class chatmain extends AppCompatActivity {
                     Toast.makeText(chatmain.this,"Enter text...",Toast.LENGTH_SHORT).show();
                     emojiconEditText.setText("");
                     emojiconEditText.requestFocus();
+                }
+            }
+        });
+
+        attachments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(flag==0){
+                    att.setVisibility(View.VISIBLE);
+                    flag=flag+1;
+                }
+                else{
+                    flag=flag-1;
+                    att.setVisibility(View.INVISIBLE);
                 }
             }
         });
