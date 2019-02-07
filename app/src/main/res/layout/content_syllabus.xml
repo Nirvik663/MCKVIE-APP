@@ -24,7 +24,7 @@
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/architects_daughter"
+                android:textSize="17dp"
                 android:text="MCKV Institute of Engineering is affiliated to West \nBengal University of Technology (WBUT) and thus \nfollows the syllabus as prescribed by WBUT for \nall the courses of B. Tech, M. Tech and MCA."
                 android:textAlignment="textStart"
                 android:layout_marginLeft="13dp"
@@ -34,7 +34,6 @@
                 android:id="@+id/textView19"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/aclonica"
                 android:text="  UG BTECH Courses:"
                 android:textAlignment="textStart"
                 android:textColor="#4db6ac"
@@ -46,99 +45,78 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
-                android:fontFamily="@font/aref_ruqaa"
                 android:text="  1. First Year Syllabus "
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/buttonCSE"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
-                android:fontFamily="@font/aref_ruqaa"
                 android:text="  2.CSE upto 4th year Syllabus"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/buttonECE"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
-                android:fontFamily="@font/aref_ruqaa"
                 android:text="  3.ECE upto 4th year Syllabus"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/buttonEE"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
-                android:fontFamily="@font/aref_ruqaa"
                 android:text="  4.EE upto 4th year Syllabus"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
 
             <Button
                 android:id="@+id/buttonIT"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
-                android:fontFamily="@font/aref_ruqaa"
                 android:text="  5. IT upto 4th year Syllabus"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
 
             <Button
                 android:id="@+id/buttonME"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
-                android:fontFamily="@font/aref_ruqaa"
                 android:text="  6.ME upto 4th year Syllabus"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
 
             <Button
                 android:id="@+id/buttonAUE"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
-                android:fontFamily="@font/aref_ruqaa"
                 android:text="  7.AUE upto 4th year Syllabus"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/textView21"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/aclonica"
                 android:text="  PG MTECH Courses:"
                 android:textColor="#4db6ac"
+                android:textStyle="bold"
                 android:textSize="30sp" />
 
             <Button
@@ -146,70 +124,58 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
-                android:fontFamily="@font/aref_ruqaa"
                 android:text="  1.ECE Syllabus"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
 
             <Button
                 android:id="@+id/MTECHCSE"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
-                android:fontFamily="@font/aref_ruqaa"
                 android:text="  2.CSE Syllabus"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
 
             <Button
                 android:id="@+id/MTECHAE"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
-                android:fontFamily="@font/aref_ruqaa"
                 android:text="  3.Automotive Technology"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
+                android:textSize="18sp"/>
             <Button
                 android:id="@+id/MTECHVLSI"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
-                android:fontFamily="@font/aref_ruqaa"
                 android:text="  4.Micro-Electronics and VLSI"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/textView24"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/aclonica"
                 android:text="  MCA:"
                 android:textColor="#4db6ac"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:textStyle="bold"/>
 
             <Button
                 android:id="@+id/MCA"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_back"
-                android:fontFamily="@font/aref_ruqaa"
                 android:text="  Master Of Computer Application"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
+                android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
 </android.support.v4.widget.NestedScrollView>

@@ -15,12 +15,11 @@
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/colorAccent"
+            android:background="#4db6ac"
             android:paddingBottom="42dp"
             android:paddingTop="42dp"
             android:text="Events"
             android:textStyle="bold"
-            android:fontFamily="@font/aclonica"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="40sp" />
