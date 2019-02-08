@@ -1,7 +1,9 @@
 package com.techclub.mckvie;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -65,22 +67,38 @@ public class admin_app extends AppCompatActivity {
     }
 
     public void btinsert(View view){
-        if(Integer.parseInt(msg1)!=0)
-        c=Integer.parseInt(msg1);
-        c=c-1;
-        ref.addValueEventListener(new ValueEventListener() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(admin_app.this);
+        builder.setMessage("Are you sure to upload?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("Recheck", new DialogInterface.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                getvalues();
-                ref.child(Integer.toString(c)).setValue(object1);
-                Toast.makeText(admin_app.this,"Notice Inserted...",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
             }
         });
-        finish();
+        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (Integer.parseInt(msg1) != 0)
+                    c = Integer.parseInt(msg1);
+                c = c - 1;
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        getvalues();
+                        ref.child(Integer.toString(c)).setValue(object1);
+                        Toast.makeText(admin_app.this, "Notice Inserted...", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                finish();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

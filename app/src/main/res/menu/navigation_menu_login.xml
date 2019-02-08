@@ -1,36 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <item android:id="@+id/navi_item1"
+          android:title="Info1">
 
-        <item android:id="@+id/nav_signin"
-            android:title="Sign In"
-            android:icon="@mipmap/baseline_search_black_18dp"
-            android:visible="true"/>
+        <menu android:checkableBehavior="single">
 
-        <item android:id = "@+id/nav_account"
-            android:title = "My Account"
-            android:icon="@mipmap/baseline_person_black_18dp"
-            android:visible="false"/>
+            <item android:id="@+id/notices"
+                android:title="Notices"
+                android:icon="@mipmap/arrow2"
+                android:visible="true"/>
 
-        <item
-            android:id="@+id/nav_settings"
-            android:title="Settings"
-            android:icon="@mipmap/baseline_settings_black_18dp"/>
+            <item android:id="@+id/news"
+                android:title="News"
+                android:icon="@mipmap/arrow2"
+                android:visible="true"/>
 
-        <item android:id="@+id/notices"
-            android:title="Notices"
-            android:visible="true"/>
+            <item android:id="@+id/events"
+                android:title="Events"
+                android:icon="@mipmap/arrow2"
+                android:visible="true"/>
+        </menu>
+    </item>
 
-        <item android:id="@+id/news"
-            android:title="News"
-            android:visible="true"/>
 
-        <item android:id="@+id/events"
-            android:title="Events"
-            android:visible="true"/>
+    <item android:id="@+id/navi_item2"
+          android:title="Info2">
 
-        <item android:id="@+id/admin"
-            android:title="Admin"/>
-    </group>
+        <menu android:checkableBehavior="single">
+
+            <item android:id="@+id/nav_signin"
+                android:title="Sign In"
+                android:icon="@mipmap/side_login_512"
+                android:visible="true"/>
+
+            <item android:id = "@+id/nav_account"
+                android:title = "My Account"
+                android:icon="@mipmap/baseline_account_circle_black_18dp"
+                android:visible="false"/>
+
+            <item
+                android:id="@+id/nav_settings"
+                android:title="Settings"
+                android:icon="@mipmap/settings_black"/>
+
+            <item android:id="@+id/admin"
+                android:title="Admin"
+                android:icon="@mipmap/admin_1246350"/>
+
+        </menu>
+    </item>
 </menu>

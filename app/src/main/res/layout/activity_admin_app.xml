@@ -6,45 +6,78 @@
     android:layout_height="match_parent"
     android:layout_centerHorizontal="false"
     android:orientation="vertical"
+    android:background="@drawable/activity_background"
     tools:context=".admin_app">
 
-    <EditText
-        android:id="@+id/desc1"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Desc"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/image1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Image"
-        android:inputType="textPersonName" />
+        android:text="Add Notices"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/coustard"/>
 
     <EditText
         android:id="@+id/title1"
         android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:ems="10"
         android:hint="Title"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/url1"
+        android:id="@+id/desc1"
         android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Url"
+        android:layout_gravity="center_horizontal"
+        android:hint="Description"
+        android:inputType="textPersonName"
+        />
+
+    <EditText
+        android:id="@+id/image1"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_gravity="center_horizontal"
+        android:hint="Image"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/url1"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_gravity="center_horizontal"
+        android:hint="Add URL"
         android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/insert1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="122dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="#4db6ac"
         android:onClick="btinsert"
         android:text="INSERT" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please recheck all the detail before uploading"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"/>
+
+
 
 </LinearLayout>

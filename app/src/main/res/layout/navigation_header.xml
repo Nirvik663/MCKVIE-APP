@@ -9,9 +9,9 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout3"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="171dp"
-        android:background="#4da6ff"
+        android:background="@drawable/background_light_poly2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

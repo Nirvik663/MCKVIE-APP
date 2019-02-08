@@ -19,7 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".admin_app"></activity>
-        <activity android:name=".admin" />
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait">
@@ -36,9 +35,6 @@
             android:name=".HomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TestActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ProfileActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -51,10 +47,6 @@
             android:name=".test"
             android:screenOrientation="sensorLandscape" />
         <activity android:name=".RegisterActivity"/>
-        <activity
-            android:name=".MoreActivity"
-            android:parentActivityName=".HomeActivity"
-            android:screenOrientation="portrait" />
         <activity android:name=".chatmain"/>
         <activity android:name=".notices" />
         <activity android:name=".events" />
@@ -63,13 +55,9 @@
         <activity android:name=".contact_us" />
         <activity android:name=".visit" />
         <activity android:name=".know_mckvie" />
-        <activity android:name=".AdminLoginActivity"/>
-        <activity
-            android:name=".webview"
-            android:parentActivityName=".notices">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.techclub.mckvie.notices" />
+        <activity android:name=".feedback"/>
+        <activity android:name=".webview">
+
         </activity>
     </application>
     <uses-permission android:name="android.permission.CALL_PHONE" />
