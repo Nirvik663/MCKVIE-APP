@@ -2,163 +2,205 @@ package com.techclub.mckvie;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private static final int CHOOSE_IMAGE =101;
-    ImageView imageView;
-    EditText editText;
+    private Button btnSelectImage;
+    private TextView textView, textViewname,textViewemail,textViewuid,textViewdept;
+    private ImageView mImageView;
     ProgressBar progressBar;
-    Uri uriProfileImage;
-    String profileImageUrl;
+    private FirebaseDatabase mdatabase1;
+    private  FirebaseAuth mAuth;
+    private Button button;
+    private StorageReference mStorage;
+    private static final int CHOOSE_IMAGE = 101;
+    private static final int CAMERA_REQUEST_CODE = 1;
 
-    FirebaseAuth mAuth;
-
-
-    private StorageReference mStorageRef;
+    DatabaseReference ref1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        btnSelectImage = (Button) findViewById(R.id.btn_image);
+        mImageView = (ImageView) findViewById(R.id.imageView);
+        textView = (TextView) findViewById(R.id.testTextVIew);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar2);
+        textViewname = (TextView) findViewById(R.id.textView94);
+        textViewemail = (TextView) findViewById(R.id.textView96);
+        textViewuid = (TextView) findViewById(R.id.textView98);
+        textViewdept = (TextView) findViewById(R.id.textView101);
+        button = (Button) findViewById(R.id.button);
+
         mAuth = FirebaseAuth.getInstance();
 
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+        //Get instance
+        mStorage = FirebaseStorage.getInstance().getReference();
+        StorageReference filePath = mStorage.child("CameraPhotos").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        editText = (EditText) findViewById(R.id.ProfiletextView);
-        imageView = (ImageView) findViewById(R.id.ProfileimageView);
-
-        progressBar = (ProgressBar) findViewById(R.id.progressBar2);
-
-
-        imageView.setOnClickListener(new View.OnClickListener() {
+        btnSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                showImageChooser();
+            public void onClick(View v) {
+
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Profile Image"), CHOOSE_IMAGE);
+
             }
         });
 
-        findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveUserInformation();
+        progressBar.setVisibility(View.VISIBLE);
+        try {
+            final File localFile = File.createTempFile("profile_pic", "jpg");
 
+            filePath.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                    mImageView.setImageBitmap(bmp);
+                    progressBar.setVisibility(View.GONE);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Toast.makeText(ProfileActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+                }
+            }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    // progress percentage
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (mAuth.getCurrentUser() != null) {
+            mdatabase1 = FirebaseDatabase.getInstance();
+            ref1 = mdatabase1.getReference("Users/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+            ref1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String name = dataSnapshot.child("name").getValue(String.class);
+                    String email = dataSnapshot.child("email").getValue(String.class);
+                    String uid = dataSnapshot.child("id").getValue(String.class);
+                    String dept = dataSnapshot.child("dept").getValue(String.class);
+                    textViewname.setText(name);
+                    textViewemail.setText(email);
+                    textViewuid.setText(uid);
+                    textViewdept.setText(dept);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+        else {
+            textViewname.setText("-");
+            textViewemail.setText("-");
+            textViewuid.setText("-");
+            textViewdept.setText("-");
+        }
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ProfileActivity.this, "Hoyni Ekhono -_-", Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    private void saveUserInformation() {
-        String displayName = editText.getText().toString();
-
-        if(displayName.isEmpty()) {
-            editText.setError("Name Required");
-            editText.requestFocus();
-            return;
-        }
-
-        FirebaseUser user = mAuth.getCurrentUser();
-
-        if(user!=null) {
-            UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(displayName)
-                    .setPhotoUri(Uri.parse(profileImageUrl))
-                    .build();
-
-            user.updateProfile(profile)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()) {
-                                Toast.makeText(ProfileActivity.this,"Profile Updated", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-        }
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode== CHOOSE_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
 
-            uriProfileImage = data.getData();
+        if(requestCode==CHOOSE_IMAGE && resultCode==RESULT_OK) {
 
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uriProfileImage);
-                imageView.setImageBitmap(bitmap);
+            Uri uri = data.getData();
 
-                uploadImageToFirebaseStorage();
+            StorageReference filePath = mStorage.child("CameraPhotos").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                    Toast.makeText(ProfileActivity.this, "Upload Done", Toast.LENGTH_SHORT).show();
+
+                    progressBar.setVisibility(View.VISIBLE);
+                    try {
+
+                        final StorageReference filePath = mStorage.child("CameraPhotos").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                        final File localFile = File.createTempFile("profile_pic", "jpg");
+
+                        filePath.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                                mImageView.setImageBitmap(bmp);
+                                progressBar.setVisibility(View.GONE);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                Toast.makeText(ProfileActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
+                            }
+                        }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                // progress percentage
+                                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                            }
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            });
         }
     }
 
-    private void uploadImageToFirebaseStorage() {
-        final StorageReference profileImagrRef = FirebaseStorage.getInstance().getReference("profilepics/"+System.currentTimeMillis() + ".jpg");
-
-     if(uriProfileImage != null) {
-         progressBar.setVisibility(View.VISIBLE);
-         profileImagrRef.putFile(uriProfileImage)
-                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-             @Override
-             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                 progressBar.setVisibility(View.GONE);
-
-                 profileImageUrl = taskSnapshot.getStorage().getDownloadUrl().toString();
-
-             }
-         })
-
-         .addOnFailureListener(new OnFailureListener() {
-             @Override
-             public void onFailure(@NonNull Exception e) {
-                 progressBar.setVisibility(View.GONE);
-                 Toast.makeText(ProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-             }
-         });
-     }
-
-    }
-
-    private void showImageChooser() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Profile Image"), CHOOSE_IMAGE);
-    }
-
     @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

@@ -2,6 +2,8 @@ package com.techclub.mckvie;
 
 import android.app.DownloadManager;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -23,14 +25,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Timer;
@@ -48,6 +58,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     boolean isOpen = false;
     DatabaseReference ref1;
     FirebaseDatabase database1;
+    ImageView imageView;
 
     TextView textViewname, textViewemail;
     String admin1;
@@ -57,6 +68,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private NavigationView navigationView;
+    private StorageReference mStorage;
 
     ViewPager viewPager;
 
@@ -81,6 +93,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView Contactus = (TextView) findViewById(R.id.contactus);
         TextView Knowmckvie = (TextView) findViewById(R.id.textView7);
         TextView feed_back = (TextView)findViewById(R.id.textView8);
+        final ImageView imageView = (ImageView) findViewById(R.id.profile_image);
 
         //floating action button start
         fab_plus = (FloatingActionButton) findViewById(R.id.fab_plus);
@@ -124,6 +137,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, chatmain.class);
+                startActivity(intent);
+            }
+        });
+
+        fab_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
                 startActivity(intent);
             }
         });
@@ -274,6 +295,37 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             textViewname.setText("Welcome to the Official App of");
             textViewemail.setText("MCKV Institute of Engineering");
         }
+
+        if (mAuth.getCurrentUser() != null) {
+            mStorage = FirebaseStorage.getInstance().getReference();
+
+            StorageReference filePath = mStorage.child("CameraPhotos").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            try {
+                final File localFile = File.createTempFile("profile_pic", "jpg");
+
+                filePath.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                        imageView.setImageBitmap(bmp);
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                    }
+                }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        // progress percentage
+                        double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void init()
@@ -333,33 +385,28 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_account:
-                finish();
                 myIntent = new Intent(HomeActivity.this, ProfileActivity.class);
                 startActivity(myIntent);
                 break;
 
             case R.id.nav_signout:
                 FirebaseAuth.getInstance().signOut();
-                finish();
                 myIntent = new Intent(HomeActivity.this, HomeActivity.class);
                 startActivityForResult(myIntent, 0);
                 Toast.makeText(HomeActivity.this, "Logged Out!", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.notices:
-                finish();
                 myIntent = new Intent(HomeActivity.this, notices.class);
                 startActivity(myIntent);
                 break;
 
             case R.id.news:
-                finish();
                 myIntent = new Intent(HomeActivity.this, news.class);
                 startActivity(myIntent);
                 break;
 
             case R.id.events:
-                finish();
                 myIntent = new Intent(HomeActivity.this, events.class);
                 startActivity(myIntent);
                 break;

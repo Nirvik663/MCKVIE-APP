@@ -23,30 +23,30 @@ public class admin_app extends AppCompatActivity {
     EditText Desc,Image,Url,Title;
     Button Insert;
     FirebaseDatabase database;
-    DatabaseReference ref;
+    DatabaseReference ref, ref1;
     Query ref2;
     object object1;
-    int c=10000;
-    String msg1="10000";
+    int c = 10000;
+    String msg1 = "10000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_app);
 
-        Desc=(EditText)findViewById(R.id.desc1);
-        Image=(EditText)findViewById(R.id.image1);
-        Url=(EditText)findViewById(R.id.url1);
-        Title=(EditText)findViewById(R.id.title1);
-        Insert=(Button) findViewById(R.id.insert1);
+        Desc = (EditText) findViewById(R.id.desc1);
+        Image = (EditText) findViewById(R.id.image1);
+        Url = (EditText) findViewById(R.id.url1);
+        Title = (EditText) findViewById(R.id.title1);
+        Insert = (Button) findViewById(R.id.insert1);
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("Notices");
         ref2 = FirebaseDatabase.getInstance().getReference().child("Notices").orderByKey().limitToFirst(1);
         ref2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot child: dataSnapshot.getChildren()){
-                    msg1=child.getKey();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    msg1 = child.getKey();
                 }
             }
 
@@ -57,6 +57,52 @@ public class admin_app extends AppCompatActivity {
         });
         object1 = new object();
 
+        Insert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(admin_app.this);
+                builder.setMessage("Are you sure to upload?");
+                builder.setCancelable(true);
+                builder.setPositiveButton("Recheck", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                if (Title.getText().toString().isEmpty()) {
+                    Title.setError(getString(R.string.title_error));
+                    Title.requestFocus();
+                    return;
+                }
+                builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (Integer.parseInt(msg1) != 0)
+                            c = Integer.parseInt(msg1);
+                        c = c - 1;
+                        ref.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                getvalues();
+                                ref.child(Integer.toString(c)).setValue(object1);
+                                Toast.makeText(admin_app.this, "Notice Inserted", Toast.LENGTH_SHORT).show();
+                                finish();
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+
+        });
     }
 
     private void getvalues(){
@@ -66,39 +112,9 @@ public class admin_app extends AppCompatActivity {
         object1.setUrl(Url.getText().toString());
     }
 
-    public void btinsert(View view){
-        final AlertDialog.Builder builder = new AlertDialog.Builder(admin_app.this);
-        builder.setMessage("Are you sure to upload?");
-        builder.setCancelable(true);
-        builder.setNegativeButton("Recheck", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (Integer.parseInt(msg1) != 0)
-                    c = Integer.parseInt(msg1);
-                c = c - 1;
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        getvalues();
-                        ref.child(Integer.toString(c)).setValue(object1);
-                        Toast.makeText(admin_app.this, "Notice Inserted...", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-                finish();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+    @Override
+    public void onStop() {
+        super.onStop();
+        finish();
     }
 }

@@ -150,7 +150,8 @@ public class chatmain extends AppCompatActivity {
         //Check if not sign-in then navigate Signin page
         if(FirebaseAuth.getInstance().getCurrentUser() == null)
         {
-            startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(),SIGN_IN_REQUEST_CODE);
+            Intent myIntent = new Intent(this,LoginActivity.class);
+            startActivity(myIntent);
         }
         else
         {

@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edit_text_id"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Departments:"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -127,7 +127,7 @@
                 android:layout_height="30dp"
                 android:layout_below="@+id/edit_text_id"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_toEndOf="@+id/department"
                 android:layout_toRightOf="@+id/department" />
         </LinearLayout>
@@ -138,6 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="#4db6ac"
+            android:layout_marginTop="20dp"
             android:foreground="?android:attr/selectableItemBackground"
             android:text="@string/register"
             android:textAllCaps="false"
@@ -148,6 +149,7 @@
 
     <ProgressBar
         android:id="@+id/progressbar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl1"
