@@ -7,10 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Syllabus extends AppCompatActivity {
 
-    Button button1st,buttonCSE,buttonECE,buttonEE,buttonIT,buttonME,buttonAUE,MTECHCSE,MTECHECE,MTECHAE,MTECHVLSI,MCA;
+    TextView button1st,buttonCSE,buttonECE,buttonEE,buttonIT,buttonME,buttonAUE,MTECHCSE,MTECHECE,MTECHAE,MTECHVLSI,MCA;
     DownloadManager downloadManager;
     Toolbar toolbar;
 
@@ -25,18 +26,18 @@ public class Syllabus extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("");
         toolbar.setSubtitle("");
-        button1st= (Button) findViewById(R.id.button1st);
-        buttonCSE= (Button) findViewById(R.id.buttonCSE);
-        buttonECE= (Button) findViewById(R.id.buttonECE);
-        buttonEE= (Button) findViewById(R.id.buttonEE);
-        buttonIT= (Button) findViewById(R.id.buttonIT);
-        buttonME= (Button) findViewById(R.id.buttonME);
-        buttonAUE= (Button) findViewById(R.id.buttonAUE);
-        MTECHECE= (Button) findViewById(R.id.MTECHECE);
-        MTECHCSE= (Button) findViewById(R.id.MTECHCSE);
-        MTECHAE= (Button) findViewById(R.id.MTECHAE);
-        MTECHVLSI= (Button) findViewById(R.id.MTECHVLSI);
-        MCA=(Button) findViewById(R.id.MCA);
+        button1st= (TextView) findViewById(R.id.button1st);
+        buttonCSE= (TextView) findViewById(R.id.buttonCSE);
+        buttonECE= (TextView) findViewById(R.id.buttonECE);
+        buttonEE= (TextView) findViewById(R.id.buttonEE);
+        buttonIT= (TextView) findViewById(R.id.buttonIT);
+        buttonME= (TextView) findViewById(R.id.buttonME);
+        buttonAUE= (TextView) findViewById(R.id.buttonAUE);
+        MTECHECE= (TextView) findViewById(R.id.MTECHECE);
+        MTECHCSE= (TextView) findViewById(R.id.MTECHCSE);
+        MTECHAE= (TextView) findViewById(R.id.MTECHAE);
+        MTECHVLSI= (TextView) findViewById(R.id.MTECHVLSI);
+        MCA=(TextView) findViewById(R.id.MCA);
 
         button1st.setOnClickListener(new View.OnClickListener() {
             @Override

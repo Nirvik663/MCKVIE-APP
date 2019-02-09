@@ -20,12 +20,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Syllabus"
+                    android:textSize="40dp"
+                    android:layout_marginLeft="13dp"
+                    android:textStyle="bold"
+                    android:textColor="#669999"
+                    android:layout_marginBottom="8dp"/>
+
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="17dp"
-                android:text="MCKV Institute of Engineering is affiliated to West \nBengal University of Technology (WBUT) and thus \nfollows the syllabus as prescribed by WBUT for \nall the courses of B. Tech, M. Tech and MCA."
+                android:text="MCKV Institute of Engineering is affiliated to West Bengal University of Technology (WBUT) and thus follows the syllabus as prescribed by WBUT for all the courses of B. Tech, M. Tech and MCA."
                 android:textAlignment="textStart"
                 android:layout_marginLeft="13dp"
                 android:textStyle="bold" />
@@ -35,84 +45,113 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="  UG BTECH Courses:"
+                android:layout_marginBottom="8dp"
                 android:textAlignment="textStart"
-                android:textColor="#4db6ac"
+                android:textColor="#669999"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
-            <Button
+            <TextView
                 android:id="@+id/button1st"
+                android:drawableRight="@mipmap/baseline_save_alt_black_18dp"
+                android:layout_marginRight="18dp"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@drawable/button_back"
-                android:text="  1. First Year Syllabus "
-                android:foreground="?android:attr/selectableItemBackground"
+                android:text="  First Year Syllabus "
+                android:textColor="#004d4d"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_marginLeft="9dp"
+                android:padding="5dp"
+                android:fontFamily="@font/coustard"/>
 
-            <Button
+            <TextView
+                android:padding="5dp"
+                android:drawableRight="@mipmap/baseline_save_alt_black_18dp"
+                android:layout_marginRight="18dp"
                 android:id="@+id/buttonCSE"
+                android:layout_marginLeft="9dp"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@drawable/button_back"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:text="  2.CSE upto 4th year Syllabus"
+                android:text="  CSE upto 4th year Syllabus"
                 android:textAlignment="viewStart"
+                android:textColor="#004d4d"
                 android:textAllCaps="false"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:fontFamily="@font/coustard"/>
 
-            <Button
+            <TextView
+                android:drawableRight="@mipmap/baseline_save_alt_black_18dp"
+                android:layout_marginRight="18dp"
                 android:id="@+id/buttonECE"
+                android:layout_marginLeft="9dp"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@drawable/button_back"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:text="  3.ECE upto 4th year Syllabus"
+                android:textColor="#004d4d"
+                android:text="  ECE upto 4th year Syllabus"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:fontFamily="@font/coustard"
+                android:padding="5dp"/>
 
-            <Button
+            <TextView
+                android:drawableRight="@mipmap/baseline_save_alt_black_18dp"
+                android:layout_marginRight="18dp"
+                android:padding="5dp"
                 android:id="@+id/buttonEE"
+                android:layout_marginLeft="9dp"
+                android:textColor="#004d4d"
                 android:layout_width="match_parent"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="40dp"
-                android:background="@drawable/button_back"
-                android:text="  4.EE upto 4th year Syllabus"
+                android:text="  EE upto 4th year Syllabus"
                 android:textAlignment="viewStart"
+                android:fontFamily="@font/coustard"
                 android:textAllCaps="false"
                 android:textSize="18sp"/>
 
-            <Button
+            <TextView
+                android:padding="5dp"
+                android:drawableRight="@mipmap/baseline_save_alt_black_18dp"
+                android:layout_marginRight="18dp"
                 android:id="@+id/buttonIT"
+                android:fontFamily="@font/coustard"
                 android:layout_width="match_parent"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="40dp"
-                android:background="@drawable/button_back"
-                android:text="  5. IT upto 4th year Syllabus"
+                android:textColor="#004d4d"
+                android:layout_marginLeft="9dp"
+                android:text="  IT upto 4th year Syllabus"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textSize="18sp"/>
 
-            <Button
+            <TextView
+                android:padding="5dp"
                 android:id="@+id/buttonME"
+                android:textColor="#004d4d"
+                android:layout_marginLeft="9dp"
+                android:fontFamily="@font/coustard"
+                android:drawableRight="@mipmap/baseline_save_alt_black_18dp"
+                android:layout_marginRight="18dp"
                 android:layout_width="match_parent"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="40dp"
-                android:background="@drawable/button_back"
-                android:text="  6.ME upto 4th year Syllabus"
+                android:text="  ME upto 4th year Syllabus"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textSize="18sp"/>
 
-            <Button
+            <TextView
+                android:padding="5dp"
                 android:id="@+id/buttonAUE"
+                android:drawableRight="@mipmap/baseline_save_alt_black_18dp"
+                android:layout_marginRight="18dp"
+                android:fontFamily="@font/coustard"
+                android:layout_marginLeft="9dp"
+                android:textColor="#004d4d"
                 android:layout_width="match_parent"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="40dp"
-                android:background="@drawable/button_back"
-                android:text="  7.AUE upto 4th year Syllabus"
+                android:text="  AUE upto 4th year Syllabus"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textSize="18sp"/>
@@ -122,51 +161,68 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="  PG MTECH Courses:"
-                android:textColor="#4db6ac"
+                android:layout_marginBottom="8dp"
+                android:textColor="#669999"
                 android:textStyle="bold"
                 android:textSize="30sp" />
 
-            <Button
+            <TextView
+                android:padding="5dp"
+                android:drawableRight="@mipmap/baseline_save_alt_black_18dp"
+                android:layout_marginRight="18dp"
                 android:id="@+id/MTECHECE"
+                android:textColor="#004d4d"
+                android:fontFamily="@font/coustard"
                 android:layout_width="match_parent"
+                android:layout_marginLeft="9dp"
                 android:layout_height="40dp"
-                android:background="@drawable/button_back"
-                android:text="  1.ECE Syllabus"
-                android:foreground="?android:attr/selectableItemBackground"
+                android:text="  ECE Syllabus"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
                 android:textSize="18sp"/>
 
-            <Button
+            <TextView
+                android:padding="5dp"
+                android:drawableRight="@mipmap/baseline_save_alt_black_18dp"
+                android:layout_marginRight="18dp"
                 android:id="@+id/MTECHCSE"
+                android:layout_marginLeft="9dp"
+                android:fontFamily="@font/coustard"
+                android:textColor="#004d4d"
                 android:layout_width="match_parent"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="40dp"
-                android:background="@drawable/button_back"
-                android:text="  2.CSE Syllabus"
+                android:text="  CSE Syllabus"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
                 android:textSize="18sp"/>
 
-            <Button
+            <TextView
+                android:padding="5dp"
+                android:drawableRight="@mipmap/baseline_save_alt_black_18dp"
+                android:layout_marginRight="18dp"
                 android:id="@+id/MTECHAE"
+                android:textColor="#004d4d"
+                android:fontFamily="@font/coustard"
                 android:layout_width="match_parent"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="40dp"
-                android:background="@drawable/button_back"
-                android:text="  3.Automotive Technology"
+                android:text="  Automotive Technology"
+                android:layout_marginLeft="9dp"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
                 android:textSize="18sp"/>
-            <Button
+            <TextView
+                android:padding="5dp"
+                android:drawableRight="@mipmap/baseline_save_alt_black_18dp"
+                android:layout_marginRight="18dp"
                 android:id="@+id/MTECHVLSI"
-                android:foreground="?android:attr/selectableItemBackground"
+                android:textColor="#004d4d"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/coustard"
                 android:layout_height="40dp"
-                android:background="@drawable/button_back"
-                android:text="  4.Micro-Electronics and VLSI"
+                android:text="  Micro-Electronics and VLSI"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
+                android:layout_marginLeft="9dp"
                 android:textSize="18sp"/>
 
             <TextView
@@ -174,18 +230,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="  MCA:"
-                android:textColor="#4db6ac"
+                android:layout_marginBottom="8dp"
+                android:textColor="#669999"
                 android:textSize="30sp"
                 android:textStyle="bold"/>
 
-            <Button
+            <TextView
+                android:padding="5dp"
                 android:id="@+id/MCA"
+                android:drawableRight="@mipmap/baseline_save_alt_black_18dp"
+                android:layout_marginRight="18dp"
+                android:textColor="#004d4d"
+                android:fontFamily="@font/coustard"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@drawable/button_back"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:text="  Master Of Computer Application"
                 android:textAlignment="textStart"
+                android:layout_marginLeft="9dp"
                 android:textAllCaps="false"
                 android:textSize="18sp" />
         </LinearLayout>

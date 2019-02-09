@@ -34,7 +34,7 @@ public class notices extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Notices");
         mDatabase.keepSynced(true);
-        mPeopleRV = findViewById(R.id.myRecycleView);
+        mPeopleRV = (RecyclerView) findViewById(R.id.myRecycleView);
 
         DatabaseReference personsRef = FirebaseDatabase.getInstance().getReference().child("Notices");
         Query personsQuery = personsRef.orderByKey();
