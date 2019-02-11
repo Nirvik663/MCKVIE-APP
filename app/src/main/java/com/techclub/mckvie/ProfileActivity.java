@@ -5,10 +5,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -39,11 +42,12 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView mImageView;
     ProgressBar progressBar;
     private FirebaseDatabase mdatabase1;
-    private  FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     private Button button;
     private StorageReference mStorage;
     private static final int CHOOSE_IMAGE = 101;
     private static final int CAMERA_REQUEST_CODE = 1;
+    int flag = 0;
 
     DatabaseReference ref1;
 
@@ -108,6 +112,8 @@ public class ProfileActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
+
         if (mAuth.getCurrentUser() != null) {
             mdatabase1 = FirebaseDatabase.getInstance();
             ref1 = mdatabase1.getReference("Users/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -151,7 +157,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
+        progressBar.setVisibility(View.VISIBLE);
         if(requestCode==CHOOSE_IMAGE && resultCode==RESULT_OK) {
 
             Uri uri = data.getData();
@@ -161,37 +167,34 @@ public class ProfileActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                    Toast.makeText(ProfileActivity.this, "Upload Done", Toast.LENGTH_SHORT).show();
-
-                    progressBar.setVisibility(View.VISIBLE);
                     try {
 
                         final StorageReference filePath = mStorage.child("CameraPhotos").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                         final File localFile = File.createTempFile("profile_pic", "jpg");
 
                         filePath.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                                mImageView.setImageBitmap(bmp);
-                                progressBar.setVisibility(View.GONE);
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-                                Toast.makeText(ProfileActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.GONE);
-                            }
-                        }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
-                            @Override
-                            public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                // progress percentage
-                                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                            }
-                        });
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                            mImageView.setImageBitmap(bmp);
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            Toast.makeText(ProfileActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            // progress percentage
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 }
 
             });
@@ -199,8 +202,10 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
+    public void onBackPressed() {
+        finish();
+        Intent myInent = new Intent(this, HomeActivity.class);
+        startActivity(myInent);
+
     }
 }

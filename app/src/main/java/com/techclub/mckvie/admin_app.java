@@ -87,8 +87,6 @@ public class admin_app extends AppCompatActivity {
                                 getvalues();
                                 ref.child(Integer.toString(c)).setValue(object1);
                                 Toast.makeText(admin_app.this, "Notice Inserted", Toast.LENGTH_SHORT).show();
-                                finish();
-
                             }
 
                             @Override
@@ -115,6 +113,12 @@ public class admin_app extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        finish();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+
+        return true;
     }
 }

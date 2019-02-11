@@ -26,7 +26,7 @@ public class events extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.events);
+        setContentView(R.layout.activity_notice);
 
         RecyclerView mPeopleRV;
         DatabaseReference mDatabase;
@@ -110,9 +110,9 @@ public class events extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
         finish();
+        return true;
     }
 }

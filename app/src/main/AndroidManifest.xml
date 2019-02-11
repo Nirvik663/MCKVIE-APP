@@ -49,7 +49,7 @@
             android:screenOrientation="sensorLandscape" />
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".chatmain"/>
-        <activity android:name=".notices" />
+        <activity android:name=".NoticeActivity" />
         <activity android:name=".events" />
         <activity android:name=".news" />
         <activity android:name=".books_journals" />
@@ -57,9 +57,10 @@
         <activity android:name=".visit" />
         <activity android:name=".know_mckvie" />
         <activity android:name=".feedback"/>
-        <activity android:name=".webview">
+        <activity android:name=".webview" >
 
-        </activity>
+            </activity>
+
     </application>
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
