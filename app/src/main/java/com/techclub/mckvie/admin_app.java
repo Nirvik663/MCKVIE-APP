@@ -41,7 +41,7 @@ public class admin_app extends AppCompatActivity {
         Insert = (Button) findViewById(R.id.insert1);
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("Notices");
-        ref2 = FirebaseDatabase.getInstance().getReference().child("Notices").orderByKey().limitToFirst(1);
+        ref2 = FirebaseDatabase.getInstance().getReference().child("Notices/all").orderByKey().limitToFirst(1);
         ref2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
