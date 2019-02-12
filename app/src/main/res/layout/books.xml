@@ -10,10 +10,11 @@
     <include
          layout="@layout/navigation_action" />
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:id="@+id/constraintLayout5"
         android:layout_width="395dp"
         android:layout_height="679dp"
+        android:orientation="vertical"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,6 +22,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textSize="25dp"
+            android:textColor="#669999"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:text="Books and Journals"
+            app:layout_constraintBottom_toTopOf="@+id/textView9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView9"
@@ -31,10 +45,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/coustard"
-            android:padding="10dp"
             android:text="Links to download lists of arrivals of books-:"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold"
+            android:textColor="#669999"
             app:layout_constraintBottom_toTopOf="@+id/textView12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -50,7 +64,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:padding="10dp"
             android:text="Click here to Download New Arrivals of Books in the Period from 01-09-2018 to 31-10-2018 at Central Library."
             app:layout_constraintBottom_toTopOf="@+id/textView23"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +73,6 @@
 
         <TextView
             android:id="@+id/textView23"
-            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginStart="8dp"
@@ -78,7 +90,6 @@
             android:id="@+id/textView25"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -93,18 +104,14 @@
         <TextView
             android:id="@+id/textView26"
             android:layout_width="match_parent"
+            android:layout_marginLeft="8dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:padding="10dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="339dp"
+            android:layout_marginRight="8dp"
             android:text="Click here to Download New Arrivals of Books in the Period from 01-02-2018 to 28-02-2018 at Central Library."
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.26"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView25" />
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
 

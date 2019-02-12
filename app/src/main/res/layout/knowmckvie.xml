@@ -390,7 +390,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
-                android:text="'If you are determined to be at your Best.MCKVIE is commited to do the \nrest."
+                android:text="'If you are determined to be at your Best.MCKVIE is commited to do the \nrest.'"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="39dp"

@@ -38,7 +38,8 @@
                 android:layout_marginBottom="16dp"
                 android:paddingLeft="10dp"
                 android:text="Contact Us"
-                android:textColor="#4db6ac"
+                android:textStyle="bold"
+                android:textColor="#669999"
                 android:textSize="56dp"
                 app:layout_constraintBottom_toTopOf="@+id/textView22"
                 app:layout_constraintStart_toStartOf="parent" />

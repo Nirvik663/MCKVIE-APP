@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/navi_item1"
-          android:title="Info1">
+          android:title="Update">
 
         <menu android:checkableBehavior="single">
 
@@ -25,7 +25,7 @@
 
 
     <item android:id="@+id/navi_item2"
-          android:title="Info2">
+          android:title="Information">
 
         <menu android:checkableBehavior="single">
 
