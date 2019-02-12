@@ -15,6 +15,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -78,6 +82,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
+                    FirebaseMessaging.getInstance().subscribeToTopic("all")
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    String msg = "Subscribed";
+                                    if (!task.isSuccessful()) {
+                                        msg = "Subsription failed";
+                                    }
+                                    Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
+                                }
+                            });
                     finish();
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
