@@ -19,6 +19,11 @@
                 android:title="Events"
                 android:icon="@mipmap/arrow2"
                 android:visible="true"/>
+
+            <item android:id="@+id/dept_notices"
+                android:title="Department Notice"
+                android:icon="@mipmap/arrow2"
+                android:visible="true"/>
         </menu>
     </item>
 

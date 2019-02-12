@@ -28,7 +28,7 @@ public class news extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.news);
+        setContentView(R.layout.activity_notice);
 
         setTitle("News");
 
@@ -109,9 +109,9 @@ public class news extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
-        finish();
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+
+        return true;
     }
 }

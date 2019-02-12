@@ -16,20 +16,19 @@
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:layout_marginBottom="10dp"
-            android:background="#4db6ac"
             android:paddingBottom="42dp"
             android:paddingTop="42dp"
-            android:text="News"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textSize="40sp" />
+            android:background="@drawable/light_notice_back"
+            android:textColor="#804000"
+            android:textSize="40sp"
+            android:fontFamily="@font/coustard" />
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/myRecycleView">
-        </android.support.v7.widget.RecyclerView>
+            android:id="@+id/myRecycleView"></android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 

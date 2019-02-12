@@ -41,7 +41,7 @@ public class admin_app extends AppCompatActivity {
         Insert = (Button) findViewById(R.id.insert1);
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("Notices");
-        ref2 = FirebaseDatabase.getInstance().getReference().child("Notices").orderByKey().limitToFirst(1);
+        ref2 = FirebaseDatabase.getInstance().getReference().child("Notices/all").orderByKey().limitToFirst(1);
         ref2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -87,8 +87,6 @@ public class admin_app extends AppCompatActivity {
                                 getvalues();
                                 ref.child(Integer.toString(c)).setValue(object1);
                                 Toast.makeText(admin_app.this, "Notice Inserted", Toast.LENGTH_SHORT).show();
-                                finish();
-
                             }
 
                             @Override
@@ -115,6 +113,12 @@ public class admin_app extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        finish();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+
+        return true;
     }
 }

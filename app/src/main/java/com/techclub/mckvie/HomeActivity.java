@@ -35,7 +35,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
@@ -144,8 +143,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fab_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                startActivity(intent);
+                if(mAuth.getCurrentUser() == null) {
+                    Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -308,18 +313,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                         Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                         imageView.setImageBitmap(bmp);
-
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
-                    }
-                }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        // progress percentage
-                        double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-
                     }
                 });
             } catch (IOException e) {
@@ -385,6 +382,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_account:
+                finish();
                 myIntent = new Intent(HomeActivity.this, ProfileActivity.class);
                 startActivity(myIntent);
                 break;
@@ -397,7 +395,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.notices:
-                myIntent = new Intent(HomeActivity.this, notices.class);
+                myIntent = new Intent(HomeActivity.this, NoticeActivity.class);
+                startActivity(myIntent);
+                break;
+
+            case R.id.dept_notices:
+                myIntent = new Intent(HomeActivity.this, NoticeActivity.class);
+                myIntent.putExtra("flag", 1);
                 startActivity(myIntent);
                 break;
 
@@ -459,11 +463,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.navigation_menu_logout);
         }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
     }
 
 }
