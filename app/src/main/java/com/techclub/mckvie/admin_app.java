@@ -75,6 +75,21 @@ public class admin_app extends AppCompatActivity {
                     Title.requestFocus();
                     return;
                 }
+                if (Desc.getText().toString().isEmpty()) {
+                    Desc.setError("Description is Required");
+                    Desc.requestFocus();
+                    return;
+                }
+                if (Image.getText().toString().isEmpty()) {
+                    Image.setError("Image is Required");
+                    Image.requestFocus();
+                    return;
+                }
+                if (Url.getText().toString().isEmpty()) {
+                    Url.setError("URL is Required");
+                    Url.requestFocus();
+                    return;
+                }
                 builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
