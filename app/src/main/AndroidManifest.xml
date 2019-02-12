@@ -50,8 +50,6 @@
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".chatmain"/>
         <activity android:name=".NoticeActivity" />
-        <activity android:name=".events" />
-        <activity android:name=".news" />
         <activity android:name=".books_journals" />
         <activity android:name=".contact_us" />
         <activity android:name=".visit" />

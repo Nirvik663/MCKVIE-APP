@@ -71,11 +71,11 @@ public class Tab2 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tab2, container, false);
         final Context context = getActivity().getApplicationContext();
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("News");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Notices/News");
         mDatabase.keepSynced(true);
         mPeopleRV = (RecyclerView) view.findViewById(R.id.myRecycleView1);
 
-        DatabaseReference personsRef = FirebaseDatabase.getInstance().getReference().child("News");
+        DatabaseReference personsRef = FirebaseDatabase.getInstance().getReference().child("Notices/News");
         Query personsQuery = personsRef.orderByKey();
 
         mPeopleRV.hasFixedSize();

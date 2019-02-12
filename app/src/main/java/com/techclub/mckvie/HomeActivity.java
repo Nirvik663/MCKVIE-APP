@@ -396,6 +396,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.notices:
                 myIntent = new Intent(HomeActivity.this, NoticeActivity.class);
+                myIntent.putExtra("flag", 2);
                 startActivity(myIntent);
                 break;
 
@@ -406,12 +407,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.news:
-                myIntent = new Intent(HomeActivity.this, news.class);
+                myIntent = new Intent(HomeActivity.this,NoticeActivity.class);
+                myIntent.putExtra("flag", 3);
                 startActivity(myIntent);
                 break;
 
             case R.id.events:
-                myIntent = new Intent(HomeActivity.this, events.class);
+                myIntent = new Intent(HomeActivity.this, NoticeActivity.class);
+                myIntent.putExtra("flag", 4);
                 startActivity(myIntent);
                 break;
 

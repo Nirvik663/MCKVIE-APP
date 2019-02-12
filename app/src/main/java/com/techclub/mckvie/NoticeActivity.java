@@ -83,12 +83,21 @@ public class NoticeActivity extends AppCompatActivity {
                         public void onCancelled(@NonNull DatabaseError databaseError) {
                         }
                     });
-                }
-                else {
+                } else if(intValue == 2){
                     FirebaseRecyclerAdapter<object, NoticeActivity.NewsViewHolder> mPeopleRVAdapter1;
                     mPeopleRVAdapter1 = mckvie_notices("Notices/all");
                     mPeopleRVAdapter1.startListening();
                     banner_j.setText("NOTICE");
+                } else if(intValue == 3) {
+                    FirebaseRecyclerAdapter<object, NoticeActivity.NewsViewHolder> mPeopleRVAdapter1;
+                    mPeopleRVAdapter1 = mckvie_notices("Notices/News");
+                    mPeopleRVAdapter1.startListening();
+                    banner_j.setText("NEWS");
+                } else if(intValue == 4) {
+                    FirebaseRecyclerAdapter<object, NoticeActivity.NewsViewHolder> mPeopleRVAdapter1;
+                    mPeopleRVAdapter1 = mckvie_notices("Notices/Events");
+                    mPeopleRVAdapter1.startListening();
+                    banner_j.setText("EVENTS");
                 }
             }
         }

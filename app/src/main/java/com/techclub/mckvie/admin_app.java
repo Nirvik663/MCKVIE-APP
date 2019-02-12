@@ -40,7 +40,7 @@ public class admin_app extends AppCompatActivity {
         Title = (EditText) findViewById(R.id.title1);
         Insert = (Button) findViewById(R.id.insert1);
         database = FirebaseDatabase.getInstance();
-        ref = database.getReference("Notices");
+        ref = database.getReference("Notices/all");
         ref2 = FirebaseDatabase.getInstance().getReference().child("Notices/all").orderByKey().limitToFirst(1);
         ref2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
