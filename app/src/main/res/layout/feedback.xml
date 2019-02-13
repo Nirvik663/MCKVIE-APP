@@ -37,8 +37,8 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:text="Odd Semester Student Feedback 2019"
-                android:textColor="#4db6ac"
-                android:textSize="50sp" />
+                android:fontFamily="@font/coustard"
+                android:textSize="35sp" />
 
             <TextView
                 android:id="@+id/textView16"

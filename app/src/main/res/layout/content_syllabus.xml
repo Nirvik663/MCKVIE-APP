@@ -25,9 +25,9 @@
                     android:layout_height="wrap_content"
                     android:text="Syllabus"
                     android:textSize="40dp"
+                    android:fontFamily="@font/coustard"
                     android:layout_marginLeft="13dp"
                     android:textStyle="bold"
-                    android:textColor="#669999"
                     android:layout_marginBottom="8dp"/>
 
             <TextView
@@ -48,7 +48,8 @@
                 android:layout_marginBottom="8dp"
                 android:textAlignment="textStart"
                 android:textColor="#669999"
-                android:textSize="30sp"
+                android:fontFamily="@font/coustard"
+                android:textSize="28sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -162,9 +163,10 @@
                 android:layout_height="wrap_content"
                 android:text="  PG MTECH Courses:"
                 android:layout_marginBottom="8dp"
+                android:fontFamily="@font/coustard"
                 android:textColor="#669999"
                 android:textStyle="bold"
-                android:textSize="30sp" />
+                android:textSize="28sp" />
 
             <TextView
                 android:padding="5dp"
@@ -232,7 +234,8 @@
                 android:text="  MCA:"
                 android:layout_marginBottom="8dp"
                 android:textColor="#669999"
-                android:textSize="30sp"
+                android:textSize="28sp"
+                android:fontFamily="@font/coustard"
                 android:textStyle="bold"/>
 
             <TextView
