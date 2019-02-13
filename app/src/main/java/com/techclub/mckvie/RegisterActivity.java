@@ -156,8 +156,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    progressBar.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
+                                        progressBar.setVisibility(View.GONE);
                                         Toast.makeText(RegisterActivity.this, getString(R.string.registration_success), Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

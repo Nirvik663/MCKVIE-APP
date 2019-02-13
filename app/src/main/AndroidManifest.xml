@@ -5,8 +5,8 @@
 
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -45,10 +45,11 @@
             android:name=".NoRagging"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".test"
+            android:name=".YoutubeActivity"
             android:screenOrientation="sensorLandscape" />
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".chatmain"/>
+        <activity android:name=".test1"/>
         <activity android:name=".NoticeActivity" />
         <activity android:name=".books_journals" />
         <activity android:name=".contact_us" />

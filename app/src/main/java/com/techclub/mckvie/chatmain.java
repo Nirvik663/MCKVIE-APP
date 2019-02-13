@@ -81,18 +81,6 @@ public class chatmain extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == SIGN_IN_REQUEST_CODE)
-        {
-            if(resultCode == RESULT_OK)
-            {
-                Snackbar.make(activity_chat,"Successfully signed in.Welcome!", Snackbar.LENGTH_SHORT).show();
-                displayChatMessage();
-            }
-            else{
-                Snackbar.make(activity_chat,"We couldn't sign you in.Please try again later", Snackbar.LENGTH_SHORT).show();
-                finish();
-            }
-        }
     }
 
     @Override

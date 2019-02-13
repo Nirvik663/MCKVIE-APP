@@ -143,7 +143,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fab_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mAuth.getCurrentUser() == null) {
+                if(mAuth.getCurrentUser() != null) {
                     Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
                     startActivity(intent);
                 }
@@ -151,6 +151,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
+            }
+        });
+
+        fab_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, test1.class);
+                startActivity(intent);
             }
         });
 
@@ -182,7 +190,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         iv_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, test.class));
+                startActivity(new Intent(HomeActivity.this, YoutubeActivity.class));
             }
         });
 

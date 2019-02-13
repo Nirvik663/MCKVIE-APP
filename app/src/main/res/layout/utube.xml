@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.techclub.mckvie.test">
+    tools:context="com.techclub.mckvie.YoutubeActivity">
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/utube_view"
