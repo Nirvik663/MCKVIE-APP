@@ -9,6 +9,10 @@
     tools:context=".chatmain">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/base">
     <ImageView
         android:id="@+id/emoji_button"
         android:padding="4dp"
@@ -133,11 +137,83 @@
 
         <Button
             android:id="@+id/gallery"
-            android:layout_width="47dp"
-            android:layout_height="41dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="66dp"
             android:layout_marginLeft="73dp"
+            android:layout_marginEnd="80dp"
             android:layout_marginRight="73dp"
+            android:layout_toStartOf="@+id/documents"
+            android:layout_toEndOf="@+id/camera"
             android:background="@drawable/gallery" />
+
+        <TextView
+            android:id="@+id/textView102"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/camera"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="-10dp"
+            android:layout_marginBottom="0dp"
+            android:text="Camera"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/textView103"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gallery"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="-6dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/textView102"
+            android:text="Gallery"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/textView104"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/documents"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="59dp"
+            android:layout_marginTop="-4dp"
+            android:layout_marginEnd="29dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/textView103"
+            android:text="Documents"
+            android:textAlignment="center" />
+    </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/GalleryLayout"
+        android:background="#000"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/Galleryimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/imagesend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/send1"
+            android:backgroundTint="#8A8484"/>
+
     </RelativeLayout>
 
 </RelativeLayout>
