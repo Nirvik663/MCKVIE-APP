@@ -441,6 +441,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     }
                 }
                 break;
+            case R.id.share:
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody="App Link Here";
+                String shareSubject="Share This App";
+                sharingIntent.putExtra(Intent.EXTRA_TEXT,shareBody);
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT,shareSubject);
+                startActivity(Intent.createChooser(sharingIntent,"Share Using"));
+                break;
         }
         return true;
     }

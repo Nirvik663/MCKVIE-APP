@@ -34,13 +34,11 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginBottom="16dp"
                 android:paddingLeft="10dp"
                 android:text="Contact Us"
                 android:textStyle="bold"
                 android:textColor="#669999"
-                android:textSize="56dp"
+                android:textSize="46dp"
                 app:layout_constraintBottom_toTopOf="@+id/textView22"
                 app:layout_constraintStart_toStartOf="parent" />
 

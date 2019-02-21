@@ -44,6 +44,7 @@
 
     <EditText
         android:id="@+id/title1"
+        android:textColorHint="#669999"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="16dp"
         android:layout_height="wrap_content"
@@ -54,6 +55,7 @@
 
     <EditText
         android:id="@+id/desc1"
+        android:textColorHint="#669999"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="16dp"
         android:layout_height="wrap_content"
@@ -76,6 +78,7 @@
 
     <EditText
         android:id="@+id/url1"
+        android:textColorHint="#669999"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="16dp"
         android:layout_height="wrap_content"
@@ -86,6 +89,7 @@
 
     <Button
         android:id="@+id/insert1"
+        android:textColor="#ffffff"
         android:layout_width="122dp"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
