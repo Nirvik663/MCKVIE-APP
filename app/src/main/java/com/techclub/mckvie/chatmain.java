@@ -68,7 +68,7 @@ public class chatmain extends AppCompatActivity {
     TextView typing;
     ImageView attachments;
     String m;
-    Button gallery;
+    Button gallery,camera;
     Integer flag=0;
     private static final int CHOOSE_IMAGE = 101;
     ImageView GalleryImage;
@@ -121,7 +121,7 @@ public class chatmain extends AppCompatActivity {
         GalleryLayout=(RelativeLayout)findViewById(R.id.GalleryLayout);
         mStorage = FirebaseStorage.getInstance().getReference();
         StorageReference filePath = mStorage.child("ChatImages").child(String.valueOf(DateFormat.format("dd-MMM(HH:mm:ss)",new Date())));
-        ImageSend=(FloatingActionButton) findViewById(R.id.imagesend);
+        ImageSend= findViewById(R.id.imagesend);
 
         //Add Emoji
 
@@ -131,20 +131,21 @@ public class chatmain extends AppCompatActivity {
         typing=(TextView)findViewById(R.id.typing);
         attachments= (ImageView) findViewById(R.id.attach);
         gallery= (Button) findViewById(R.id.gallery);
+        camera = (Button) findViewById(R.id.camera);
         emojIconActions = new EmojIconActions(getApplicationContext(),activity_chat,emojiButton,emojiconEditText);
         emojIconActions.ShowEmojicon();
         emojIconActions.setIconsIds(R.drawable.ic_action_keyboard,R.drawable.happy_256);
         final RelativeLayout att=(RelativeLayout)findViewById(R.id.att);
-        final ChatMessage t=new ChatMessage();
+        final ChatMessage t =new ChatMessage();
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                m=emojiconEditText.getText().toString();
-                m=m.trim();
+                m = emojiconEditText.getText().toString();
+                m = m.trim();
                 if(!m.equals("")) {
                     FirebaseDatabase.getInstance().getReference().child("chats").push().setValue(new ChatMessage(m,
-                            FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                            FirebaseAuth.getInstance().getCurrentUser().getEmail(),"text"));
                     emojiconEditText.setText("");
                     emojiconEditText.requestFocus();
                 }
@@ -156,7 +157,7 @@ public class chatmain extends AppCompatActivity {
             }
         });
 
-        gallery.setOnClickListener(new View.OnClickListener() {
+        camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -170,37 +171,20 @@ public class chatmain extends AppCompatActivity {
         ImageSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StorageReference filePath = mStorage.child("ChatImages").child(String.valueOf(DateFormat.format("dd-MMM(HH:mm:ss)",new Date())));
+
+                final String m1 = String.valueOf(DateFormat.format("dd_MMM(HH:mm:ss)",new Date()));
+
+                StorageReference filePath = mStorage.child("ChatImages").child(m1);
                 filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                        try {
-
-                            final StorageReference filePath = mStorage.child("ChatImages").child(String.valueOf(DateFormat.format("dd/MMM(HH:mm:ss)",new Date())));
-                            final File localFile = File.createTempFile("chat_pic", "jpg");
-
-                            filePath.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                    Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                                    //mImageView2.setImageBitmap(bmp);
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception exception) {
-                                    Toast.makeText(chatmain.this, exception.getMessage(), Toast.LENGTH_LONG).show();
-                                }
-                            }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
-                                @Override
-                                public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                    // progress percentage
-                                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                                }
-                            });
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                            if(!m1.equals("")) {
+                                FirebaseDatabase.getInstance().getReference().child("chats").push().setValue(new ChatMessage(m1,
+                                        FirebaseAuth.getInstance().getCurrentUser().getEmail(),"image"));
+                                emojiconEditText.setText("");
+                                emojiconEditText.requestFocus();
+                            }
                     }
 
                 });
@@ -211,31 +195,6 @@ public class chatmain extends AppCompatActivity {
                         //FirebaseAuth.getInstance().getCurrentUser().getEmail()));
             }
         });
-        /*try {
-            final File localFile = File.createTempFile("chat_pic", "jpg");
-
-            filePath.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                    GalleryImage.setImageBitmap(bmp);
-                    GalleryLayout.setVisibility(View.VISIBLE);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    Toast.makeText(chatmain.this, exception.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    // progress percentage
-                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
 
         attachments.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -267,8 +226,6 @@ public class chatmain extends AppCompatActivity {
 
     }
 
-
-
     private void displayChatMessage() {
 
         ListView listOfMessage = (ListView) findViewById(R.id.list_of_message);
@@ -285,37 +242,123 @@ public class chatmain extends AppCompatActivity {
         adapter = new FirebaseListAdapter<ChatMessage>(options2) {
             @Override
             protected void populateView(View v, ChatMessage model, int position) {
-                TextView messageText1,messageText2, messageUser, messageTime, messageUser2,messageTime2;
+                final TextView messageText1,messageText2, messageUser, messageTime, messageUser2,messageTime2;
+                final ImageView chat_image1, chat_image2;
                 messageText1 = (BubbleTextView) v.findViewById(R.id.message_text);
                 messageText2 = (BubbleTextView) v.findViewById(R.id.message_text2);
                 messageUser = (TextView) v.findViewById(R.id.message_user);
                 messageTime = (TextView) v.findViewById(R.id.message_time);
                 messageUser2 =(TextView)v.findViewById(R.id.message_user2);
                 messageTime2=(TextView)v.findViewById(R.id.message_time2);
+                chat_image1 = (ImageView)v.findViewById(R.id.chat_image1);
+                chat_image2 = (ImageView)v.findViewById(R.id.chat_image2);
+
+                String msg_type = model.getMessageType();
 
 
                 if(model.getMessageUser().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
-                    messageText2.setVisibility(View.VISIBLE);
-                    messageText1.setVisibility(View.INVISIBLE);
-                    messageUser2.setVisibility(View.VISIBLE);
-                    messageUser.setVisibility(View.INVISIBLE);
-                    messageTime2.setVisibility(View.VISIBLE);
-                    messageTime.setVisibility(View.INVISIBLE);
-                    messageText2.setText(model.getMessageText());
-                    messageUser2.setText(model.getMessageUser());
-                    messageTime2.setText(DateFormat.format("dd/MMM (HH:mm)", model.getMessageTime()));
+
+                    if(msg_type=="image") {
+                        try {
+                            messageText2.setVisibility(View.INVISIBLE);
+                            messageText1.setVisibility(View.INVISIBLE);
+                            messageUser2.setVisibility(View.INVISIBLE);
+                            messageUser.setVisibility(View.INVISIBLE);
+                            messageTime2.setVisibility(View.INVISIBLE);
+                            messageTime.setVisibility(View.INVISIBLE);
+
+                            final File localFile = File.createTempFile(model.getMessageText(), "jpg");
+                            StorageReference filePath = mStorage.child("ChatImages").child(model.getMessageText());
+                            filePath.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                    Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                                    chat_image2.setImageBitmap(bmp);
+                                    //chat_image2.setVisibility(View.VISIBLE);
+                                    //progressBar.setVisibility(View.GONE);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    Toast.makeText(chatmain.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                                    //progressBar.setVisibility(View.GONE);
+                                }
+                            }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
+                                @Override
+                                public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                    // progress percentage
+                                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                                }
+                            });
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    else {
+                        messageText2.setVisibility(View.VISIBLE);
+                        messageText1.setVisibility(View.INVISIBLE);
+                        messageUser2.setVisibility(View.VISIBLE);
+                        messageUser.setVisibility(View.INVISIBLE);
+                        messageTime2.setVisibility(View.VISIBLE);
+                        messageTime.setVisibility(View.INVISIBLE);
+                        messageText2.setText(model.getMessageText());
+                        messageUser2.setText(model.getMessageUser());
+                        messageTime2.setText(DateFormat.format("dd/MMM (HH:mm)", model.getMessageTime()));
+                    }
                 }
 
                 else {
-                    messageText1.setVisibility(View.VISIBLE);
-                    messageText2.setVisibility(View.INVISIBLE);
-                    messageUser.setVisibility(View.VISIBLE);
-                    messageUser2.setVisibility(View.INVISIBLE);
-                    messageTime.setVisibility(View.VISIBLE);
-                    messageTime2.setVisibility(View.INVISIBLE);
-                    messageText1.setText(model.getMessageText());
-                    messageUser.setText(model.getMessageUser());
-                    messageTime.setText(DateFormat.format("dd/MMM(HH:mm)", model.getMessageTime()));
+
+                    if(msg_type == "image") {
+                        try {
+                            messageText2.setVisibility(View.INVISIBLE);
+                            messageText1.setVisibility(View.INVISIBLE);
+                            messageUser2.setVisibility(View.INVISIBLE);
+                            messageUser.setVisibility(View.INVISIBLE);
+                            messageTime2.setVisibility(View.INVISIBLE);
+                            messageTime.setVisibility(View.INVISIBLE);
+                            
+                            final File localFile = File.createTempFile(model.getMessageText(), "jpg");
+                            StorageReference filePath = mStorage.child("ChatImages").child(model.getMessageText());
+                            filePath.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                    Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                                    chat_image1.setImageBitmap(bmp);
+                                    //chat_image1.setVisibility(View.VISIBLE);
+                                    //progressBar.setVisibility(View.GONE);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    Toast.makeText(chatmain.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                                    //progressBar.setVisibility(View.GONE);
+                                }
+                            }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
+                                @Override
+                                public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                    // progress percentage
+                                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                                }
+                            });
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    else {
+                        messageText1.setVisibility(View.VISIBLE);
+                        messageText2.setVisibility(View.INVISIBLE);
+                        messageUser.setVisibility(View.VISIBLE);
+                        messageUser2.setVisibility(View.INVISIBLE);
+                        messageTime.setVisibility(View.VISIBLE);
+                        messageTime2.setVisibility(View.INVISIBLE);
+                        messageText1.setText(model.getMessageText());
+                        messageUser.setText(model.getMessageUser());
+                        messageTime.setText(DateFormat.format("dd/MMM(HH:mm)", model.getMessageTime()));
+                    }
+
                 }
             }
         };
