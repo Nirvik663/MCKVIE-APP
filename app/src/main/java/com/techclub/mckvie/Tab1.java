@@ -2,6 +2,7 @@ package com.techclub.mckvie;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -17,12 +19,16 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 
 public class Tab1 extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private PdfDocument Document;
     private RecyclerView mPeopleRV;
     private DatabaseReference mDatabase;
     private FirebaseRecyclerAdapter<object, Tab1.NewsViewHolder> mPeopleRVAdapter;
@@ -87,6 +93,7 @@ public class Tab1 extends Fragment {
             @Override
             protected void onBindViewHolder(Tab1.NewsViewHolder holder, final int position, final object model) {
                 holder.setTitle(model.getTitle());
+               // holder.setImage(PdfDocumentLoder.openDocument(context, model.getUrl()).renderPageToBitmap(context,0));
 
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -124,6 +131,10 @@ public class Tab1 extends Fragment {
             TextView post_title = (TextView)mView.findViewById(R.id.post_title);
             post_title.setText(title);
         }
+        //public void setImage(Context ctx, String image){
+            //ImageView post_image = (ImageView) mView.findViewById(R.id.image_post);
+           // Picasso.with(ctx).load(image).into(post_image);
+        //}
     }
 
     // TODO: Rename method, update argument and hook method into UI event
