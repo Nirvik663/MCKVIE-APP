@@ -34,11 +34,11 @@ public class admin_app extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_app);
 
-        Desc = (EditText) findViewById(R.id.desc1);
-        Image = (EditText) findViewById(R.id.image1);
-        Url = (EditText) findViewById(R.id.url1);
-        Title = (EditText) findViewById(R.id.title1);
-        Insert = (Button) findViewById(R.id.insert1);
+        Desc = findViewById(R.id.desc1);
+        Image = findViewById(R.id.image1);
+        Url = findViewById(R.id.url1);
+        Title = findViewById(R.id.title1);
+        Insert = findViewById(R.id.insert1);
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("Notices/all");
         ref2 = FirebaseDatabase.getInstance().getReference().child("Notices/all").orderByKey().limitToFirst(1);

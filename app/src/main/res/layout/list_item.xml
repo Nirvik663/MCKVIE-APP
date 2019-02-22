@@ -47,12 +47,23 @@
         />
 
     <com.github.library.bubbleview.BubbleImageView
-        android:id="@+id/chat_mage"
+        android:id="@+id/chat_image1"
         android:layout_width="98dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/message_time"
         android:layout_below="@+id/message_user"
         android:layout_marginTop="-1dp"
+        android:layout_marginBottom="-1dp"
+        android:autoLink="all"/>
+
+    <com.github.library.bubbleview.BubbleImageView
+        android:id="@+id/chat_image2"
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/message_time"
+        android:layout_below="@+id/message_user"
+        android:layout_marginTop="-1dp"
+        android:layout_alignParentRight="true"
         android:layout_marginBottom="-1dp" />
 
     <com.github.library.bubbleview.BubbleTextView
