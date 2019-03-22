@@ -1,6 +1,7 @@
 package com.techclub.mckvie;
 
 import android.app.DownloadManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,8 +26,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Registry;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.module.AppGlideModule;
+import com.bumptech.glide.request.RequestOptions;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,7 +50,10 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Timer;
@@ -72,15 +86,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     ViewPager viewPager;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
         setuptoolbar();
-
-        textViewname = findViewById(R.id.username);
-        textViewemail = findViewById(R.id.useremail);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         TextView tv = (TextView) this.findViewById(R.id.textView6);
@@ -157,7 +170,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fab_email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, test1.class);
+                Intent intent = new Intent(HomeActivity.this, MarksActivity.class);
                 startActivity(intent);
             }
         });
@@ -170,8 +183,54 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         mAuth = FirebaseAuth.getInstance();
 
+
+
+
+
+
+
+
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View hView =  navigationView.inflateHeaderView(R.layout.navigation_header);
+        textViewname = (TextView)hView.findViewById(R.id.username);
+        textViewemail = (TextView)hView.findViewById(R.id.useremail);
+
+        if (mAuth.getCurrentUser() != null) {
+            database1 = FirebaseDatabase.getInstance();
+            ref1 = database1.getReference("Users/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+            ref1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String name = dataSnapshot.child("name").getValue(String.class);
+                    String email = dataSnapshot.child("email").getValue(String.class);
+                    admin1 = dataSnapshot.child("admin").getValue(String.class);
+                    textViewname.setText(name);
+                    textViewemail.setText(email);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+            try {
+                File f=new File("/data/user/0/com.techclub.mckvie/app_imageDir", FirebaseAuth.getInstance().getCurrentUser().getUid()+".jpg");
+                Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+                ImageView img=(ImageView)hView.findViewById(R.id.profile_image);
+                img.setImageBitmap(b);
+            }
+            catch (FileNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else {
+            textViewname.setText("Welcome to the Official App of");
+            textViewemail.setText("MCKV Institute of Engineering");
+        }
 
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -283,54 +342,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             e.printStackTrace();
         }
 
-
-        if (mAuth.getCurrentUser() != null) {
-            database1 = FirebaseDatabase.getInstance();
-            ref1 = database1.getReference("Users/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-            ref1.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    String name = dataSnapshot.child("name").getValue(String.class);
-                    String email = dataSnapshot.child("email").getValue(String.class);
-                    admin1 = dataSnapshot.child("admin").getValue(String.class);
-                    textViewname.setText(name);
-                    textViewemail.setText(email);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-        }
-        else {
-            textViewname.setText("Welcome to the Official App of");
-            textViewemail.setText("MCKV Institute of Engineering");
-        }
-
-        if (mAuth.getCurrentUser() != null) {
-            mStorage = FirebaseStorage.getInstance().getReference();
-
-            StorageReference filePath = mStorage.child("CameraPhotos").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-            try {
-                final File localFile = File.createTempFile("profile_pic", "jpg");
-
-                filePath.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                        imageView.setImageBitmap(bmp);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                    }
-                });
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public void init()
@@ -397,8 +408,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_signout:
                 FirebaseAuth.getInstance().signOut();
-                myIntent = new Intent(HomeActivity.this, HomeActivity.class);
-                startActivityForResult(myIntent, 0);
+                finish();
+                startActivity(getIntent());
                 Toast.makeText(HomeActivity.this, "Logged Out!", Toast.LENGTH_SHORT).show();
                 break;
 

@@ -1,5 +1,7 @@
 package com.techclub.mckvie;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -33,6 +35,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -85,33 +90,19 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         progressBar.setVisibility(View.VISIBLE);
+
         try {
-            final File localFile = File.createTempFile("profile_pic", "jpg");
-
-            filePath.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                    mImageView.setImageBitmap(bmp);
-                    progressBar.setVisibility(View.GONE);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    Toast.makeText(ProfileActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
-                }
-            }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    // progress percentage
-                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
+            File f=new File("/data/user/0/com.techclub.mckvie/app_imageDir", FirebaseAuth.getInstance().getCurrentUser().getUid()+".jpg");
+            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+            ImageView img=(ImageView)findViewById(R.id.imageView);
+            img.setImageBitmap(b);
+            progressBar.setVisibility(View.GONE);
         }
-
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+            progressBar.setVisibility(View.GONE);
+        }
 
 
         if (mAuth.getCurrentUser() != null) {
@@ -136,12 +127,6 @@ public class ProfileActivity extends AppCompatActivity {
 
                 }
             });
-        }
-        else {
-            textViewname.setText("-");
-            textViewemail.setText("-");
-            textViewuid.setText("-");
-            textViewdept.setText("-");
         }
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -176,7 +161,7 @@ public class ProfileActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                             Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                            mImageView.setImageBitmap(bmp);
+                            saveToInternalStorage(bmp);
                             progressBar.setVisibility(View.GONE);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -199,6 +184,48 @@ public class ProfileActivity extends AppCompatActivity {
 
             });
         }
+    }
+
+    private String saveToInternalStorage(Bitmap bitmapImage){
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+        // path to /data/data/yourapp/app_data/imageDir
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        // Create imageDir
+        File mypath=new File(directory,FirebaseAuth.getInstance().getCurrentUser().getUid()+".jpg");
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            loadImageFromStorage(directory.getAbsolutePath());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return directory.getAbsolutePath();
+    }
+
+    private void loadImageFromStorage(String path)
+    {
+
+        try {
+            File f=new File(path, FirebaseAuth.getInstance().getCurrentUser().getUid()+".jpg");
+            Log.v("pathos",path);
+            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+            ImageView img=(ImageView)findViewById(R.id.imageView);
+            img.setImageBitmap(b);
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
     @Override

@@ -59,6 +59,7 @@
         <activity android:name=".webview" >
 
             </activity>
+        <activity android:name=".MarksActivity"/>
 
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>

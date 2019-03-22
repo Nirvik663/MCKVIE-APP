@@ -9,8 +9,23 @@
     <item>ECE</item>
     <item>EE</item>
     <item>AUE</item>
+    </string-array>
 
+    <string-array name="Courses">
+        <item>BTECH</item>
+        <item>MTECH</item>
+        <item>MCA</item>
+    </string-array>
 
+    <string-array name="Sem">
+        <item>First</item>
+        <item>Second</item>
+        <item>Third</item>
+        <item>Fourth</item>
+        <item>Fifth</item>
+        <item>Sixth</item>
+        <item>Seventh</item>
+        <item>Eighth</item>
     </string-array>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
