@@ -145,7 +145,7 @@ public class MarksActivity extends AppCompatActivity {
 
                 arrayAdapter.clear();
                 arrayAdapter.notifyDataSetChanged();
-                
+
                 mDatabase = FirebaseDatabase.getInstance().getReference().child("Marks/"+ course + dept + sem + editTextRoll.getText().toString());
 
                 mDatabase.addChildEventListener(new ChildEventListener() {
