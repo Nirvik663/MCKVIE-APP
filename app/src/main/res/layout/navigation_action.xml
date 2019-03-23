@@ -1,23 +1,31 @@
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
 android:id="@+id/toolbar"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
 android:layout_gravity="left"
     android:theme="@style/ToolbarTheme"
-android:background="#263238">
+android:background="#263238"
+    android:contentInsetLeft="0dp"
+    android:contentInsetStart="0dp"
+    app:contentInsetLeft="0dp"
+    app:contentInsetStart="0dp"
+    android:contentInsetRight="0dp"
+    android:contentInsetEnd="0dp"
+    app:contentInsetRight="0dp"
+    app:contentInsetEnd="0dp">
 
     <ImageView
         android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:adjustViewBounds="true"
-        android:scaleType="fitStart"
         android:src="@drawable/header_logo" />
 
     <ImageView
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:adjustViewBounds="true"
         android:scaleType="fitStart"
         android:src="@drawable/naac_logo" />

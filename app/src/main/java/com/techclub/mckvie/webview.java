@@ -33,8 +33,6 @@ public class webview extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        progressBar = (ProgressBar)findViewById(R.id.pro);
-
         myWebView = (WebView) findViewById(R.id.webView);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -42,18 +40,16 @@ public class webview extends AppCompatActivity {
         String id = b.getString("id");
         myWebView.loadUrl(id);
         myWebView.getSettings().setJavaScriptEnabled(true);
-        myWebView.setWebViewClient(new WebViewClient(){
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-                progressBar.setVisibility(View.VISIBLE);
-                setTitle("Loading...");
-            }
-            @Override
-            public void onPageFinished(WebView view, String url){
-                super.onPageFinished(view, url);
-                progressBar.setVisibility(View.GONE);
-                setTitle(view.getTitle());
+        myWebView.setWebChromeClient(new WebChromeClient() {
+            public void onProgressChanged(WebView view, int progress)
+            {
+                //Make the bar disappear after URL is loaded, and changes string to Loading...
+                setTitle("Loading (" + progress + "%)");
+                setProgress(progress * 100); //Make the bar disappear after URL is loaded
+
+                // Return the app name after finish loading
+                if(progress == 100)
+                    setTitle(R.string.app_name);
             }
         });
 

@@ -189,7 +189,7 @@ public class ProfileActivity extends AppCompatActivity {
     private String saveToInternalStorage(Bitmap bitmapImage){
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-        
+
         File mypath=new File(directory,FirebaseAuth.getInstance().getCurrentUser().getUid()+".jpg");
 
         FileOutputStream fos = null;

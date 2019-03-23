@@ -49,7 +49,6 @@
             android:screenOrientation="sensorLandscape" />
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".chatmain"/>
-        <activity android:name=".test1"/>
         <activity android:name=".NoticeActivity" />
         <activity android:name=".books_journals" />
         <activity android:name=".contact_us" />

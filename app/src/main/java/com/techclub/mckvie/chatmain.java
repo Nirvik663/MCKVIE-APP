@@ -318,7 +318,7 @@ public class chatmain extends AppCompatActivity {
                             messageUser.setVisibility(View.INVISIBLE);
                             messageTime2.setVisibility(View.INVISIBLE);
                             messageTime.setVisibility(View.INVISIBLE);
-                            
+
                             final File localFile = File.createTempFile(model.getMessageText(), "jpg");
                             StorageReference filePath = mStorage.child("ChatImages").child(model.getMessageText());
                             filePath.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {

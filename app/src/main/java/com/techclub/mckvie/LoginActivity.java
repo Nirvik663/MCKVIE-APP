@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -40,7 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private  FirebaseAuth.AuthStateListener mAuthListener;
 
     ProgressBar progressBar;
-    EditText editTextEmail, editTextPassword;
+    TextInputLayout editTextEmail, editTextPassword;
     TextView signUp;
 
 
@@ -50,8 +51,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        editTextEmail = (EditText) findViewById(R.id.editEmail);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        editTextEmail = (TextInputLayout) findViewById(R.id.editEmail);
+        editTextPassword = (TextInputLayout) findViewById(R.id.editTextPassword);
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
         signUp = findViewById(R.id.signup);
 
@@ -68,25 +69,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void userLogin() {
-        String email = editTextEmail.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
+        String email = editTextEmail.getEditText().getText().toString().trim();
+        String password = editTextPassword.getEditText().getText().toString().trim();
 
         if(email.isEmpty()) {
             editTextEmail.setError("Email is Required");
-            editTextEmail.requestFocus();
             return;
+        }
+        else {
+            editTextEmail.setError(null);
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError("Please Enter a valid Email");
-            editTextEmail.requestFocus();
             return;
+        } else {
+            editTextEmail.setError(null);
         }
 
         if(password.isEmpty()) {
             editTextPassword.setError("Password is Empty");
-            editTextPassword.requestFocus();
             return;
+        } else {
+            editTextPassword.setError(null);
         }
 
         progressBar.setVisibility(View.VISIBLE);
@@ -153,6 +158,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 } else {
                     Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });

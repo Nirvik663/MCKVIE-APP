@@ -4,22 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/activity_background"
     tools:context="com.techclub.mckvie.ProfileActivity">
 
     <Button
         android:id="@+id/btn_image"
-        android:layout_width="121dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="24dp"
         android:background="#4db6ac"
-        android:foreground="?android:attr/selectableItemBackground"
         android:text="Select Image"
         android:textColor="#ffffff"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="271dp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView"
@@ -81,7 +77,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
         android:layout_marginTop="32dp"
-        android:text="TextView"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/btn_image" />
@@ -104,7 +99,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="57dp"
         android:layout_marginTop="24dp"
-        android:text="TextView"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView95"
         app:layout_constraintTop_toBottomOf="@+id/textView94" />
@@ -127,7 +121,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginTop="24dp"
-        android:text="TextView"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView97"
         app:layout_constraintTop_toBottomOf="@+id/textView96" />
@@ -150,18 +143,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="24dp"
-        android:text="TextView"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView99"
         app:layout_constraintTop_toBottomOf="@+id/textView98" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
         android:background="#4db6ac"
-        android:foreground="?android:attr/selectableItemBackground"
         android:text="Edit Details"
         android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
