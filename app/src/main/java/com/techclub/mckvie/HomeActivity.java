@@ -268,9 +268,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         career.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri uri = Uri.parse("http://www.mckvie.org/sms/mckvie/career/"); // missing 'http://' will cause crashed
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                startActivity(new Intent(HomeActivity.this, know_mckvie.class));
             }
         });
         Contactus.setOnClickListener(new View.OnClickListener() {
@@ -283,7 +281,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Knowmckvie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, know_mckvie.class));
+                if(mAuth.getCurrentUser() != null) {
+                    startActivity(new Intent(HomeActivity.this, MarksActivity.class));
+                } else {
+                    startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                }
             }
         });
         feed_back.setOnClickListener(new View.OnClickListener() {

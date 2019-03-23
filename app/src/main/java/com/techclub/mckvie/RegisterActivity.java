@@ -2,6 +2,7 @@ package com.techclub.mckvie;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -21,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText editTextName, editTextEmail, editTextPassword, editTextId;
+    private TextInputLayout editTextName, editTextEmail, editTextPassword, editTextId;
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
@@ -86,52 +87,61 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void registerUser() {
-        final String name = editTextName.getText().toString().trim();
-        final String email = editTextEmail.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
-        final String id = editTextId.getText().toString().trim();
+        final String name = editTextName.getEditText().getText().toString().trim();
+        final String email = editTextEmail.getEditText().getText().toString().trim();
+        String password = editTextPassword.getEditText().getText().toString().trim();
+        final String id = editTextId.getEditText().getText().toString().trim();
         final String admin = "false";
 
         if (name.isEmpty()) {
             editTextName.setError(getString(R.string.input_error_name));
             editTextName.requestFocus();
             return;
+        } else {
+            editTextName.setError(null);
         }
 
         if (email.isEmpty()) {
             editTextEmail.setError(getString(R.string.input_error_email));
-            editTextEmail.requestFocus();
             return;
+        } else {
+            editTextEmail.setError(null);
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError(getString(R.string.input_error_email_invalid));
             editTextEmail.requestFocus();
             return;
+        } else {
+            editTextEmail.setError(null);
         }
 
         if (password.isEmpty()) {
             editTextPassword.setError(getString(R.string.input_error_password));
-            editTextPassword.requestFocus();
             return;
+        } else {
+            editTextPassword.setError(null);
         }
 
         if (password.length() < 6) {
             editTextPassword.setError(getString(R.string.input_error_password_length));
-            editTextPassword.requestFocus();
             return;
+        } else {
+            editTextPassword.setError(null);
         }
 
         if (id.isEmpty()) {
             editTextId.setError(getString(R.string.input_error_phone));
-            editTextId.requestFocus();
             return;
+        } else {
+            editTextId.setError(null);
         }
 
         if (id.length() != 6) {
             editTextId.setError(getString(R.string.input_error_phone_invalid));
-            editTextId.requestFocus();
             return;
+        } else {
+            editTextId.setError(null);
         }
 
 
@@ -170,6 +180,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                         } else {
                             Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });

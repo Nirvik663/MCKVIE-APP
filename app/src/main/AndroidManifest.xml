@@ -55,6 +55,7 @@
         <activity android:name=".visit" />
         <activity android:name=".know_mckvie" />
         <activity android:name=".feedback"/>
+        <activity android:name=".AdminMarksActivity"/>
         <activity android:name=".webview" >
 
             </activity>

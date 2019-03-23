@@ -11,12 +11,12 @@
          layout="@layout/navigation_action" />
 
     <LinearLayout
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="55dp"
         android:id="@+id/constraintLayout5"
-        android:layout_width="395dp"
-        android:layout_height="679dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

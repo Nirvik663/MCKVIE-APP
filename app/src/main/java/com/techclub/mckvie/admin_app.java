@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 public class admin_app extends AppCompatActivity {
 
     EditText Desc,Image,Url,Title;
-    Button Insert;
+    Button Insert,Insertmarks;
     FirebaseDatabase database;
     DatabaseReference ref, ref1;
     Query ref2;
@@ -38,7 +38,10 @@ public class admin_app extends AppCompatActivity {
         Image = findViewById(R.id.image1);
         Url = findViewById(R.id.url1);
         Title = findViewById(R.id.title1);
+
         Insert = findViewById(R.id.insert1);
+        Insertmarks = findViewById(R.id.insert2);
+
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("Notices/all");
         ref2 = FirebaseDatabase.getInstance().getReference().child("Notices/all").orderByKey().limitToFirst(1);
@@ -115,6 +118,14 @@ public class admin_app extends AppCompatActivity {
                 alertDialog.show();
             }
 
+        });
+
+        Insertmarks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(admin_app.this,AdminMarksActivity.class);
+                startActivity(myIntent);
+            }
         });
     }
 

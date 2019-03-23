@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -42,9 +43,8 @@ import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private Button btnSelectImage;
     private TextView textView, textViewname,textViewemail,textViewuid,textViewdept;
-    private ImageView mImageView;
+    private ImageView mImageView, btnSelectImage;
     ProgressBar progressBar;
     private FirebaseDatabase mdatabase1;
     private FirebaseAuth mAuth;
@@ -53,6 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
     private static final int CHOOSE_IMAGE = 101;
     private static final int CAMERA_REQUEST_CODE = 1;
     int flag = 0;
+    //private FrameLayout invisibleFrame;
 
     DatabaseReference ref1;
 
@@ -61,7 +62,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        btnSelectImage = (Button) findViewById(R.id.btn_image);
+        btnSelectImage = (ImageView) findViewById(R.id.btn_image);
         mImageView = (ImageView) findViewById(R.id.imageView);
         textView = (TextView) findViewById(R.id.testTextVIew);
         progressBar = (ProgressBar) findViewById(R.id.progressBar2);
@@ -69,7 +70,9 @@ public class ProfileActivity extends AppCompatActivity {
         textViewemail = (TextView) findViewById(R.id.textView96);
         textViewuid = (TextView) findViewById(R.id.textView98);
         textViewdept = (TextView) findViewById(R.id.textView101);
+        //enlargeIV = (ImageView) findViewById(R.id.enlargedImageView);
         button = (Button) findViewById(R.id.button);
+        //invisibleFrame = (FrameLayout)findViewById(R.id.invisible_frame);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -94,8 +97,7 @@ public class ProfileActivity extends AppCompatActivity {
         try {
             File f=new File("/data/user/0/com.techclub.mckvie/app_imageDir", FirebaseAuth.getInstance().getCurrentUser().getUid()+".jpg");
             Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
-            ImageView img=(ImageView)findViewById(R.id.imageView);
-            img.setImageBitmap(b);
+            mImageView.setImageBitmap(b);
             progressBar.setVisibility(View.GONE);
         }
         catch (FileNotFoundException e)
@@ -142,9 +144,9 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        progressBar.setVisibility(View.VISIBLE);
         if(requestCode==CHOOSE_IMAGE && resultCode==RESULT_OK) {
 
+            progressBar.setVisibility(View.VISIBLE);
             Uri uri = data.getData();
 
             StorageReference filePath = mStorage.child("CameraPhotos").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
