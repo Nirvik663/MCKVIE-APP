@@ -157,6 +157,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 if(mAuth.getCurrentUser() != null) {
+                    finish();
                     Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
                     startActivity(intent);
                 }

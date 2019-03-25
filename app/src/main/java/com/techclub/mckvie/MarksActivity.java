@@ -30,10 +30,10 @@ public class MarksActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private ListView marksList;
-    private Spinner spinner1,spinner2,spinner3;
+    private Spinner spinner1,spinner2,spinner3, spinner4,spinner5;
     private EditText editTextRoll;
     private Button submitButton;
-    private String course,dept,sem;
+    private String course,dept,sem,ct,year;
     Toolbar toolbar;
 
     private ArrayList<String> mMarks = new ArrayList<>();
@@ -52,6 +52,8 @@ public class MarksActivity extends AppCompatActivity {
         spinner1 = findViewById(R.id.spinner);
         spinner2 = findViewById(R.id.spinner2);
         spinner3 = findViewById(R.id.spinner3);
+        spinner4 = findViewById(R.id.spinner4);
+        spinner5 = findViewById(R.id.spinner5);
 
         editTextRoll = findViewById(R.id.editTextroll);
 
@@ -61,6 +63,16 @@ public class MarksActivity extends AppCompatActivity {
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,mMarks);
         marksList.setAdapter(arrayAdapter);
+
+        ArrayAdapter<String> myAdapter5 = new ArrayAdapter<>(MarksActivity.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.ct));
+        myAdapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner5.setAdapter(myAdapter5);
+
+        ArrayAdapter<String> myAdapter4 = new ArrayAdapter<>(MarksActivity.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.year));
+        myAdapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner4.setAdapter(myAdapter4);
 
         ArrayAdapter<String> myAdapter1 = new ArrayAdapter<>(MarksActivity.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Courses));
@@ -119,6 +131,38 @@ public class MarksActivity extends AppCompatActivity {
             }
         });
 
+        spinner5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+                    ct = "ct1/";
+                } else if (i == 1) {
+                    ct = "ct2/";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinner4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+                    year = "2019/";
+                } else if (i == 1) {
+                    year = "2020/";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -155,7 +199,7 @@ public class MarksActivity extends AppCompatActivity {
                 arrayAdapter.clear();
                 arrayAdapter.notifyDataSetChanged();
 
-                mDatabase = FirebaseDatabase.getInstance().getReference().child("Marks/"+ course + dept + sem + editTextRoll.getText().toString());
+                mDatabase = FirebaseDatabase.getInstance().getReference().child("Marks/"+ course + dept + year + sem + ct + editTextRoll.getText().toString());
 
                 mDatabase.addChildEventListener(new ChildEventListener() {
                     @Override

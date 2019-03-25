@@ -11,6 +11,17 @@
     <item>AUE</item>
     </string-array>
 
+    <string-array name="year">
+        <item>2019</item>
+        <item>2020</item>
+        <item>2021</item>
+    </string-array>
+
+    <string-array name="ct">
+        <item>CT 1</item>
+        <item>CT 2</item>
+    </string-array>
+
     <string-array name="Courses">
         <item>BTECH</item>
         <item>MTECH</item>
