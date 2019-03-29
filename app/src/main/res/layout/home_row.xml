@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:layout_marginBottom="5dp"
     android:orientation="vertical"
+    android:id="@+id/home_row"
     app:cardCornerRadius="5dp"
     android:foreground="?android:attr/selectableItemBackground">
+
+    <!--android:background="#9C9C9C" grey
+     android:background="#02DCFF" light blue-->
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#f7bd82">
+        android:background="#5FE6FF">
 
         <TextView
             android:id="@+id/post_title"
@@ -28,23 +31,25 @@
             android:paddingVertical="3dp"
             android:gravity="center_vertical"
             android:text="POST TITLE"
-            android:maxLines="3"
+            android:maxLines="1"
             android:ellipsize="end"
-            android:textColor="#404040"
+            android:textColor="#1B1B1B"
             android:textSize="15sp" />
 
         <ImageView
+            android:background="#ffffff"
             android:id="@+id/new_logo"
             android:layout_width="40dp"
             android:layout_height="28dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="10dp"
-            android:src="@mipmap/new_logo"
-            android:visibility="gone" />
+            android:paddingRight="7dp"
+            android:paddingLeft="7dp"
+            android:visibility="gone"
+            android:src="@mipmap/new_logo" />
 
 
 
 
     </RelativeLayout>
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

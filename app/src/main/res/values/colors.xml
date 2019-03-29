@@ -8,4 +8,5 @@
     <color name="colorHint">#959595</color>
     <color name="white">#ffffff</color>
     <color name="colorButtonTransparent">#be050505</color>
+    <color name="new_notice">#F3905B</color>
 </resources>

@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
@@ -19,62 +19,85 @@
         android:roundIcon="@drawable/mckvlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"
+
+
+        <activity
+            android:name=".LoginActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".HomeActivity"
-            android:theme="@style/HomeTheme"
+        <activity
+            android:name=".HomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/HomeTheme" />
+        <activity
+            android:name=".ProfileActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ProfileActivity"
+        <activity
+            android:name=".admin_app"
             android:screenOrientation="portrait" />
-        <activity android:name=".admin_app"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Syllabus"
+        <activity
+            android:name=".Syllabus"
             android:screenOrientation="portrait" />
-        <activity android:name=".NoRagging"
+        <activity
+            android:name=".NoRagging"
             android:screenOrientation="portrait" />
-        <activity android:name=".YoutubeActivity"
+        <activity
+            android:name=".YoutubeActivity"
             android:screenOrientation="sensorLandscape" />
-        <activity android:name=".RegisterActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".chatmain"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".NoticeActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".books_journals"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".contact_us"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".visit"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".know_mckvie"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".feedback"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AdminMarksActivity"
+        <activity
+            android:name=".RegisterActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".webview"
-            android:theme="@style/WebviewTheme"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MarksActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".chatmain"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NoticeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".books_journals"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".contact_us"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".visit"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".know_mckvie"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feedback"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AdminMarksActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".webview"
+            android:screenOrientation="portrait"
+            android:theme="@style/WebviewTheme" />
+        <activity
+            android:name=".MarksActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/> <!-- optional (needed if default theme has no action bar) -->
 
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
-
 
 </manifest>

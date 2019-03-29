@@ -5,10 +5,11 @@ import android.content.Intent;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.fragment.app.Fragment;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +21,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -105,9 +103,11 @@ public class Tab1 extends Fragment {
                     @Override
                     public void onClick(View v) {
                         final String url = model.getUrl();
-                        Intent intent = new Intent(context, webview.class);
-                        intent.putExtra("id", url);
-                        startActivity(intent);
+                        if(!url.equals("none")) {
+                            Intent intent = new Intent(context, webview.class);
+                            intent.putExtra("id", url);
+                            startActivity(intent);
+                        }
                     }
                 });
 
@@ -145,6 +145,7 @@ public class Tab1 extends Fragment {
 
         public void setTime(String time){
             ImageView newLogo = (ImageView) mView.findViewById(R.id.new_logo);
+            CardView row = mView.findViewById(R.id.home_row);
             date1 = time;
 
             try {
@@ -158,6 +159,8 @@ public class Tab1 extends Fragment {
 
                 if (!currentDate.after(futureDate)) {
                     newLogo.setVisibility(View.VISIBLE);
+                    //row.setBackgroundColor(Color.RED);
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();

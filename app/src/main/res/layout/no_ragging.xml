@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,47 +7,27 @@
     android:background="@drawable/activity_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.constraint.ConstraintLayout
+    <include
+        layout="@layout/navigation_action"
+        android:id="@+id/toolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cls"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <include
-            layout="@layout/navigation_action"
-            app:layout_constraintBottom_toBottomOf="@+id/cls"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-    </android.support.constraint.ConstraintLayout>
-
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cls">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="match_parent"
@@ -57,159 +37,169 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/noragging_pic1" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:text="No Ragging"
                     android:textColor="#4db6ac"
                     android:textSize="30dp"
-                    android:textStyle="bold"
-                    android:padding="10dp"/>
-
+                    android:textStyle="bold" />
 
 
                 <TextView
                     android:id="@+id/textView19"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:text="@string/anti_ragging"
                     android:textAlignment="textStart"
                     android:textColor="#666666"
-                    android:textSize="18sp"
-                    android:padding="10dp"/>
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textView20"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:text="@string/anti_ragging1"
                     android:textAlignment="textStart"
                     android:textColor="#666666"
-                    android:textSize="18sp"
-                    android:padding="10dp"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="West Bengal Anti Ragging Act:"
-                    android:textStyle="bold"
                     android:layout_marginLeft="10dp"
-                    android:textSize="18sp"/>
+                    android:text="West Bengal Anti Ragging Act:"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView21"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:text="@string/anti_ragging2"
                     android:textAlignment="textStart"
                     android:textColor="#666666"
-                    android:textSize="18sp"
-                    android:padding="10dp"/>
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textView22"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:text="Section 3"
-                    android:textStyle="bold"
                     android:textAlignment="textStart"
                     android:textSize="18sp"
-                    android:padding="10dp"/>
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/textView23"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:text="(1): Ragging within an educational institution is hereby prohibited."
-                    android:textStyle="bold"
                     android:textAlignment="textStart"
                     android:textSize="18sp"
-                    android:padding="10dp"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView24"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:text="(2): No person shall participate in, abet, or propagate, ragging in any educational institution."
-                    android:textStyle="bold"
                     android:textAlignment="textStart"
                     android:textSize="18sp"
-                    android:padding="10dp"/>
+                    android:textStyle="bold" />
 
 
                 <TextView
                     android:id="@+id/textView25"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:text="@string/antiragging"
                     android:textAlignment="textStart"
                     android:textColor="#666666"
-                    android:textSize="18sp"
-                    android:padding="10dp"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/textView27"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:text="Section 4:"
-                    android:textStyle="bold"
                     android:textAlignment="textStart"
                     android:textColor="#666666"
                     android:textSize="18sp"
-                    android:padding="10dp"/>
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/textView26"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:text="@string/anti_ragging3"
                     android:textAlignment="textStart"
                     android:textColor="#666666"
-                    android:textSize="18sp"
-                    android:padding="10dp"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/textView28"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:text="Section 5:"
-                    android:textStyle="bold"
                     android:textAlignment="textStart"
                     android:textColor="#666666"
                     android:textSize="18sp"
-                    android:padding="10dp"/>
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/textView29"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:text="@string/anti_ragging4"
                     android:textAlignment="textStart"
                     android:textColor="#666666"
-                    android:textSize="18sp"
-                    android:padding="10dp"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/textView30"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:text="Section 6:"
                     android:textAlignment="textStart"
                     android:textColor="#666666"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:padding="10dp"/>
+                    android:textStyle="bold" />
+
                 <TextView
-                android:id="@+id/textView31"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/anti_ragging5"
-                android:textAlignment="textStart"
-                android:textColor="#666666"
-                android:textSize="18sp"
-                android:padding="10dp"/>
+                    android:id="@+id/textView31"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="@string/anti_ragging5"
+                    android:textAlignment="textStart"
+                    android:textColor="#666666"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/textView32"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:text="@string/anti_ragging6"
                     android:textAlignment="textStart"
                     android:textColor="#666666"
-                    android:textSize="18sp"
-                    android:padding="10dp"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/ragpdf"
                     android:layout_width="wrap_content"
@@ -225,11 +215,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
 
-
             </LinearLayout>
         </ScrollView>
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

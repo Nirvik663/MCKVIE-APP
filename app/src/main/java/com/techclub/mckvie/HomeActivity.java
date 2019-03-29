@@ -1,24 +1,22 @@
 package com.techclub.mckvie;
 
 import android.app.DownloadManager;
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
+import androidx.core.view.GravityCompat;
+import androidx.viewpager.widget.ViewPager;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,37 +26,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.Registry;
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.module.AppGlideModule;
-import com.bumptech.glide.request.RequestOptions;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Timer;
@@ -94,16 +72,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setuptoolbar();
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        TextView tv = (TextView) this.findViewById(R.id.textView6);
-        TextView noragging = (TextView) this.findViewById(R.id.textView10);
+        TextView syllabus = (TextView) this.findViewById(R.id.syllabus);
+        TextView noragging = (TextView) this.findViewById(R.id.no_ragging);
         ImageView iv_play = (ImageView) findViewById(R.id.iv_play_pause);
-        TextView handbook = (TextView) findViewById(R.id.handbook);
-        TextView career = (TextView) findViewById(R.id.textView3);
-        TextView book = (TextView) findViewById(R.id.books);
-        TextView Contactus = (TextView) findViewById(R.id.contactus);
-        TextView marks = (TextView) findViewById(R.id.textView7);
-        TextView feed_back = (TextView)findViewById(R.id.textView8);
-        TextView attendance = (TextView)findViewById(R.id.textView11);
+        TextView handbook = (TextView) findViewById(R.id.handbook_rules);
+        TextView know_mckvie = (TextView) findViewById(R.id.know_mckvie);
+        TextView book = (TextView) findViewById(R.id.book);
+        TextView Contactus = (TextView) findViewById(R.id.contact_us);
+        TextView marks = (TextView) findViewById(R.id.online_mark);
+        TextView feed_back = (TextView)findViewById(R.id.feedback);
+        TextView attendance = (TextView)findViewById(R.id.attendance);
 
         //floating action button start
         fab_plus = (FloatingActionButton) findViewById(R.id.fab_plus);
@@ -191,7 +169,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        tv.setOnClickListener(new View.OnClickListener() {
+        syllabus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this, Syllabus.class));
@@ -231,7 +209,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        career.setOnClickListener(new View.OnClickListener() {
+        know_mckvie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this, know_mckvie.class));
