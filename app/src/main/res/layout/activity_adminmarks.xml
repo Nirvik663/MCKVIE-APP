@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
     android:layout_height="match_parent">
 
     <Spinner
@@ -47,7 +48,7 @@
         android:id="@+id/spinner7"
         android:layout_width="150dp"
         android:layout_height="30dp"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@+id/textView115"
         app:layout_constraintTop_toBottomOf="@+id/spinner6" />
@@ -111,9 +112,9 @@
     <EditText
         android:id="@+id/paper"
         android:layout_width="97dp"
-        android:layout_height="42dp"
+        android:layout_height="44dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/textView114"
@@ -364,6 +365,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="55dp"
                 android:text="ROLL NO."
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -372,6 +374,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MARKS"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.56"
                 app:layout_constraintStart_toEndOf="@+id/textView121"
@@ -399,7 +402,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="CT"
+        android:text="Class Test"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView113" />
 

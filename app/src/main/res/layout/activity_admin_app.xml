@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_centerHorizontal="false"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".admin_app">
 
     <ImageView
@@ -20,7 +21,7 @@
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintHorizontal_bias="0.502" />
     <TextView
         android:layout_width="wrap_content"
@@ -66,14 +67,14 @@
 
     <EditText
         android:id="@+id/image1"
+        android:textColorHint="#669999"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="16dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_gravity="center_horizontal"
         android:hint="Image"
-        android:inputType="textPersonName"
-        android:text="https://mijn.hypotheekplatform.nl/App_Themes/MaxHyp/Images/transparent.png"/>
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/url1"

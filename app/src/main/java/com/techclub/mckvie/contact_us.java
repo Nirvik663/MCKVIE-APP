@@ -23,6 +23,7 @@ public class contact_us extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contactus);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -30,8 +31,8 @@ public class contact_us extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("");
         toolbar.setSubtitle("");
+
         TextView textView36 = (TextView) findViewById(R.id.textView36);
-        TextView dial = (TextView) findViewById(R.id.textView24);
         TextView textView28 = (TextView) findViewById(R.id.textView28);
         TextView textView24 = (TextView) findViewById(R.id.textView24);
         TextView textView31 = (TextView) findViewById(R.id.textView31);
@@ -88,12 +89,8 @@ public class contact_us extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:3326548604"));
 
-
-                //if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                //  return;
-                //} else {
                 startActivity(intent);
-                // }
+
 
             }
 

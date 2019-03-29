@@ -18,9 +18,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class admin_app extends AppCompatActivity {
 
-    EditText Desc,Image,Url,Title;
+    EditText Desc,Image,Url,Title, time;
     Button Insert,Insertmarks;
     FirebaseDatabase database;
     DatabaseReference ref, ref1;
@@ -78,21 +82,7 @@ public class admin_app extends AppCompatActivity {
                     Title.requestFocus();
                     return;
                 }
-                if (Desc.getText().toString().isEmpty()) {
-                    Desc.setError("Description is Required");
-                    Desc.requestFocus();
-                    return;
-                }
-                if (Image.getText().toString().isEmpty()) {
-                    Image.setError("Image is Required");
-                    Image.requestFocus();
-                    return;
-                }
-                if (Url.getText().toString().isEmpty()) {
-                    Url.setError("URL is Required");
-                    Url.requestFocus();
-                    return;
-                }
+
                 builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -114,6 +104,7 @@ public class admin_app extends AppCompatActivity {
                         });
                     }
                 });
+
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
             }
@@ -130,10 +121,37 @@ public class admin_app extends AppCompatActivity {
     }
 
     private void getvalues(){
-        object1.setDesc(Desc.getText().toString());
-        object1.setImage(Image.getText().toString());
-        object1.setTitle(Title.getText().toString());
-        object1.setUrl(Url.getText().toString());
+        if(Desc.getText().toString().isEmpty()) {
+            object1.setDesc("none");
+        }
+        else {
+            object1.setDesc(Desc.getText().toString().trim());
+        }
+        if(Title.getText().toString().isEmpty()) {
+            object1.setTitle("none");
+        }
+        else {
+            object1.setTitle(Title.getText().toString().trim());
+        }
+        if(Image.getText().toString().isEmpty()) {
+            object1.setImage("none");
+        }
+        else {
+            object1.setImage(Image.getText().toString().trim());
+        }
+        if(Url.getText().toString().isEmpty()) {
+            object1.setUrl("none");
+        }
+        else {
+            object1.setUrl(Url.getText().toString().trim());
+        }
+
+        Date c = Calendar.getInstance().getTime();
+
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String formattedDate = df.format(c);
+
+        object1.setTime(formattedDate);
     }
 
     @Override

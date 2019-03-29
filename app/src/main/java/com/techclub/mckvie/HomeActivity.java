@@ -2,6 +2,7 @@ package com.techclub.mckvie;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -49,9 +51,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -64,29 +69,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
-    ImageView iv_youtube_thumnail,iv_play;
+    ImageView iv_youtube_thumnail;
     String videoId;
     FloatingActionButton fab_plus,fab_call,fab_message,fab_email;
     Animation FabOpen,FabClose,FabRClockwise,FabRanti;
     boolean isOpen = false;
     DatabaseReference ref1;
     FirebaseDatabase database1;
-    ImageView imageView;
 
     TextView textViewname, textViewemail;
     String admin1;
 
-
-    private RecyclerView mPeopleRV;
-    private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-    private NavigationView navigationView;
-    private StorageReference mStorage;
 
     ViewPager viewPager;
 
-
-
+    View hView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,9 +101,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView career = (TextView) findViewById(R.id.textView3);
         TextView book = (TextView) findViewById(R.id.books);
         TextView Contactus = (TextView) findViewById(R.id.contactus);
-        TextView Knowmckvie = (TextView) findViewById(R.id.textView7);
+        TextView marks = (TextView) findViewById(R.id.textView7);
         TextView feed_back = (TextView)findViewById(R.id.textView8);
-        final ImageView imageView = (ImageView) findViewById(R.id.profile_image);
+        TextView attendance = (TextView)findViewById(R.id.textView11);
 
         //floating action button start
         fab_plus = (FloatingActionButton) findViewById(R.id.fab_plus);
@@ -184,47 +182,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         mAuth = FirebaseAuth.getInstance();
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        View hView =  navigationView.inflateHeaderView(R.layout.navigation_header);
-        textViewname = (TextView)hView.findViewById(R.id.username);
-        textViewemail = (TextView)hView.findViewById(R.id.useremail);
-
-        if (mAuth.getCurrentUser() != null) {
-            database1 = FirebaseDatabase.getInstance();
-            ref1 = database1.getReference("Users/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-            ref1.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    String name = dataSnapshot.child("name").getValue(String.class);
-                    String email = dataSnapshot.child("email").getValue(String.class);
-                    admin1 = dataSnapshot.child("admin").getValue(String.class);
-                    textViewname.setText(name);
-                    textViewemail.setText(email);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-
-            try {
-                File f=new File("/data/user/0/com.techclub.mckvie/app_imageDir", FirebaseAuth.getInstance().getCurrentUser().getUid()+".jpg");
-                Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
-                ImageView img=(ImageView)hView.findViewById(R.id.profile_image);
-                img.setImageBitmap(b);
+        attendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, webview.class);
+                intent.putExtra("id", "https://bit.ly/2JWAZpU");
+                startActivity(intent);
             }
-            catch (FileNotFoundException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        else {
-            textViewname.setText("Welcome to the Official App of");
-            textViewemail.setText("MCKV Institute of Engineering");
-        }
+        });
 
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -279,13 +244,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        Knowmckvie.setOnClickListener(new View.OnClickListener() {
+        marks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(mAuth.getCurrentUser() != null) {
                     startActivity(new Intent(HomeActivity.this, MarksActivity.class));
                 } else {
-                    startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                    Toast.makeText(HomeActivity.this, "Please Sign In First", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -295,6 +260,50 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(HomeActivity.this, feedback.class));
             }
         });
+
+        NavigationView navigationView;
+
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        hView = navigationView.inflateHeaderView(R.layout.navigation_header);
+        textViewname = hView.findViewById(R.id.username);
+        textViewemail = hView.findViewById(R.id.useremail);
+
+        if (mAuth.getCurrentUser() != null) {
+            database1 = FirebaseDatabase.getInstance();
+            ref1 = database1.getReference("Users/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+            ref1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String name = dataSnapshot.child("name").getValue(String.class);
+                    String email = dataSnapshot.child("email").getValue(String.class);
+                    admin1 = dataSnapshot.child("admin").getValue(String.class);
+                    textViewname.setText(name);
+                    textViewemail.setText(email);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+            try {
+                File f=new File("/data/user/0/com.techclub.mckvie/app_imageDir", FirebaseAuth.getInstance().getCurrentUser().getUid()+".jpg");
+                Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+                ImageView img=(ImageView)hView.findViewById(R.id.profile_image);
+                img.setImageBitmap(b);
+            }
+            catch (FileNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else {
+            textViewname.setText("Welcome to the Official App of");
+            textViewemail.setText("MCKV Institute of Engineering");
+        }
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("Notices"));
@@ -340,9 +349,39 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        NavigationView navigationView;
+
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        if (mAuth.getCurrentUser() != null) {
+
+            try {
+                File f = new File("/data/user/0/com.techclub.mckvie/app_imageDir", FirebaseAuth.getInstance().getCurrentUser().getUid()+".jpg");
+                Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+                ImageView img = (ImageView)hView.findViewById(R.id.profile_image);
+                img.setImageBitmap(b);
+            }
+            catch (FileNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else {
+            textViewname.setText("Welcome to the Official App of");
+            textViewemail.setText("MCKV Institute of Engineering");
+        }
+
+
+    }
+
     public void init()
     {
-        iv_youtube_thumnail=(ImageView)findViewById(R.id.img_thumnail);
+        iv_youtube_thumnail = (ImageView)findViewById(R.id.img_thumnail);
     }
 
     public String extractYoutubeId(String url) throws MalformedURLException {
@@ -385,28 +424,36 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         Intent myIntent;
 
+        Bitmap profilePic = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         switch (item.getItemId()) {
 
             case R.id.nav_signin:
-                finish();
                 myIntent = new Intent(HomeActivity.this, LoginActivity.class);
                 startActivity(myIntent);
 
                 break;
 
             case R.id.nav_account:
-                finish();
                 myIntent = new Intent(HomeActivity.this, ProfileActivity.class);
                 startActivity(myIntent);
                 break;
 
             case R.id.nav_signout:
                 FirebaseAuth.getInstance().signOut();
-                finish();
-                startActivity(getIntent());
-                Toast.makeText(HomeActivity.this, "Logged Out!", Toast.LENGTH_SHORT).show();
+                if(mAuth.getCurrentUser()==null){
+                    textViewname.setText("Welcome to the Official App of");
+                    textViewemail.setText("MCKV Institute of Engineering");
+
+                    navigationView.getMenu().clear();
+                    navigationView.inflateMenu(R.menu.navigation_menu_login);
+                    ImageView img=(ImageView)findViewById(R.id.profile_image);
+                    img.setImageBitmap(profilePic);
+                    Toast.makeText(HomeActivity.this, "Logged Out!", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
 
             case R.id.notices:
@@ -463,13 +510,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private void setuptoolbar()
     {
-        drawerLayout= (DrawerLayout) findViewById(R.id.draw);
-        toolbar= (Toolbar) findViewById(R.id.toolbar);
+        drawerLayout = (DrawerLayout) findViewById(R.id.draw);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("");
         toolbar.setSubtitle("");
-        actionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
     }
@@ -483,12 +531,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onStart() {
         super.onStart();
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         if(mAuth.getCurrentUser() == null) {
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.navigation_menu_login);
         } else {
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.navigation_menu_logout);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            this.drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+            homeIntent.addCategory(Intent.CATEGORY_HOME);
+            homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(homeIntent);
         }
     }
 

@@ -23,10 +23,24 @@
             android:layout_marginHorizontal="10dp"
             android:fontFamily="@font/coustard"
             android:includeFontPadding="true"
+            android:layout_toLeftOf="@id/new_logo"
+            android:layout_alignParentStart="true"
             android:paddingVertical="3dp"
+            android:gravity="center_vertical"
             android:text="POST TITLE"
+            android:maxLines="3"
+            android:ellipsize="end"
             android:textColor="#404040"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/new_logo"
+            android:layout_width="40dp"
+            android:layout_height="28dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/new_logo"
+            android:visibility="gone" />
 
 
 

@@ -42,12 +42,14 @@ public class NoticeActivity extends AppCompatActivity {
 
         banner_j = (TextView) findViewById(R.id.banner);
 
+        Intent intent = getIntent();
+        int intValue = intent.getIntExtra("flag", 0);
+
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             FirebaseDatabase mdatabase1 = FirebaseDatabase.getInstance();
             DatabaseReference ref1 = mdatabase1.getReference("Users/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-            Intent intent = getIntent();
-            int intValue = intent.getIntExtra("flag", 0);
+
 
             if (intValue == 1) {
                 ref1.addValueEventListener(new ValueEventListener() {
@@ -87,22 +89,24 @@ public class NoticeActivity extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
                 });
-            } else if(intValue == 2){
-                FirebaseRecyclerAdapter<object, NoticeActivity.NewsViewHolder> mPeopleRVAdapter1;
-                mPeopleRVAdapter1 = mckvie_notices("Notices/all");
-                mPeopleRVAdapter1.startListening();
-                banner_j.setText("NOTICE");
-            } else if(intValue == 3) {
-                FirebaseRecyclerAdapter<object, NoticeActivity.NewsViewHolder> mPeopleRVAdapter1;
-                mPeopleRVAdapter1 = mckvie_notices("Notices/News");
-                mPeopleRVAdapter1.startListening();
-                banner_j.setText("NEWS");
-            } else if(intValue == 4) {
-                FirebaseRecyclerAdapter<object, NoticeActivity.NewsViewHolder> mPeopleRVAdapter1;
-                mPeopleRVAdapter1 = mckvie_notices("Notices/Events");
-                mPeopleRVAdapter1.startListening();
-                banner_j.setText("EVENTS");
             }
+        }
+
+        if(intValue == 2){
+            FirebaseRecyclerAdapter<object, NoticeActivity.NewsViewHolder> mPeopleRVAdapter1;
+            mPeopleRVAdapter1 = mckvie_notices("Notices/all");
+            mPeopleRVAdapter1.startListening();
+            banner_j.setText("NOTICE");
+        } else if(intValue == 3) {
+            FirebaseRecyclerAdapter<object, NoticeActivity.NewsViewHolder> mPeopleRVAdapter1;
+            mPeopleRVAdapter1 = mckvie_notices("Notices/News");
+            mPeopleRVAdapter1.startListening();
+            banner_j.setText("NEWS");
+        } else if(intValue == 4) {
+            FirebaseRecyclerAdapter<object, NoticeActivity.NewsViewHolder> mPeopleRVAdapter1;
+            mPeopleRVAdapter1 = mckvie_notices("Notices/Events");
+            mPeopleRVAdapter1.startListening();
+            banner_j.setText("EVENTS");
         }
 
     }
@@ -129,8 +133,18 @@ public class NoticeActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(NoticeActivity.NewsViewHolder holder, final int position, final object model) {
                 holder.setTitle(model.getTitle());
-                holder.setDesc(model.getDesc());
-                holder.setImage(getBaseContext(), model.getImage());
+                if(model.getDesc().equals("none")) {
+                    holder.setDesc(model.getTitle());
+                } else {
+                    holder.setDesc(model.getDesc());
+                }
+                if(!model.getImage().equals("none")) {
+                    holder.setImage(getBaseContext(), model.getImage());
+                }
+
+                if(!model.getTime().equals("none")) {
+                    holder.setTime(model.getTime());
+                }
 
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -168,15 +182,19 @@ public class NoticeActivity extends AppCompatActivity {
         }
         public void setTitle(String title){
             TextView post_title = (TextView)mView.findViewById(R.id.post_title);
-            post_title.setText(title);
+            post_title.setText(title.substring(0,1).toUpperCase() + title.substring(1));
         }
         public void setDesc(String desc){
             TextView post_desc = (TextView)mView.findViewById(R.id.post_desc);
-            post_desc.setText(desc);
+            post_desc.setText(desc.substring(0,1).toUpperCase() + desc.substring(1));
         }
         public void setImage(Context ctx, String image){
             ImageView post_image = (ImageView) mView.findViewById(R.id.post_image);
             Picasso.with(ctx).load(image).into(post_image);
+        }
+        public void setTime(String time){
+            TextView post_time = (TextView)mView.findViewById(R.id.upload_time);
+            post_time.setText(time);
         }
     }
     @Override

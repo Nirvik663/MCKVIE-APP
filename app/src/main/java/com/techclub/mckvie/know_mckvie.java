@@ -21,6 +21,14 @@ public class know_mckvie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.knowmckvie);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("");
+        toolbar.setSubtitle("");
+
         TextView list1 = (TextView)findViewById(R.id.textView59);
         TextView list2 = (TextView)findViewById(R.id.textView60);
         TextView list3 = (TextView)findViewById(R.id.textView61);

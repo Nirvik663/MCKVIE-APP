@@ -188,7 +188,7 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    private String saveToInternalStorage(Bitmap bitmapImage){
+    private void saveToInternalStorage(Bitmap bitmapImage){
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
 
@@ -208,7 +208,6 @@ public class ProfileActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        return directory.getAbsolutePath();
     }
 
     private void loadImageFromStorage(String path)
@@ -225,14 +224,6 @@ public class ProfileActivity extends AppCompatActivity {
         {
             e.printStackTrace();
         }
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        finish();
-        Intent myInent = new Intent(this, HomeActivity.class);
-        startActivity(myInent);
 
     }
 }

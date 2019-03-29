@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include
         layout="@layout/navigation_action"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -35,8 +34,8 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:text="Contact Us"
+                android:fontFamily="@font/coustard"
                 android:textStyle="bold"
-                android:textColor="#669999"
                 android:textSize="46dp"
                 app:layout_constraintBottom_toTopOf="@+id/textView22"
                 app:layout_constraintStart_toStartOf="parent" />

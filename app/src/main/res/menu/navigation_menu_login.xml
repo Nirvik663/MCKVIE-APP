@@ -39,27 +39,31 @@
                 android:icon="@mipmap/baseline_account_circle_black_18dp"
                 android:visible="false"/>
 
-            <item
-                android:id="@+id/nav_settings"
-                android:title="Settings"
-                android:icon="@mipmap/settings_black"/>
-
             <item android:id="@+id/admin"
                 android:title="Admin"
                 android:icon="@mipmap/admin_1246350"/>
 
-            <item android:id="@+id/help"
-                android:title="Help and Feedback"
-                android:icon="@mipmap/baseline_help_black_18dp"/>
-
-            <item android:id="@+id/about_us"
-                android:title="About Us"
-                android:icon="@mipmap/baseline_info_black_18dp"/>
-
-            <item android:id="@+id/share"
-                android:title="Share This App"
-                android:icon="@mipmap/baseline_share_black_18dp"/>
-
         </menu>
     </item>
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_settings"
+            android:title="Settings"
+            android:icon="@mipmap/settings_black"/>
+
+        <item android:id="@+id/help"
+            android:title="Help and Feedback"
+            android:icon="@mipmap/help1"/>
+
+        <item android:id="@+id/about_us"
+            android:title="About Us"
+            android:icon="@mipmap/baseline_info_black_18dp"/>
+
+        <item android:id="@+id/share"
+            android:title="Share App"
+            android:icon="@mipmap/baseline_share_black_18dp"/>
+
+    </group>
 </menu>

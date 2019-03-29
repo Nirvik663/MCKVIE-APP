@@ -271,37 +271,7 @@
                         android:src="@drawable/icn_play" />
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="171dp"
-                    android:layout_height="31dp"
-                    android:layout_marginTop="16dp"
-                    android:text="MCKVIE VIDEO"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_default"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/textView15"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/webvideo_layout2"
-                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="104dp"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="TOUR"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textColor="@color/common_google_signin_btn_text_dark_default"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.492"
-                    app:layout_constraintStart_toEndOf="@+id/webvideo_layout2"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             </android.support.constraint.ConstraintLayout>
 

@@ -5,12 +5,14 @@ public class object {
     private String desc;
     private String image;
     private String url;
+    private String time;
 
     public object(String title, String desc, String image, String url) {
         this.title = title;
         this.desc = desc;
         this.image = image;
         this.url = url;
+        this.time = time;
     }
 
     public object(){
@@ -49,4 +51,14 @@ public class object {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+
 }

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -196,8 +197,16 @@ public class MarksActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                editTextRoll.onEditorAction(EditorInfo.IME_ACTION_DONE);
+
                 arrayAdapter.clear();
                 arrayAdapter.notifyDataSetChanged();
+
+                if(editTextRoll.getText().toString().isEmpty() || editTextRoll.getText().toString().length() > 2) {
+                    editTextRoll.setError("Enter a Valid Roll Number");
+                    editTextRoll.requestFocus();
+                    return;
+                }
 
                 mDatabase = FirebaseDatabase.getInstance().getReference().child("Marks/"+ course + dept + year + sem + ct + editTextRoll.getText().toString());
 

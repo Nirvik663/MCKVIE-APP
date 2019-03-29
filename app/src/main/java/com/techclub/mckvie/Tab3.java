@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -17,6 +18,10 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Tab3 extends Fragment {
 
@@ -87,6 +92,7 @@ public class Tab3 extends Fragment {
             @Override
             protected void onBindViewHolder(Tab3.NewsViewHolder holder, final int position, final object model) {
                 holder.setTitle(model.getTitle());
+                holder.setTime(model.getTime());
 
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -97,6 +103,8 @@ public class Tab3 extends Fragment {
                         startActivity(intent);
                     }
                 });
+
+                holder.setIsRecyclable(false);
             }
 
             @Override
@@ -116,13 +124,36 @@ public class Tab3 extends Fragment {
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder{
         View mView;
+        private String date1;
+
         public NewsViewHolder(View itemView){
             super(itemView);
             mView = itemView;
         }
         public void setTitle(String title){
             TextView post_title = (TextView)mView.findViewById(R.id.post_title);
-            post_title.setText(title);
+            post_title.setText(title.substring(0,1).toUpperCase() + title.substring(1));
+        }
+
+        public void setTime(String time){
+            ImageView newLogo = (ImageView) mView.findViewById(R.id.new_logo);
+            date1 = time;
+
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                Date post_date = format.parse(date1);
+                Calendar c = Calendar.getInstance();
+                c.setTime(post_date);
+                c.add(Calendar.DATE, 7);
+                Date futureDate = c.getTime();
+                Date currentDate = Calendar.getInstance().getTime();
+
+                if (!currentDate.after(futureDate)) {
+                    newLogo.setVisibility(View.VISIBLE);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

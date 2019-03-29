@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +23,10 @@ import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Tab1 extends Fragment {
 
@@ -33,11 +38,11 @@ public class Tab1 extends Fragment {
     private DatabaseReference mDatabase;
     private FirebaseRecyclerAdapter<object, Tab1.NewsViewHolder> mPeopleRVAdapter;
 
+    private OnFragmentInteractionListener mListener;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
 
     public Tab1() {
         // Required empty public constructor
@@ -52,8 +57,8 @@ public class Tab1 extends Fragment {
      * @return A new instance of fragment Tab2.
      */
     // TODO: Rename and change types and number of parameters
-    public static Tab1 newInstance(String param1, String param2) {
-        Tab1 fragment = new Tab1();
+    public static Tab2 newInstance(String param1, String param2) {
+        Tab2 fragment = new Tab2();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -93,6 +98,7 @@ public class Tab1 extends Fragment {
             @Override
             protected void onBindViewHolder(Tab1.NewsViewHolder holder, final int position, final object model) {
                 holder.setTitle(model.getTitle());
+                holder.setTime(model.getTime());
                // holder.setImage(PdfDocumentLoder.openDocument(context, model.getUrl()).renderPageToBitmap(context,0));
 
                 holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +110,8 @@ public class Tab1 extends Fragment {
                         startActivity(intent);
                     }
                 });
+
+                holder.setIsRecyclable(false);
             }
 
             @Override
@@ -123,18 +131,38 @@ public class Tab1 extends Fragment {
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder{
         View mView;
+        String date1;
+
+
         public NewsViewHolder(View itemView){
             super(itemView);
             mView = itemView;
         }
         public void setTitle(String title){
             TextView post_title = (TextView)mView.findViewById(R.id.post_title);
-            post_title.setText(title);
+            post_title.setText(title.substring(0,1).toUpperCase() + title.substring(1));
         }
-        //public void setImage(Context ctx, String image){
-            //ImageView post_image = (ImageView) mView.findViewById(R.id.image_post);
-           // Picasso.with(ctx).load(image).into(post_image);
-        //}
+
+        public void setTime(String time){
+            ImageView newLogo = (ImageView) mView.findViewById(R.id.new_logo);
+            date1 = time;
+
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                Date post_date = format.parse(date1);
+                Calendar c = Calendar.getInstance();
+                c.setTime(post_date);
+                c.add(Calendar.DATE, 2);
+                Date futureDate = c.getTime();
+                Date currentDate = Calendar.getInstance().getTime();
+
+                if (!currentDate.after(futureDate)) {
+                    newLogo.setVisibility(View.VISIBLE);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -144,7 +172,6 @@ public class Tab1 extends Fragment {
         }
     }
 
-    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
@@ -173,16 +200,6 @@ public class Tab1 extends Fragment {
         mPeopleRVAdapter.stopListening();
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

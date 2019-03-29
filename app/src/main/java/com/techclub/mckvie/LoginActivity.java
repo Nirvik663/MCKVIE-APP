@@ -105,11 +105,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    String msg = "Subscribed";
                                     if (!task.isSuccessful()) {
-                                        msg = "Subsription failed";
+                                        String msg = "Subsription failed";
+                                        Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
                                     }
-                                    Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -164,17 +163,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
-    private String saveToInternalStorage(Bitmap bitmapImage){
+    private void saveToInternalStorage(Bitmap bitmapImage){
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
-        // path to /data/data/yourapp/app_data/imageDir
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-        // Create imageDir
-        File mypath=new File(directory,FirebaseAuth.getInstance().getCurrentUser().getUid()+".jpg");
+        File mypath = new File(directory,FirebaseAuth.getInstance().getCurrentUser().getUid()+".jpg");
 
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(mypath);
-            // Use the compress method on the BitMap object to write image to the OutputStream
+
             bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
 
         } catch (Exception e) {
@@ -186,7 +183,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 e.printStackTrace();
             }
         }
-        return directory.getAbsolutePath();
     }
 
     @Override
@@ -212,7 +208,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onBackPressed() {
-        finish();
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }

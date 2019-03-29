@@ -3,7 +3,6 @@
     package="com.techclub.mckvie"
     android:versionName="0.1">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,6 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -19,47 +19,54 @@
         android:roundIcon="@drawable/mckvlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".admin_app"></activity>
         <activity
             android:name=".SplashActivity"
+            android:theme="@style/SplashTheme"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LoginActivity"
+        <activity android:name=".LoginActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".HomeActivity"
+        <activity android:name=".HomeActivity"
+            android:theme="@style/HomeTheme"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ProfileActivity"
+        <activity android:name=".ProfileActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".Syllabus"
+        <activity android:name=".admin_app"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Syllabus"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".NoRagging"
+        <activity android:name=".NoRagging"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".YoutubeActivity"
+        <activity android:name=".YoutubeActivity"
             android:screenOrientation="sensorLandscape" />
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".chatmain"/>
-        <activity android:name=".NoticeActivity" />
-        <activity android:name=".books_journals" />
-        <activity android:name=".contact_us" />
-        <activity android:name=".visit" />
-        <activity android:name=".know_mckvie" />
-        <activity android:name=".feedback"/>
-        <activity android:name=".AdminMarksActivity"/>
-        <activity android:name=".webview" >
-
-            </activity>
-        <activity android:name=".MarksActivity"/>
+        <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".chatmain"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".NoticeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".books_journals"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".contact_us"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".visit"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".know_mckvie"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".feedback"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AdminMarksActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".webview"
+            android:theme="@style/WebviewTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MarksActivity"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
@@ -68,6 +75,6 @@
         </service>
 
     </application>
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+
 
 </manifest>
