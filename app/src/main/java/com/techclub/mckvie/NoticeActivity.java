@@ -27,16 +27,12 @@ import com.squareup.picasso.Picasso;
 
 public class NoticeActivity extends AppCompatActivity {
 
-    private RecyclerView mPeopleRV;
-    private DatabaseReference mDatabase;
-    private TextView banner_j;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice);
 
-        banner_j = (TextView) findViewById(R.id.banner);
+        final TextView banner_j = findViewById(R.id.banner);
 
         Intent intent = getIntent();
         int intValue = intent.getIntExtra("flag", 0);
@@ -113,9 +109,9 @@ public class NoticeActivity extends AppCompatActivity {
 
         setTitle(dept_out);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child(dept_out);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(dept_out);
         mDatabase.keepSynced(true);
-        mPeopleRV = (RecyclerView) findViewById(R.id.myRecycleView);
+        RecyclerView mPeopleRV = (RecyclerView) findViewById(R.id.myRecycleView);
 
         DatabaseReference personsRef = FirebaseDatabase.getInstance().getReference().child(dept_out);
         Query personsQuery = personsRef.orderByKey();
@@ -153,6 +149,8 @@ public class NoticeActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+                holder.setIsRecyclable(false);
             }
 
             @Override

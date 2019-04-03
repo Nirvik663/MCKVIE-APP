@@ -15,9 +15,6 @@ import android.widget.ProgressBar;
 
 public class webview extends AppCompatActivity {
 
-    WebView myWebView;
-    ProgressBar progressBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +23,7 @@ public class webview extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        myWebView = (WebView) findViewById(R.id.webView);
+        WebView myWebView = (WebView) findViewById(R.id.webView);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         Bundle b = getIntent().getExtras();

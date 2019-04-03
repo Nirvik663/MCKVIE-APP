@@ -25,20 +25,14 @@ import java.util.ArrayList;
 
 public class MarksActivity extends AppCompatActivity {
 
-    private DatabaseReference mDatabase;
-    private ListView marksList;
-    private Spinner spinner1,spinner2,spinner3, spinner4,spinner5;
-    private EditText editTextRoll;
-    private Button submitButton;
     private String course,dept,sem,ct,year;
-    Toolbar toolbar;
 
     private ArrayList<String> mMarks = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_marks);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -46,17 +40,17 @@ public class MarksActivity extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setSubtitle("");
 
-        spinner1 = findViewById(R.id.spinner);
-        spinner2 = findViewById(R.id.spinner2);
-        spinner3 = findViewById(R.id.spinner3);
-        spinner4 = findViewById(R.id.spinner4);
-        spinner5 = findViewById(R.id.spinner5);
+        Spinner spinner1 = findViewById(R.id.spinner);
+        Spinner spinner2 = findViewById(R.id.spinner2);
+        Spinner spinner3 = findViewById(R.id.spinner3);
+        Spinner spinner4 = findViewById(R.id.spinner4);
+        Spinner spinner5 = findViewById(R.id.spinner5);
 
-        editTextRoll = findViewById(R.id.editTextroll);
+        final EditText editTextRoll = findViewById(R.id.editTextroll);
 
-        marksList = findViewById(R.id.listView_marks);
+        ListView marksList = findViewById(R.id.listView_marks);
 
-        submitButton = findViewById(R.id.button2);
+        Button submitButton = findViewById(R.id.button2);
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,mMarks);
         marksList.setAdapter(arrayAdapter);
@@ -204,7 +198,7 @@ public class MarksActivity extends AppCompatActivity {
                     return;
                 }
 
-                mDatabase = FirebaseDatabase.getInstance().getReference().child("Marks/"+ course + dept + year + sem + ct + editTextRoll.getText().toString());
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Marks/"+ course + dept + year + sem + ct + editTextRoll.getText().toString());
 
                 mDatabase.addChildEventListener(new ChildEventListener() {
                     @Override

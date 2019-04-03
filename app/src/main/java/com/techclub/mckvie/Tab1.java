@@ -28,50 +28,7 @@ import java.util.Date;
 
 public class Tab1 extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private PdfDocument Document;
-    private RecyclerView mPeopleRV;
-    private DatabaseReference mDatabase;
     private FirebaseRecyclerAdapter<object, Tab1.NewsViewHolder> mPeopleRVAdapter;
-
-    private OnFragmentInteractionListener mListener;
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Tab1() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Tab2.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Tab2 newInstance(String param1, String param2) {
-        Tab2 fragment = new Tab2();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,9 +37,12 @@ public class Tab1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tab1, container, false);
         final Context context = getActivity().getApplicationContext();
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Notices/all");
+        TextView title = view.findViewById(R.id.textViewTitle);
+        title.setText("NOTICES");
+
+        DatabaseReference  mDatabase = FirebaseDatabase.getInstance().getReference().child("Notices/all");
         mDatabase.keepSynced(true);
-        mPeopleRV = (RecyclerView) view.findViewById(R.id.myRecycleView1);
+        RecyclerView mPeopleRV =  view.findViewById(R.id.myRecycleView1);
 
         DatabaseReference personsRef = FirebaseDatabase.getInstance().getReference().child("Notices/all");
         Query personsQuery = personsRef.orderByKey();
@@ -97,7 +57,6 @@ public class Tab1 extends Fragment {
             protected void onBindViewHolder(Tab1.NewsViewHolder holder, final int position, final object model) {
                 holder.setTitle(model.getTitle());
                 holder.setTime(model.getTime());
-               // holder.setImage(PdfDocumentLoder.openDocument(context, model.getUrl()).renderPageToBitmap(context,0));
 
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -126,6 +85,8 @@ public class Tab1 extends Fragment {
 
         mPeopleRV.setAdapter(mPeopleRVAdapter);
 
+        mPeopleRVAdapter.startListening();
+
         return view;
     }
 
@@ -134,18 +95,17 @@ public class Tab1 extends Fragment {
         String date1;
 
 
-        public NewsViewHolder(View itemView){
+        private NewsViewHolder(View itemView){
             super(itemView);
             mView = itemView;
         }
-        public void setTitle(String title){
+        private void setTitle(String title){
             TextView post_title = (TextView)mView.findViewById(R.id.post_title);
             post_title.setText(title.substring(0,1).toUpperCase() + title.substring(1));
         }
 
-        public void setTime(String time){
-            ImageView newLogo = (ImageView) mView.findViewById(R.id.new_logo);
-            CardView row = mView.findViewById(R.id.home_row);
+        private void setTime(String time){
+            ImageView newLogo = mView.findViewById(R.id.new_logo);
             date1 = time;
 
             try {
@@ -159,7 +119,6 @@ public class Tab1 extends Fragment {
 
                 if (!currentDate.after(futureDate)) {
                     newLogo.setVisibility(View.VISIBLE);
-                    //row.setBackgroundColor(Color.RED);
 
                 }
             } catch (Exception e) {
@@ -168,43 +127,8 @@ public class Tab1 extends Fragment {
         }
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mPeopleRVAdapter.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        mPeopleRVAdapter.stopListening();
-    }
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+
     }
 }

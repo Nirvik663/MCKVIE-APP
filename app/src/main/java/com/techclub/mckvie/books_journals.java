@@ -14,18 +14,11 @@ import android.widget.TextView;
 
 public class books_journals extends AppCompatActivity {
 
-
-    DownloadManager downloadManager1;
-    DownloadManager downloadManager2;
-    DownloadManager downloadManager3;
-    DownloadManager downloadManager4;
-    Toolbar toolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.books);
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -63,7 +56,7 @@ public class books_journals extends AppCompatActivity {
         t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                downloadManager1 = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                DownloadManager downloadManager1 = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
                 Uri uri = Uri.parse("http://mckvie.edu.in/site/assets/files/1518/n__arraivals_sep_-oc-_2018.pdf");
                 DownloadManager.Request request = new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
@@ -73,7 +66,7 @@ public class books_journals extends AppCompatActivity {
         t2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                downloadManager2 = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                DownloadManager downloadManager2 = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
                 Uri uri = Uri.parse("http://www.mckvie.edu.in/site/assets/files/1518/newarrivals_jan2june_2017.pdf");
                 DownloadManager.Request request = new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
@@ -83,7 +76,7 @@ public class books_journals extends AppCompatActivity {
         t3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                downloadManager3 = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                DownloadManager downloadManager3 = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
                 Uri uri = Uri.parse("http://www.mckvie.edu.in/site/assets/files/1518/new_arraivals.pdf");
                 DownloadManager.Request request = new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
@@ -93,7 +86,7 @@ public class books_journals extends AppCompatActivity {
         t4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                downloadManager4 = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                DownloadManager downloadManager4 = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
                 Uri uri = Uri.parse("http://www.mckvie.edu.in/site/assets/files/1518/new_arraivals_feb18.pdf");
                 DownloadManager.Request request = new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);

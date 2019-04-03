@@ -42,38 +42,26 @@ import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private TextView textView, textViewname,textViewemail,textViewuid,textViewdept;
-    private ImageView mImageView, btnSelectImage;
     ProgressBar progressBar;
-    private FirebaseDatabase mdatabase1;
-    private FirebaseAuth mAuth;
-    private Button button;
     private StorageReference mStorage;
-    private static final int CHOOSE_IMAGE = 101;
-    private static final int CAMERA_REQUEST_CODE = 1;
-    int flag = 0;
-    //private FrameLayout invisibleFrame;
-
-    DatabaseReference ref1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        btnSelectImage = (ImageView) findViewById(R.id.btn_image);
-        mImageView = (ImageView) findViewById(R.id.imageView);
-        textView = (TextView) findViewById(R.id.testTextVIew);
+        ImageView btnSelectImage = (ImageView) findViewById(R.id.btn_image);
+        ImageView mImageView = (ImageView) findViewById(R.id.imageView);
+        TextView textView = (TextView) findViewById(R.id.testTextVIew);
         progressBar = (ProgressBar) findViewById(R.id.progressBar2);
-        textViewname = (TextView) findViewById(R.id.textView94);
-        textViewemail = (TextView) findViewById(R.id.textView96);
-        textViewuid = (TextView) findViewById(R.id.textView98);
-        textViewdept = (TextView) findViewById(R.id.textView101);
-        //enlargeIV = (ImageView) findViewById(R.id.enlargedImageView);
-        button = (Button) findViewById(R.id.button);
-        //invisibleFrame = (FrameLayout)findViewById(R.id.invisible_frame);
+        final TextView textViewname = (TextView) findViewById(R.id.textView94);
+        final TextView textViewemail = (TextView) findViewById(R.id.textView96);
+        final TextView textViewuid = (TextView) findViewById(R.id.textView98);
+        final TextView textViewdept = (TextView) findViewById(R.id.textView101);
 
-        mAuth = FirebaseAuth.getInstance();
+        Button button = (Button) findViewById(R.id.button);
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         //Get instance
         mStorage = FirebaseStorage.getInstance().getReference();
@@ -106,8 +94,8 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         if (mAuth.getCurrentUser() != null) {
-            mdatabase1 = FirebaseDatabase.getInstance();
-            ref1 = mdatabase1.getReference("Users/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
+            FirebaseDatabase mdatabase1 = FirebaseDatabase.getInstance();
+            DatabaseReference ref1 = mdatabase1.getReference("Users/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
 
             ref1.addValueEventListener(new ValueEventListener() {
                 @Override

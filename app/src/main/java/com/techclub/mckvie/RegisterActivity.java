@@ -21,11 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextInputLayout editTextName, editTextEmail, editTextPassword, editTextId;
     private ProgressBar progressBar;
-
     private FirebaseAuth mAuth;
-
     private String dept;
 
     @Override
@@ -35,10 +32,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         Spinner mySpinner = (Spinner) findViewById(R.id.spinner1);
 
-        editTextName = findViewById(R.id.edit_text_name);
-        editTextEmail = findViewById(R.id.edit_text_email);
-        editTextPassword = findViewById(R.id.edit_text_password);
-        editTextId = findViewById(R.id.edit_text_id);
+
         progressBar = findViewById(R.id.progressbar);
         progressBar.setVisibility(View.GONE);
 
@@ -86,9 +80,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void registerUser() {
+
+        TextInputLayout editTextName = findViewById(R.id.edit_text_name);
+        TextInputLayout editTextEmail = findViewById(R.id.edit_text_email);
+        TextInputLayout editTextPassword = findViewById(R.id.edit_text_password);
+        TextInputLayout editTextId = findViewById(R.id.edit_text_id);
+
         final String name = editTextName.getEditText().getText().toString().trim();
         final String email = editTextEmail.getEditText().getText().toString().trim();
-        String password = editTextPassword.getEditText().getText().toString().trim();
+        final String password = editTextPassword.getEditText().getText().toString().trim();
         final String id = editTextId.getEditText().getText().toString().trim();
         final String admin = "false";
 

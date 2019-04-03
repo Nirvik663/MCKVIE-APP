@@ -12,16 +12,12 @@ import android.widget.TextView;
 
 public class know_mckvie extends AppCompatActivity {
 
-    DownloadManager downloadManager;
-    Toolbar toolbar;
-    private WebView webView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.knowmckvie);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -142,7 +138,7 @@ public class know_mckvie extends AppCompatActivity {
         list12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
                 Uri uri = Uri.parse("http://www.mckvie.edu.in/site/assets/files/1210/introduction-to-qeee-2015.pdf");
                 DownloadManager.Request request = new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
@@ -186,7 +182,7 @@ public class know_mckvie extends AppCompatActivity {
         list18.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
                 Uri uri = Uri.parse("http://mckvie.edu.in/site/assets/files/1204/mckv_ie_pull_out_final_offset_setting_2_-curve.pdf");
                 DownloadManager.Request request = new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
@@ -198,7 +194,7 @@ public class know_mckvie extends AppCompatActivity {
         list13.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
                 Uri uri = Uri.parse("www.mckvie.edu.in/site/assets/files/1210/mous-with-industry-iit.pdf");
                 DownloadManager.Request request = new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);

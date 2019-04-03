@@ -34,23 +34,16 @@ import java.io.IOException;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
-    private  FirebaseAuth.AuthStateListener mAuthListener;
-
     ProgressBar progressBar;
-    TextInputLayout editTextEmail, editTextPassword;
-    TextView signUp;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        editTextEmail = (TextInputLayout) findViewById(R.id.editEmail);
-        editTextPassword = (TextInputLayout) findViewById(R.id.editTextPassword);
-        progressBar = (ProgressBar) findViewById(R.id.progressbar);
-        signUp = findViewById(R.id.signup);
+
+        progressBar =findViewById(R.id.progressbar);
+        TextView signUp = findViewById(R.id.signup);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -65,6 +58,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void userLogin() {
+
+        TextInputLayout editTextEmail = findViewById(R.id.editEmail);
+        TextInputLayout editTextPassword =  findViewById(R.id.editTextPassword);
+
         String email = editTextEmail.getEditText().getText().toString().trim();
         String password = editTextPassword.getEditText().getText().toString().trim();
 

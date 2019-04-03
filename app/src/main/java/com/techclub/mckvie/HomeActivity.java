@@ -6,6 +6,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -32,11 +35,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Timer;
@@ -45,23 +53,14 @@ import java.util.TimerTask;
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,Tab1.OnFragmentInteractionListener,Tab2.OnFragmentInteractionListener,Tab3.OnFragmentInteractionListener {
 
     DrawerLayout drawerLayout;
-    Toolbar toolbar;
-    ActionBarDrawerToggle actionBarDrawerToggle;
-    ImageView iv_youtube_thumnail;
-    String videoId;
-    FloatingActionButton fab_plus,fab_call,fab_message,fab_email;
-    Animation FabOpen,FabClose,FabRClockwise,FabRanti;
-    boolean isOpen = false;
-    DatabaseReference ref1;
-    FirebaseDatabase database1;
 
-    TextView textViewname, textViewemail;
+    boolean isOpen = false;
+    TextView textViewName, textViewEmail;
     String admin1;
 
     private FirebaseAuth mAuth;
 
-    ViewPager viewPager;
-
+    //ViewPager viewPager;
     View hView;
 
     @Override
@@ -71,27 +70,30 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         setuptoolbar();
 
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-        TextView syllabus = (TextView) this.findViewById(R.id.syllabus);
-        TextView noragging = (TextView) this.findViewById(R.id.no_ragging);
-        ImageView iv_play = (ImageView) findViewById(R.id.iv_play_pause);
-        TextView handbook = (TextView) findViewById(R.id.handbook_rules);
-        TextView know_mckvie = (TextView) findViewById(R.id.know_mckvie);
-        TextView book = (TextView) findViewById(R.id.book);
-        TextView Contactus = (TextView) findViewById(R.id.contact_us);
-        TextView marks = (TextView) findViewById(R.id.online_mark);
-        TextView feed_back = (TextView)findViewById(R.id.feedback);
-        TextView attendance = (TextView)findViewById(R.id.attendance);
+        mAuth = FirebaseAuth.getInstance();
+
+
+
+        TextView syllabus =findViewById(R.id.syllabus);
+        TextView noragging = findViewById(R.id.no_ragging);
+        ImageView iv_play = findViewById(R.id.iv_play_pause);
+        TextView handbook = findViewById(R.id.handbook_rules);
+        TextView know_mckvie = findViewById(R.id.know_mckvie);
+        TextView book = findViewById(R.id.book);
+        TextView Contactus = findViewById(R.id.contact_us);
+        TextView marks = findViewById(R.id.online_mark);
+        TextView feed_back = findViewById(R.id.feedback);
+        TextView attendance = findViewById(R.id.attendance);
 
         //floating action button start
-        fab_plus = (FloatingActionButton) findViewById(R.id.fab_plus);
-        fab_call = (FloatingActionButton) findViewById(R.id.fab_call);
-        fab_message = (FloatingActionButton) findViewById(R.id.fab_message);
-        fab_email = (FloatingActionButton) findViewById(R.id.fab_email);
-        FabOpen = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_opn);
-        FabClose = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
-        FabRClockwise = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clkwse);
-        FabRanti = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anticlkwse);
+        final FloatingActionButton  fab_plus = findViewById(R.id.fab_plus);
+        final FloatingActionButton  fab_call = findViewById(R.id.fab_call);
+        final FloatingActionButton  fab_message = findViewById(R.id.fab_message);
+        final FloatingActionButton  fab_email = findViewById(R.id.fab_email);
+        final Animation FabOpen = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_opn);
+        final Animation FabClose = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+        final Animation FabRClockwise = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clkwse);
+        final Animation FabRanti = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anticlkwse);
 
 
         fab_plus.setOnClickListener(new View.OnClickListener() {
@@ -152,13 +154,33 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
-        viewPager.setAdapter(viewPagerAdapter);
+        //viewPager = findViewById(R.id.viewPager);
 
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new MyTimerTask(), 2000, 4000);
+        //ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
+        //viewPager.setAdapter(viewPagerAdapter);
 
-        mAuth = FirebaseAuth.getInstance();
+        //Timer timer = new Timer();
+        //timer.scheduleAtFixedRate(new MyTimerTask(), 2000, 4000);
+
+        final ImageView img_banner = findViewById(R.id.home_image);
+
+
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Banner");
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String url = dataSnapshot.getValue(String.class);
+                Picasso.with(HomeActivity.this).load(url)
+                        .into(img_banner);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         attendance.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,17 +261,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        NavigationView navigationView;
-
-        navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
         hView = navigationView.inflateHeaderView(R.layout.navigation_header);
-        textViewname = hView.findViewById(R.id.username);
-        textViewemail = hView.findViewById(R.id.useremail);
+
+        textViewName = hView.findViewById(R.id.username);
+        textViewEmail = hView.findViewById(R.id.useremail);
 
         if (mAuth.getCurrentUser() != null) {
-            database1 = FirebaseDatabase.getInstance();
-            ref1 = database1.getReference("Users/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
+            FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+            DatabaseReference ref1 = database1.getReference("Users/" + FirebaseAuth.getInstance().getCurrentUser().getUid());
 
             ref1.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -257,8 +279,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     String name = dataSnapshot.child("name").getValue(String.class);
                     String email = dataSnapshot.child("email").getValue(String.class);
                     admin1 = dataSnapshot.child("admin").getValue(String.class);
-                    textViewname.setText(name);
-                    textViewemail.setText(email);
+                    textViewName.setText(name);
+                    textViewEmail.setText(email);
                 }
 
                 @Override
@@ -268,9 +290,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             });
 
             try {
-                File f=new File("/data/user/0/com.techclub.mckvie/app_imageDir", FirebaseAuth.getInstance().getCurrentUser().getUid()+".jpg");
+                File f = new File("/data/user/0/com.techclub.mckvie/app_imageDir", FirebaseAuth.getInstance().getCurrentUser().getUid()+".jpg");
                 Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
-                ImageView img=(ImageView)hView.findViewById(R.id.profile_image);
+                ImageView img = hView.findViewById(R.id.profile_image);
                 img.setImageBitmap(b);
             }
             catch (FileNotFoundException e)
@@ -279,25 +301,43 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         }
         else {
-            textViewname.setText("Welcome to the Official App of");
-            textViewemail.setText("MCKV Institute of Engineering");
+            textViewName.setText("Welcome to the Official App of");
+            textViewEmail.setText("MCKV Institute of Engineering");
         }
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
+
+
+        ImageView iv_youtube_thumnail = findViewById(R.id.img_thumnail);
+
+        try {
+            String videoId = extractYoutubeId("https://www.youtube.com/watch?v=atmWWi5bIbg");
+            Log.e("VideoId is->", "" + videoId);
+            String img_url = "http://img.youtube.com/vi/" + videoId + "/0.jpg"; // this is link which will give u thumnail image of that video
+            Picasso.with(HomeActivity.this)
+                    .load(img_url)
+                    .into(iv_youtube_thumnail);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        TabLayout tabLayout = findViewById(R.id.tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("Notices"));
         tabLayout.addTab(tabLayout.newTab().setText("News"));
         tabLayout.addTab(tabLayout.newTab().setText("Events"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+
+        final ViewPager viewPager =  findViewById(R.id.pager);
         final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
-        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+
             }
 
             @Override
@@ -311,19 +351,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        init();
-
-        try {
-            videoId = extractYoutubeId("https://www.youtube.com/watch?v=atmWWi5bIbg");
-            Log.e("VideoId is->", "" + videoId);
-            String img_url = "http://img.youtube.com/vi/" + videoId + "/0.jpg"; // this is link which will give u thumnail image of that video
-            Picasso.with(HomeActivity.this)
-                    .load(img_url)
-                    .into(iv_youtube_thumnail);
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -350,16 +377,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         }
         else {
-            textViewname.setText("Welcome to the Official App of");
-            textViewemail.setText("MCKV Institute of Engineering");
+            textViewName.setText("Welcome to the Official App of");
+            textViewEmail.setText("MCKV Institute of Engineering");
         }
 
 
-    }
 
-    public void init()
-    {
-        iv_youtube_thumnail = (ImageView)findViewById(R.id.img_thumnail);
+
     }
 
     public String extractYoutubeId(String url) throws MalformedURLException {
@@ -375,7 +399,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         return id;
     }
 
-    public class MyTimerTask extends TimerTask {
+    /*public class MyTimerTask extends TimerTask {
 
         @Override
         public void run(){
@@ -395,7 +419,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
         }
-    }
+    }*/
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -404,7 +428,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         Bitmap profilePic = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
 
         switch (item.getItemId()) {
 
@@ -421,13 +445,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_signout:
                 FirebaseAuth.getInstance().signOut();
-                if(mAuth.getCurrentUser()==null){
-                    textViewname.setText("Welcome to the Official App of");
-                    textViewemail.setText("MCKV Institute of Engineering");
+                if(mAuth.getCurrentUser() == null){
+                    textViewName.setText("Welcome to the Official App of");
+                    textViewEmail.setText("MCKV Institute of Engineering");
 
                     navigationView.getMenu().clear();
                     navigationView.inflateMenu(R.menu.navigation_menu_login);
-                    ImageView img=(ImageView)findViewById(R.id.profile_image);
+                    ImageView img = findViewById(R.id.profile_image);
                     img.setImageBitmap(profilePic);
                     Toast.makeText(HomeActivity.this, "Logged Out!", Toast.LENGTH_SHORT).show();
                 }
@@ -488,28 +512,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private void setuptoolbar()
     {
-        drawerLayout = (DrawerLayout) findViewById(R.id.draw);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        drawerLayout = findViewById(R.id.draw);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("");
         toolbar.setSubtitle("");
 
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        final ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView =  findViewById(R.id.nav_view);
 
         if(mAuth.getCurrentUser() == null) {
             navigationView.getMenu().clear();

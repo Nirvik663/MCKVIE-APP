@@ -24,31 +24,21 @@ import java.util.Date;
 
 public class admin_app extends AppCompatActivity {
 
-    EditText Desc,Image,Url,Title, time;
-    Button Insert,Insertmarks;
-    FirebaseDatabase database;
-    DatabaseReference ref, ref1;
-    Query ref2;
+
     object object1;
-    int c = 10000;
     String msg1 = "10000";
+    int c = 10000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_app);
 
-        Desc = findViewById(R.id.desc1);
-        Image = findViewById(R.id.image1);
-        Url = findViewById(R.id.url1);
-        Title = findViewById(R.id.title1);
 
-        Insert = findViewById(R.id.insert1);
-        Insertmarks = findViewById(R.id.insert2);
+        Button Insert = findViewById(R.id.insert1);
+        Button Insertmarks = findViewById(R.id.insert2);
 
-        database = FirebaseDatabase.getInstance();
-        ref = database.getReference("Notices/all");
-        ref2 = FirebaseDatabase.getInstance().getReference().child("Notices/all").orderByKey().limitToFirst(1);
+        Query ref2 = FirebaseDatabase.getInstance().getReference().child("Notices/all").orderByKey().limitToFirst(1);
         ref2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -77,6 +67,9 @@ public class admin_app extends AppCompatActivity {
                     }
                 });
 
+                EditText Title = findViewById(R.id.title1);
+
+
                 if (Title.getText().toString().isEmpty()) {
                     Title.setError(getString(R.string.title_error));
                     Title.requestFocus();
@@ -86,14 +79,15 @@ public class admin_app extends AppCompatActivity {
                 builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
                         if (Integer.parseInt(msg1) != 0)
                             c = Integer.parseInt(msg1);
                         c = c - 1;
-                        ref.addValueEventListener(new ValueEventListener() {
+                        FirebaseDatabase.getInstance().getReference("Notices/all").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 getvalues();
-                                ref.child(Integer.toString(c)).setValue(object1);
+                                FirebaseDatabase.getInstance().getReference("Notices/all").child(Integer.toString(c)).setValue(object1);
                                 Toast.makeText(admin_app.this, "Notice Inserted", Toast.LENGTH_SHORT).show();
                             }
 
@@ -121,6 +115,12 @@ public class admin_app extends AppCompatActivity {
     }
 
     private void getvalues(){
+
+        EditText Desc = findViewById(R.id.desc1);
+        EditText Image = findViewById(R.id.image1);
+        EditText Url = findViewById(R.id.url1);
+        EditText Title = findViewById(R.id.title1);
+
         if(Desc.getText().toString().isEmpty()) {
             object1.setDesc("none");
         }

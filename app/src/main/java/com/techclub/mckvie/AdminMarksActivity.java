@@ -16,53 +16,47 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AdminMarksActivity extends AppCompatActivity {
 
-    private Spinner spinner1,spinner2,spinner3,spinner4,spinner5;
-    private Button submitButton;
     private String course,dept,sem,year,ct;
-    private EditText paper;
-    private EditText rn1,rn2,rn3,rn4,rn5,rn6,rn7,rn8,rn9,rn10,rn11;
-    private EditText m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11;
-    private DatabaseReference mDatabase;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminmarks);
 
-        spinner1 = findViewById(R.id.spinner);
-        spinner2 = findViewById(R.id.spinner2);
-        spinner3 = findViewById(R.id.spinner3);
-        spinner4 = findViewById(R.id.spinner6);
-        spinner5 = findViewById(R.id.spinner7);
+        Spinner spinner1 = findViewById(R.id.spinner);
+        Spinner spinner2 = findViewById(R.id.spinner2);
+        Spinner spinner3 = findViewById(R.id.spinner3);
+        Spinner spinner4 = findViewById(R.id.spinner6);
+        Spinner spinner5 = findViewById(R.id.spinner7);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Marks/");
+        final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Marks/");
 
-        submitButton = findViewById(R.id.button2);
+        Button submitButton = findViewById(R.id.button2);
 
-        rn1 = (EditText)findViewById(R.id.rn1);
-        rn2 = (EditText)findViewById(R.id.rn2);
-        rn3 = (EditText)findViewById(R.id.rn3);
-        rn4 = (EditText)findViewById(R.id.rn4);
-        rn5 = (EditText)findViewById(R.id.rn5);
-        rn6 = (EditText)findViewById(R.id.rn6);
-        rn7 = (EditText)findViewById(R.id.rn7);
-        rn8 = (EditText)findViewById(R.id.rn8);
-        rn9 = (EditText)findViewById(R.id.rn9);
-        rn10 = (EditText)findViewById(R.id.rn10);
-        rn11 = (EditText)findViewById(R.id.rn11);
+        final EditText rn1 = (EditText)findViewById(R.id.rn1);
+        final EditText rn2 = (EditText)findViewById(R.id.rn2);
+        final EditText rn3 = (EditText)findViewById(R.id.rn3);
+        final EditText rn4 = (EditText)findViewById(R.id.rn4);
+        final EditText rn5 = (EditText)findViewById(R.id.rn5);
+        final EditText rn6 = (EditText)findViewById(R.id.rn6);
+        final EditText rn7 = (EditText)findViewById(R.id.rn7);
+        final EditText rn8 = (EditText)findViewById(R.id.rn8);
+        final EditText rn9 = (EditText)findViewById(R.id.rn9);
+        final EditText rn10 = (EditText)findViewById(R.id.rn10);
+        final EditText rn11 = (EditText)findViewById(R.id.rn11);
 
-        m1 = (EditText)findViewById(R.id.marks1);
-        m2 = (EditText)findViewById(R.id.marks2);
-        m3 = (EditText)findViewById(R.id.marks3);
-        m4 = (EditText)findViewById(R.id.marks4);
-        m5 = (EditText)findViewById(R.id.marks5);
-        m6 = (EditText)findViewById(R.id.marks6);
-        m7 = (EditText)findViewById(R.id.marks7);
-        m8 = (EditText)findViewById(R.id.marks8);
-        m9 = (EditText)findViewById(R.id.marks9);
-        m10 = (EditText)findViewById(R.id.marks10);
-        m11 = (EditText)findViewById(R.id.marks11);
+        final EditText m1 = (EditText)findViewById(R.id.marks1);
+        final EditText m2 = (EditText)findViewById(R.id.marks2);
+        final EditText m3 = (EditText)findViewById(R.id.marks3);
+        final EditText m4 = (EditText)findViewById(R.id.marks4);
+        final EditText m5 = (EditText)findViewById(R.id.marks5);
+        final EditText m6 = (EditText)findViewById(R.id.marks6);
+        final EditText m7 = (EditText)findViewById(R.id.marks7);
+        final EditText m8 = (EditText)findViewById(R.id.marks8);
+        final EditText m9 = (EditText)findViewById(R.id.marks9);
+        final EditText m10 = (EditText)findViewById(R.id.marks10);
+        final EditText m11 = (EditText)findViewById(R.id.marks11);
 
-        paper = (EditText)findViewById(R.id.paper);
+        final EditText paper = (EditText)findViewById(R.id.paper);
 
         ArrayAdapter<String> myAdapter5 = new ArrayAdapter<>(AdminMarksActivity.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.ct));
